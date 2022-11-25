@@ -1,6 +1,6 @@
 import { FilledInput, FormControl, IconButton, InputAdornment, InputLabel, TextField } from '@mui/material';
 import React, { useState } from 'react';
-import { EmailInput, LoginButton, PasswordInput, StyledForm } from './Login.components';
+import { EmailInput, LoginButton, LogoContainer, PasswordInput, StyledForm } from './Login.components';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
@@ -27,6 +27,7 @@ export const Login = () => {
     };
     return (
         <StyledForm>
+            <LogoContainer>LOGO</LogoContainer>
             <EmailInput id="standard-required" label="Email" variant="filled" />
             <FormControl variant="filled">
                 <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>

@@ -21,3 +21,13 @@ export const LoginButton = styled(Button)`
     background-color: rgba(122, 78, 143, 1) !important;
     margin-top: 10px !important;
 `;
+
+export const LogoContainer = styled.div`
+    padding: 50px;
+    align-items: center;
+    align-content: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+`;

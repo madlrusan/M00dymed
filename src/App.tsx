@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Layout from './components/containers/Layout';
 import { Login } from './Pages/Login/Login';
-import { Register } from './Pages/Register';
+import { Register } from './Pages/Register/Register';
 const App = () => {
     return (
         <>
