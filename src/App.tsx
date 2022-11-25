@@ -1,10 +1,18 @@
-import { ClickCounter } from './ClickCounter';
-
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Layout from './Components/containers/Layout';
+import { Login } from './Pages/Login';
+import { Register } from './Pages/Register';
 const App = () => {
     return (
         <>
-            <h1>React TypeScript Webpack Starter Template</h1>
-            <ClickCounter />
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<Layout />}>
+                        <Route path="login" element={<Login />} />
+                        <Route path="register" element={<Register />} />
+                    </Route>
+                </Routes>
+            </BrowserRouter>
         </>
     );
 };
