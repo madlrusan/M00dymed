@@ -8,3 +8,6 @@ export const Container = styled.div`
     justify-items: stretch;
     grid-template-columns: 1fr 1fr;
 `;
+export const RightContainer = styled.div`
+    height: 100vh;
+`;

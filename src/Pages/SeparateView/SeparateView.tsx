@@ -1,15 +1,18 @@
-import { Container } from '../../components/common/SeparateView.components';
-import { RightImage } from '../../Components/RightImage';
+import { Container, RightContainer } from '../../components/common/SeparateView.components';
+import { RightImage } from '../.././components/RightImage';
 import { Login } from '../Login/Login';
-import rightImage from '../../../assets/rightImage.jpg';
-
-export const SeparateView = () => {
+import { Register } from '../Register/Register';
+type SeparateViewWithFormProps = {
+    form: string;
+};
+export const SeparateViewWithViewProps = (props: SeparateViewWithFormProps) => {
+    const { form } = props;
     return (
         <Container>
-            <Login />
-            <div>
+            {form === 'Login' ? <Login /> : <Register />}
+            <RightContainer>
                 <RightImage />
-            </div>
+            </RightContainer>
         </Container>
     );
 };
