@@ -1,9 +1,9 @@
 import { FilledInput, FormControl, IconButton, InputAdornment, InputLabel, TextField } from '@mui/material';
 import React, { useState } from 'react';
-import { EmailInput, LoginButton, PasswordInput, PasswordLabel } from './Login.components';
+import { PasswordInput, PasswordLabel } from './Login.components';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { LogoContainer, StyledForm } from '../../components/common/CredentialsForm.components';
+import { SubmitButton, EmailInput, LogoContainer, StyledForm } from '../../components/common/CredentialsForm.components';
 
 interface LoginState {
     emailInput: string;
@@ -53,7 +53,7 @@ export const Login = () => {
                     ),
                 }}
             />
-            <LoginButton variant="contained">Login</LoginButton>
+            <SubmitButton variant="contained">Login</SubmitButton>
         </StyledForm>
     );
 };

@@ -1,6 +1,6 @@
-import { TextField } from '@mui/material';
+import { Button, TextField } from '@mui/material';
 import styled from 'styled-components';
-import { mediumPurple, pink, transparentPink } from '../../modules/theme';
+import { darkPurple, mediumPurple, pink, transparentPink } from '../../modules/theme';
 
 export const LogoContainer = styled.div`
     padding: 50px;
@@ -18,7 +18,6 @@ export const StyledForm = styled.div`
     align-content: stretch;
     justify-content: space-between;
     align-items: stretch;
-    padding: 50px;
 `;
 
 export const NameInput = styled(TextField)`
@@ -41,4 +40,35 @@ export const NameContainer = styled.div`
     align-content: stretch;
     justify-content: space-evenly;
     align-items: stretch;
+`;
+
+export const EmailInput = styled(TextField)`
+    margin-bottom: 20px !important;
+    background: ${transparentPink};
+    div::after {
+        border-color: ${pink};
+        border-bottom: 1px solid ${pink} !important;
+        color: ${pink};
+    }
+    .Mui-focused {
+        color: ${mediumPurple} !important;
+    }
+`;
+
+export const CNPInput = styled(TextField)`
+    margin-bottom: 20px !important;
+    background: ${transparentPink};
+    div::after {
+        border-color: ${pink};
+        border-bottom: 1px solid ${pink} !important;
+        color: ${pink};
+    }
+    .Mui-focused {
+        color: ${mediumPurple} !important;
+    }
+`;
+
+export const SubmitButton = styled(Button)`
+    background-color: ${darkPurple} !important;
+    margin-top: 50px !important;
 `;
