@@ -18,6 +18,7 @@ export const StyledForm = styled.div`
     align-content: stretch;
     justify-content: space-between;
     align-items: stretch;
+    padding: 50px;
 `;
 
 export const NameInput = styled(TextField)`

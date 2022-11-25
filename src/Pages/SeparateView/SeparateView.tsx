@@ -7,8 +7,9 @@ export const SeparateView = () => {
     return (
         <Container>
             <Login />
-            <div style={{ backgroundImage: `url(${rightImage})`, width: '100%', height: '100%' }}>kbslfnl</div>
-            {/* <RightImage /> */}
+            <div>
+                <RightImage />
+            </div>
         </Container>
     );
 };
