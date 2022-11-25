@@ -1,6 +1,6 @@
 import { TextField } from '@mui/material';
 import styled from 'styled-components';
-import { transparentPink } from '../../modules/theme';
+import { mediumPurple, pink, transparentPink } from '../../modules/theme';
 
 export const LogoContainer = styled.div`
     padding: 50px;
@@ -23,4 +23,21 @@ export const StyledForm = styled.div`
 export const NameInput = styled(TextField)`
     margin-bottom: 20px !important;
     background: ${transparentPink};
+    div::after {
+        border-color: ${pink};
+        border-bottom: 1px solid ${pink} !important;
+        color: ${pink};
+    }
+    .Mui-focused {
+        color: ${mediumPurple} !important;
+    }
+`;
+
+export const NameContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: stretch;
+    justify-content: space-evenly;
+    align-items: stretch;
 `;
