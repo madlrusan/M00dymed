@@ -1,7 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Layout from './components/containers/Layout';
-import { SeparateViewWithViewProps } from './Pages/SeparateView/SeparateView';
+import { DoctorPatients } from './Pages/DoctorPatients/DoctorPatients';
+import { SeparateViewWithFormProps } from './Pages/SeparateView/SeparateView';
 
 const App = () => {
     return (
@@ -9,9 +10,10 @@ const App = () => {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Layout />}>
-                        <Route path="login" element={<SeparateViewWithViewProps form="Login" />} />
-                        <Route path="register" element={<SeparateViewWithViewProps form="Register" />} />
-                        {/* <Route path="test" element={<SeparateView />} /> */}
+                        <Route path="login" element={<SeparateViewWithFormProps form="Login" />} />
+                        <Route path="register" element={<SeparateViewWithFormProps form="Register" />} />
+
+                        <Route path="patients" element={<DoctorPatients />} />
                     </Route>
                 </Routes>
             </BrowserRouter>

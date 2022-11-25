@@ -5,7 +5,7 @@ import { Register } from '../Register/Register';
 type SeparateViewWithFormProps = {
     form: string;
 };
-export const SeparateViewWithViewProps = (props: SeparateViewWithFormProps) => {
+export const SeparateViewWithFormProps = (props: SeparateViewWithFormProps) => {
     const { form } = props;
     return (
         <Container>
