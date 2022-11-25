@@ -1,7 +1,9 @@
+import { LogoContainer, StyledForm } from '../../components/common/CredentialsForm.components';
+
 export const Register = () => {
     return (
-        <>
-            <h2>Register</h2>
-        </>
+        <StyledForm>
+            <LogoContainer>LOGO</LogoContainer>
+        </StyledForm>
     );
 };
