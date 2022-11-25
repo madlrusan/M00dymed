@@ -1,14 +1,9 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import Layout from './Components/containers/Layout';
-import { Login } from './Pages/Login';
-import { Register } from './Pages/Register';
-import { RightImage } from './Components/RightImage';
-
 import Layout from './components/containers/Layout';
 import { Login } from './Pages/Login/Login';
 import { Register } from './Pages/Register/Register';
-import { RightImage } from './Components/RightImage';
+import { RightImage } from './components/RightImage';
 
 const App = () => {
     return (
