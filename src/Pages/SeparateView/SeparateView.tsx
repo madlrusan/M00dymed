@@ -2,6 +2,8 @@ import { Container, RightContainer } from '../../components/common/SeparateView.
 import { RightImage } from '../.././components/RightImage';
 import { Login } from '../Login/Login';
 import { Register } from '../Register/Register';
+import { DoctorMenu } from '../../components/DoctorMenu/DoctorMenu';
+import { DoctorPatients } from '../DoctorPatients/DoctorPatients';
 type SeparateViewWithFormProps = {
     form: string;
 };
@@ -12,6 +14,17 @@ export const SeparateViewWithFormProps = (props: SeparateViewWithFormProps) => {
             {form === 'Login' ? <Login /> : <Register />}
             <RightContainer>
                 <RightImage />
+            </RightContainer>
+        </Container>
+    );
+};
+
+export const SeparateViewWithDoctorMenu = () => {
+    return (
+        <Container>
+            <DoctorMenu />
+            <RightContainer>
+                <DoctorPatients></DoctorPatients>
             </RightContainer>
         </Container>
     );
