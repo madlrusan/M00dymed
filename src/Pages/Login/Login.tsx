@@ -1,9 +1,8 @@
 import { FilledInput, FormControl, IconButton, InputAdornment, InputLabel, TextField } from '@mui/material';
 import React, { useState } from 'react';
-import { PasswordInput, PasswordLabel } from './Login.components';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { SubmitButton, EmailInput, LogoContainer, StyledForm } from '../../components/common/CredentialsForm.components';
+import { PasswordInput, PasswordLabel, SubmitButton, EmailInput, LogoContainer, StyledForm } from '../../components/common/CredentialsForm.components';
 
 interface LoginState {
     emailInput: string;
