@@ -1,6 +1,6 @@
 import { FilledInput, FormControl, IconButton, InputAdornment, InputLabel, TextField } from '@mui/material';
 import React, { useState } from 'react';
-import { EmailInput, LoginButton, PasswordInput } from './Login.components';
+import { EmailInput, LoginButton, PasswordInput, PasswordLabel } from './Login.components';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { LogoContainer, StyledForm } from '../../components/common/CredentialsForm.components';
@@ -29,15 +29,17 @@ export const Login = () => {
     return (
         <StyledForm>
             <LogoContainer>LOGO</LogoContainer>
-            <EmailInput id="standard-required" label="Email" variant="filled" />
-            <FormControl variant="filled">
-                <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
-                <PasswordInput
-                    id="filled-adornment-password"
-                    type={values.showPassword ? 'text' : 'password'}
-                    value={values.passwordInput}
-                    onChange={handleChange('passwordInput')}
-                    endAdornment={
+            <EmailInput id="filled-required" label="Email" variant="filled" />
+            {/* <PasswordLabel htmlFor="filled-adornment-password">Password</PasswordLabel> */}
+            <PasswordInput
+                id="filled-adornment-password"
+                type={values.showPassword ? 'text' : 'password'}
+                value={values.passwordInput}
+                onChange={handleChange('passwordInput')}
+                variant="filled"
+                label="Password"
+                InputProps={{
+                    endAdornment: (
                         <InputAdornment position="end">
                             <IconButton
                                 aria-label="toggle password visibility"
@@ -48,10 +50,10 @@ export const Login = () => {
                                 {values.showPassword ? <VisibilityOff /> : <Visibility />}
                             </IconButton>
                         </InputAdornment>
-                    }
-                />
-                <LoginButton variant="contained">Login</LoginButton>
-            </FormControl>
+                    ),
+                }}
+            />
+            <LoginButton variant="contained">Login</LoginButton>
         </StyledForm>
     );
 };

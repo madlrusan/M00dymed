@@ -1,5 +1,6 @@
 import { TextField } from '@mui/material';
 import styled from 'styled-components';
+import { transparentPink } from '../../modules/theme';
 
 export const LogoContainer = styled.div`
     padding: 50px;
@@ -21,5 +22,5 @@ export const StyledForm = styled.div`
 
 export const NameInput = styled(TextField)`
     margin-bottom: 20px !important;
-    background: rgba(194, 113, 176, 0.2);
+    background: ${transparentPink};
 `;
