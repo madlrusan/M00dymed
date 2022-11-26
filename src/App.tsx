@@ -1,7 +1,15 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Layout from './components/containers/Layout';
-import { SeparateViewWithDoctorMenu, SeparateViewWithForm } from './Pages/SeparateView/SeparateView';
+import {
+    SeparateViewWithDoctorMenu,
+    SeparateViewWithExercises,
+    SeparateViewWithEditExercises,
+    SeparateViewWithForm,
+    SeparateViewWithSeePatient,
+} from './Pages/SeparateView/SeparateView';
+import { SeePatient } from './Pages/DoctorPatients/SeePatient';
+import { EditPatient } from './Pages/DoctorPatients/EditPatient';
 
 const App = () => {
     return (
@@ -9,9 +17,13 @@ const App = () => {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Layout />}>
-                        <Route path="login" element={<SeparateViewWithForm form="Login" />} />
+                        <Route path="/" element={<SeparateViewWithForm form="Login" />} />
                         <Route path="register" element={<SeparateViewWithForm form="Register" />} />
-                        <Route path="patients" element={<SeparateViewWithDoctorMenu />} />
+                        <Route path="patients" element={<SeparateViewWithDoctorMenu view="patients" />} />
+                        <Route path="addExercises" element={<SeparateViewWithDoctorMenu view="addExercises" />} />
+                        {/* <Route path="exercises" element={<SeparateViewWithExercises />} /> */}
+                        <Route path="seePatient/:email" element={<SeePatient role="doctor" />} />
+                        <Route path="editPatient/:id" element={<EditPatient />} />
                     </Route>
                 </Routes>
             </BrowserRouter>

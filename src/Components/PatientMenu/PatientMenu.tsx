@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { Menu, SideMenu, StyledItem } from './DoctorMenu.components';
 import { mediumPurple } from '../../modules/theme';
-import Logo from '.././../../asset/resource/logo.svg';
-export const DoctorMenu = (selectedTab) => {
+import { Menu, SideMenu, StyledItem } from '../DoctorMenu/DoctorMenu.components';
+import Logo from '../../.././asset/resource/logo.svg';
+
+export const PatientMenu = () => {
     const [className, setClassName] = useState('');
     // const handleClick = () => {
     //     setClassName('clicked');
     // };
-    console.log(window.location.pathname);
     return (
         <SideMenu>
             <div style={{ marginTop: '-20vh', marginBottom: '20vh' }}>
@@ -18,9 +18,8 @@ export const DoctorMenu = (selectedTab) => {
                 ></img>
             </div>
             <Menu>
-                <StyledItem className={className} path={window.location.pathname}>
-                    Patients
-                </StyledItem>
+                <StyledItem className={className}>Me</StyledItem>
+                <StyledItem className={className}>Medication</StyledItem>
                 <StyledItem className={className}>Exercises</StyledItem>
                 <StyledItem className={className}>Good Reading</StyledItem>
                 <StyledItem className={className}>Log out</StyledItem>

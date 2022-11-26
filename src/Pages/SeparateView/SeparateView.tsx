@@ -10,9 +10,13 @@ import { Register } from '../Register/Register';
 import { DoctorMenu } from '../../components/DoctorMenu/DoctorMenu';
 import { DoctorPatients } from '../DoctorPatients/DoctorPatients';
 import { MedicationTable } from '../../components/MedicationTable/MedicationTable';
+import { Exercises } from '../Exercises/PacientExercises';
+import { SeePatient } from '../DoctorPatients/SeePatient';
+
 type SeparateViewWithFormProps = {
     form: string;
 };
+
 export const SeparateViewWithForm = (props: SeparateViewWithFormProps) => {
     const { form } = props;
     return (
@@ -24,13 +28,19 @@ export const SeparateViewWithForm = (props: SeparateViewWithFormProps) => {
         </Container>
     );
 };
-
-export const SeparateViewWithDoctorMenu = () => {
+type SeparateViewWithDoctorMenuProps = {
+    view: string;
+    id?: string;
+};
+export const SeparateViewWithDoctorMenu = (props: SeparateViewWithDoctorMenuProps) => {
+    const { view, id } = props;
     return (
         <LoggedContainer>
             <DoctorMenu />
             <RightContainerLogged>
-                <DoctorPatients></DoctorPatients>
+                {view === 'patients' && <DoctorPatients />}
+                {view === 'addExercises' && <Exercises isPatient={false} />}
+                {view === 'seePatient' && id && <SeePatient />}
             </RightContainerLogged>
         </LoggedContainer>
     );
@@ -41,5 +51,16 @@ export const SeparateViewWithMedicationTable = () => {
         <RightContainerLogged>
             <MedicationTable></MedicationTable>
         </RightContainerLogged>
+
+type SeparateViewWithPatientMenuProps = {
+    view: string;
+};
+export const SeparateViewWithPatientMenu = (props: SeparateViewWithPatientMenuProps) => {
+    const { view } = props;
+    return (
+        <LoggedContainer>
+            <DoctorMenu />
+            <RightContainerLogged>{view == 'Me' && <SeePatient />}</RightContainerLogged>
+        </LoggedContainer>
     );
 };

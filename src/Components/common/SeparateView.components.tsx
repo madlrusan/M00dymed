@@ -6,6 +6,7 @@ export const Container = styled.div`
     justify-content: space-between;
     align-items: center;
     justify-items: stretch;
+    margin: 0;
     grid-template-columns: 1fr 1fr;
 `;
 
@@ -15,10 +16,11 @@ export const LoggedContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     justify-items: stretch;
-    grid-template-columns: 200px auto;
+    grid-template-columns: 250px auto;
 `;
 export const RightContainer = styled.div`
-    height: 100vh;
+    height: 120vh;
+    margin-top: 0vh;
 `;
 export const RightContainerLogged = styled.div`
     background: linear-gradient(89.88deg, #81dae4 24.22%, #7a4e8f 99.42%);
@@ -30,4 +32,9 @@ export const RightContainerLogged = styled.div`
     align-content: center;
     justify-content: center;
     align-items: flex-end;
+`;
+export const DiagnosticSeverityText = styled.div`
+    color: black;
+    text-align: center;
+    text-transform: uppercase;
 `;

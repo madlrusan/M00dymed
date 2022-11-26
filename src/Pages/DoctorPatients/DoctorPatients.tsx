@@ -1,9 +1,5 @@
 import {
-    Autocomplete,
-    Button,
     CardContent,
-    FormControl,
-    Icon,
     IconButton,
     InputLabel,
     MenuItem,
@@ -14,25 +10,43 @@ import {
     TableBody,
     TableCell,
     TableContainer,
-    TableHead,
     TablePagination,
     TableRow,
     TextField,
 } from '@mui/material';
 import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-    AddBtn,
-    CardContainer,
+    CardContainerFlex,
     FilterForm,
     FooterContainer,
     HeaderContainer,
     SearchInput,
     TableHeader,
 } from '../../components/common/Doctors.components';
-import FilterAltIcon from '@mui/icons-material/FilterAlt';
+import { AppwritePatients } from '../../services/AppwritePatients';
+import { AddPatient } from '../../components/AddPatients/AddPatient';
+import { unstable_HistoryRouter, useNavigate } from 'react-router-dom';
+import { Appwrite } from '../../services/Appwrite';
 export const DoctorPatients = () => {
-    const [filterValue, setFilterValue] = useState('');
+    const [filterValue, setFilterValue] = useState('All');
+    const [searchValue, setSearchValue] = useState('');
+    const [rows, setRows] = useState<PatientData[]>([]);
+    const [diagnostics, setDiagnostics] = useState([]);
+    const { getPatients } = AppwritePatients();
+    const { getDiagnosis } = Appwrite();
+    useEffect(() => {
+        getDiagnosis().then((d) => {
+            d.documents.unshift({ Name: 'All' });
+            setDiagnostics(d.documents);
+        });
+    }, []);
+    useEffect(() => {
+        getPatients(filterValue, searchValue ? searchValue : '').then((r) => setRows(r));
+    }, [filterValue, searchValue]);
+    const addUser = () => {
+        getPatients(filterValue, searchValue ? searchValue : '').then((r) => setRows(r));
+    };
     const handleChangeFilter = (event: SelectChangeEvent) => {
         setFilterValue(event.target.value);
     };
@@ -48,7 +62,7 @@ export const DoctorPatients = () => {
     };
 
     return (
-        <CardContainer>
+        <CardContainerFlex>
             <CardContent>
                 <HeaderContainer>
                     <SearchInput
@@ -56,13 +70,13 @@ export const DoctorPatients = () => {
                         id="free-solo-demo"
                         freeSolo
                         options={[]}
+                        onInputChange={(e) => setSearchValue(e.target.value)}
                         sx={{ m: 0, minWidth: 100, maxHeight: 50 }}
                         renderInput={(params) => <TextField {...params} label="Search patients" />}
                     />
-                    {/* filter */}
                     <div style={{ marginRight: '10px' }}>
                         <FilterForm size="small" sx={{ m: 1, minWidth: 100, maxHeight: 50 }}>
-                            <InputLabel size="small">Filter by Diagnostics</InputLabel>
+                            <InputLabel size="small">Diagnostics</InputLabel>
                             <Select
                                 size="small"
                                 labelId="filter-diagnostics"
@@ -71,8 +85,8 @@ export const DoctorPatients = () => {
                                 label="Filter by Diagnostics"
                                 onChange={handleChangeFilter}
                             >
-                                {diagnostics.map((diagnostic) => {
-                                    return <MenuItem value={diagnostic.id}>{diagnostic.label}</MenuItem>;
+                                {diagnostics.map((d) => {
+                                    return <MenuItem value={d.Name}>{d.Name}</MenuItem>;
                                 })}
                             </Select>
                         </FilterForm>
@@ -97,23 +111,16 @@ export const DoctorPatients = () => {
                         </TableHeader>
                         <TableBody>
                             {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                                console.log(row.firstName);
                                 return (
                                     <TableRow hover tabIndex={-1} key={row.id}>
                                         {tableColumns.map((column) => {
                                             const value = row[column.id];
-                                            console.log(row.firstName);
+
                                             return (
                                                 <TableCell key={column.id} align={column.align}>
                                                     {column.id === 'actions' ? (
                                                         <div>
-                                                            <Menu
-                                                                id={row.id}
-                                                                firstName={row.firstName}
-                                                                lastName={row.lastName}
-                                                                diagnostics={row.diagnostics}
-                                                                severityGrade={row.severityGrade}
-                                                            />
+                                                            <Menu email={row.email} />
                                                         </div>
                                                     ) : (
                                                         value
@@ -136,40 +143,30 @@ export const DoctorPatients = () => {
                     onPageChange={handleChangePage}
                     onRowsPerPageChange={handleChangeRowsPerPage}
                 />
+
                 <FooterContainer>
-                    <AddBtn variant="contained">Add</AddBtn>
+                    <AddPatient addUser={addUser} diagnostics={diagnostics} />
                 </FooterContainer>
             </CardContent>
-        </CardContainer>
+        </CardContainerFlex>
     );
 };
 
-const diagnostics = [
-    {
-        id: 1,
-        label: 'depression',
-    },
-    {
-        id: 2,
-        label: 'anxiety',
-    },
-];
-
 interface Column {
-    id: 'firstName' | 'lastName' | 'diagnostics' | 'severityGrade' | 'actions';
+    id: 'FirstName' | 'LastName' | 'diagnostics' | 'diagnosticsGrade' | 'actions';
     label: string;
     minWidth: number;
     align: 'left';
 }
 const tableColumns: Column[] = [
     {
-        id: 'firstName',
+        id: 'FirstName',
         label: 'First Name',
         align: 'left',
         minWidth: 50,
     },
     {
-        id: 'lastName',
+        id: 'LastName',
         label: 'Last Name',
         align: 'left',
         minWidth: 50,
@@ -181,7 +178,7 @@ const tableColumns: Column[] = [
         minWidth: 50,
     },
     {
-        id: 'severityGrade',
+        id: 'diagnosticsGrade',
         label: 'Severity Grade',
         align: 'left',
         minWidth: 50,
@@ -195,50 +192,27 @@ const tableColumns: Column[] = [
 ];
 
 interface PatientData {
-    id: number;
-    firstName: string;
-    lastName: string;
+    id: string;
+    FirstName: string;
+    LastName: string;
+    email: string;
     diagnostics: string;
-    severityGrade: string;
+    diagnosticsGrade: string;
     actions?: string;
 }
-
-const createData = (
-    id: number,
-    firstName: string,
-    lastName: string,
-    diagnostics: string,
-    severityGrade: string,
-): PatientData => {
-    return {
-        id,
-        firstName,
-        lastName,
-        diagnostics,
-        severityGrade,
-    };
-};
-const createRows = () => {
-    const rows = [];
-    for (let i = 0; i < 20; i++) {
-        rows.push(createData(i, `firstName${i}`, 'lastName', 'diagnostics', 'severityGrade'));
-    }
-    return rows;
-};
-const rows = createRows();
-
-const Menu = (Pacient: PatientData) => {
+const Menu = (email: string) => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-
+    const [open, setOpen] = useState(false);
+    const navigate = useNavigate();
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(anchorEl ? null : event.currentTarget);
+        setOpen(!open);
     };
-    let open = Boolean(anchorEl);
+
     const id = open ? 'simple-popper' : undefined;
-    const handleActionClick = (id: string, action: string) => {
-        console.log('handleActionClick ' + action + ' ' + id);
-        open = !Boolean(anchorEl);
-        console.log(open);
+    const handleActionClick = (action: string) => {
+        setOpen(false);
+        navigate('/' + action + '/' + email.email);
     };
     return (
         <>
@@ -260,14 +234,14 @@ const Menu = (Pacient: PatientData) => {
                 >
                     <MenuItem
                         onClick={() => {
-                            handleActionClick(Pacient.firstName, 'seeProfile');
+                            handleActionClick('seePatient');
                         }}
                     >
                         See Profile
                     </MenuItem>
                     <MenuItem
                         onClick={() => {
-                            handleActionClick(Pacient.firstName, 'editProfile');
+                            handleActionClick('editPatient');
                         }}
                     >
                         Edit Profile

@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="39b29278-2253-454c-af8f-2e6802678d19" name="Changes" comment="Add appwrite for user">
-      <change afterPath="$PROJECT_DIR$/Models/User.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/Appwrite.ts" afterDir="false" />
+    <list default="true" id="39b29278-2253-454c-af8f-2e6802678d19" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Components/containers/AdminRoute.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/containers/ProtectedRoute.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Context/UserContext.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ClickCounter.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/AddPatients/AddPatient.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/AddPatients/AddPatient.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/DoctorMenu/DoctorMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/DoctorMenu/DoctorMenu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/DoctorPatients/DoctorPatients.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/DoctorPatients/DoctorPatients.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Pages/Login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Login/Login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/Register/Register.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Register/Register.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Pages/SeparateView/SeparateView.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/SeparateView/SeparateView.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/Appwrite.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/Appwrite.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +24,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="TypeScript File" />
+        <option value="com.haulmont.rcb.arrow_function_component" />
       </list>
     </option>
   </component>
@@ -56,6 +60,14 @@
       </map>
     </option>
   </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Projects\M00dymed\src\Context" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Projects\M00dymed\src\Components\containers" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -64,8 +76,31 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1669457663037</updated>
-      <workItem from="1669457665056" duration="6382000" />
+      <workItem from="1669457665056" duration="30914000" />
+      <workItem from="1669489929824" duration="300000" />
     </task>
+    <task id="LOCAL-00001" summary="Add appwrite for user">
+      <created>1669464135459</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1669464135459</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Add functionality to patients list">
+      <created>1669470469641</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1669470469641</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Redirect for patient menu">
+      <created>1669474026019</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1669474026019</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -78,6 +113,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add appwrite for user" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add appwrite for user" />
+    <MESSAGE value="Add functionality to patients list" />
+    <MESSAGE value="Redirect for patient menu" />
+    <MESSAGE value="IDK..." />
+    <option name="LAST_COMMIT_MESSAGE" value="IDK..." />
   </component>
 </project>

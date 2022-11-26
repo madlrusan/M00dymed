@@ -2,7 +2,7 @@ import {
     CNPInput,
     EmailInput,
     LogoContainer,
-    NameContainer,
+    FormContainer2Columns,
     NameInput,
     StyledForm,
     SubmitButton,
@@ -11,6 +11,8 @@ import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { Appwrite } from '../../services/Appwrite';
 import { useNavigate } from 'react-router-dom';
+import { mediumPurple } from '../../modules/theme';
+import Logo from '.././../../asset/resource/logo.svg';
 
 export const Register = () => {
     const [registerUser, setRegisterUser] = useState({
@@ -19,6 +21,7 @@ export const Register = () => {
         firstName: '',
         lastName: '',
         confirmPassword: '',
+        phone: '',
     });
     const [validRegister, setValidRegister] = useState(false);
     const navigate = useNavigate();
@@ -40,13 +43,25 @@ export const Register = () => {
     }, [registerUser]);
 
     const registerAccount = async () => {
-        await registerAdmin(registerUser.email, registerUser.password, registerUser.firstName, registerUser.lastName);
+        await registerAdmin(
+            registerUser.email,
+            registerUser.password,
+            registerUser.firstName,
+            registerUser.lastName,
+            registerUser.phone,
+        );
         navigate('/login');
     };
     return (
-        <StyledForm>
-            <LogoContainer>LOGO</LogoContainer>
-            <NameContainer>
+        <StyledForm style={{ marginBottom: '0vh' }}>
+            <div style={{ marginTop: '0vh' }}>
+                <img
+                    src={Logo}
+                    style={{ color: mediumPurple, height: '100%', width: '60vh', alignContent: 'center' }}
+                    alt="Logo"
+                ></img>
+            </div>
+            <FormContainer2Columns style={{ marginTop: '10vh' }}>
                 <NameInput
                     id="filled-required"
                     label="First Name"
@@ -69,7 +84,7 @@ export const Register = () => {
                         });
                     }}
                 />
-            </NameContainer>
+            </FormContainer2Columns>
             <EmailInput
                 id="filled-required"
                 label="Email"
@@ -105,8 +120,7 @@ export const Register = () => {
             />
 
             <SubmitButton variant="contained" disabled={!validRegister} onClick={() => registerAccount()}>
-                {' '}
-                REGISTER{' '}
+                REGISTER
             </SubmitButton>
         </StyledForm>
     );
