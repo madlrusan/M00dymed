@@ -6,3 +6,4 @@ export const mediumBlue = '#91DBE8';
 export const lightBlue = '#82F2F1';
 export const transparentPink = '#c271b033';
 export const grey = '#565a5c';
+export const transparentWhite = '#ffffffa6';

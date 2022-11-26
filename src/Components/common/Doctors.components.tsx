@@ -1,8 +1,16 @@
 import styled from 'styled-components';
 import { Autocomplete, Button, Card, FormControl, TableHead } from '@mui/material';
-import { darkPurple, grey, mediumPurple, pink, transparentPink } from '../../modules/theme';
+import { darkPurple, grey, mediumPurple, pink, transparentWhite, transparentPink } from '../../modules/theme';
 export const CardContainer = styled(Card)`
-    background-color: ${transparentPink} !important;
+    background-color: ${transparentWhite} !important;
+    border-radius: 50px !important;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
 `;
 
 export const HeaderContainer = styled.div`
@@ -54,7 +62,7 @@ export const SearchInput = styled(Autocomplete)`
 
 export const TableHeader = styled(TableHead)`
     .MuiTableCell-head {
-        background-color: ${transparentPink} !important;
+        background-color: #c271b036 !important;
     }
 `;
 export const FooterContainer = styled.div`
@@ -67,5 +75,5 @@ export const FooterContainer = styled.div`
 `;
 export const AddBtn = styled(Button)`
     background-color: ${darkPurple} !important;
-    margin-top: 50px !important;
+    margin-top: 0px !important;
 `;

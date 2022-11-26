@@ -11,3 +11,14 @@ export const Container = styled.div`
 export const RightContainer = styled.div`
     height: 100vh;
 `;
+export const RightContainerLogged = styled.div`
+    background: linear-gradient(89.88deg, #81dae4 24.22%, #7a4e8f 99.42%);
+    height: 100vh;
+    width: 100vh;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+`;

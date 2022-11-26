@@ -35,7 +35,7 @@ export const DoctorPatients = () => {
         setFilterValue(event.target.value);
     };
     const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(10);
+    const [rowsPerPage, setRowsPerPage] = useState(5);
     const handleChangePage = (event: unknown, newPage: number) => {
         setPage(newPage);
     };
@@ -49,16 +49,19 @@ export const DoctorPatients = () => {
             <CardContent>
                 <HeaderContainer>
                     <SearchInput
+                        size="small"
                         id="free-solo-demo"
                         freeSolo
                         options={[]}
+                        sx={{ m: 0, minWidth: 100, maxHeight: 50 }}
                         renderInput={(params) => <TextField {...params} label="Search patients" />}
                     />
                     {/* filter */}
                     <div style={{ marginRight: '10px' }}>
-                        <FilterForm sx={{ m: 1, minWidth: 150 }}>
-                            <InputLabel>Filter by Diagnostics</InputLabel>
+                        <FilterForm size="small" sx={{ m: 1, minWidth: 100, maxHeight: 50 }}>
+                            <InputLabel size="small">Filter by Diagnostics</InputLabel>
                             <Select
+                                size="small"
                                 labelId="filter-diagnostics"
                                 id="filter-diagnostics"
                                 value={filterValue}
@@ -108,7 +111,7 @@ export const DoctorPatients = () => {
                     </Table>
                 </TableContainer>
                 <TablePagination
-                    rowsPerPageOptions={[10]}
+                    rowsPerPageOptions={[5]}
                     component="div"
                     count={rows.length}
                     rowsPerPage={rowsPerPage}
@@ -146,25 +149,25 @@ const tableColumns: Column[] = [
         id: 'firstName',
         label: 'First Name',
         align: 'left',
-        minWidth: 170,
+        minWidth: 50,
     },
     {
         id: 'lastName',
         label: 'Last Name',
         align: 'left',
-        minWidth: 170,
+        minWidth: 50,
     },
     {
         id: 'diagnostics',
         label: 'Diagnostics',
         align: 'left',
-        minWidth: 170,
+        minWidth: 50,
     },
     {
         id: 'severityGrade',
         label: 'Severity Grade',
         align: 'left',
-        minWidth: 170,
+        minWidth: 50,
     },
     {
         id: 'actions',
