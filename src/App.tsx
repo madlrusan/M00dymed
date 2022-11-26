@@ -4,6 +4,7 @@ import Layout from './components/containers/Layout';
 import {
     SeparateViewWithDoctorMenu,
     SeparateViewWithExercises,
+    SeparateViewWithEditExercises,
     SeparateViewWithForm,
     SeparateViewWithSeePatient,
 } from './Pages/SeparateView/SeparateView';
@@ -18,7 +19,8 @@ const App = () => {
                         <Route path="login" element={<SeparateViewWithForm form="Login" />} />
                         <Route path="register" element={<SeparateViewWithForm form="Register" />} />
                         <Route path="patients" element={<SeparateViewWithDoctorMenu />} />
-                        <Route path="exercises" element={<SeparateViewWithExercises />} />
+                        <Route path="exercises" element={<SeparateViewWithExercises/>} />
+                        <Route path="editExercises" element={<SeparateViewWithEditExercises/>} />
                         <Route path="seePatient/:id" element={<SeePatient />} />
                         <Route path="editPatient/:id" element={<EditPatient />} />
                     </Route>
