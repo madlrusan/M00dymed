@@ -13,6 +13,7 @@ import { MedicationTable } from '../../components/MedicationTable/MedicationTabl
 import { Exercises } from '../Exercises/PacientExercises';
 import { SeePatient } from '../DoctorPatients/SeePatient';
 
+import { PatientMenu } from '../../components/PatientMenu/PatientMenu';
 type SeparateViewWithFormProps = {
     form: string;
 };
@@ -33,14 +34,14 @@ type SeparateViewWithDoctorMenuProps = {
     id?: string;
 };
 export const SeparateViewWithDoctorMenu = (props: SeparateViewWithDoctorMenuProps) => {
-    const { view, id } = props;
+    const { view } = props;
     return (
         <LoggedContainer>
             <DoctorMenu />
             <RightContainerLogged>
                 {view === 'patients' && <DoctorPatients />}
                 {view === 'addExercises' && <Exercises isPatient={false} />}
-                {view === 'seePatient' && id && <SeePatient />}
+                {view === 'seePatient' && <SeePatient role="doctor" />}
             </RightContainerLogged>
         </LoggedContainer>
     );
@@ -51,16 +52,22 @@ export const SeparateViewWithMedicationTable = () => {
         <RightContainerLogged>
             <MedicationTable></MedicationTable>
         </RightContainerLogged>
-
+    );
+};
 type SeparateViewWithPatientMenuProps = {
     view: string;
+    diagnostic?: string;
 };
 export const SeparateViewWithPatientMenu = (props: SeparateViewWithPatientMenuProps) => {
     const { view } = props;
     return (
         <LoggedContainer>
-            <DoctorMenu />
-            <RightContainerLogged>{view == 'Me' && <SeePatient />}</RightContainerLogged>
+            <PatientMenu />
+            <RightContainerLogged>
+                {view == 'exercises' && <Exercises isPatient={true} />}
+                {/* {view == 'Me' && <SeePatient role="user" id={'7389'} />} */}
+                {view == 'medication' && <MedicationTable />}
+            </RightContainerLogged>
         </LoggedContainer>
     );
 };

@@ -6,6 +6,7 @@ export const CardContainerGrid = styled(Card)`
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 50px;
+    margin: 10px;
     padding: 20px;
     background-color: ${transparentWhite} !important;
 `;
@@ -13,9 +14,11 @@ export const CardContainerGrid = styled(Card)`
 export const CardContentDay = styled(Card)`
     background-color: ${transparentWhite} !important;
     display: grid;
-    border: 1p solid black;
-    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid black !important;
+    border-radius: 10px !important;
     width: 200px;
+    height: 90%;
 `;
 
 export const DayHighlight = styled.div`

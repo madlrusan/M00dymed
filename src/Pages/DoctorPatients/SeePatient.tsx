@@ -1,4 +1,4 @@
-import { Box, InputLabel, MenuItem } from '@mui/material';
+import { Box, CardContent, InputLabel, MenuItem } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import {
     ModalTitle,
@@ -11,7 +11,7 @@ import {
     GradeSlider,
     SubmitButton,
 } from '../../components/common/CredentialsForm.components';
-import { FilterForm, FooterContainer } from '../../components/common/Doctors.components';
+import { CardContainerFlex, FilterForm, FooterContainer } from '../../components/common/Doctors.components';
 import { AddMedication } from './AddMedication';
 import { Appwrite } from '../../services/Appwrite';
 import { useEffect, useState } from 'react';
@@ -19,9 +19,9 @@ type SeePatientProps = {
     role: string;
 };
 export const SeePatient = (props: SeePatientProps) => {
-    // const { role } = props;
+    const { role } = props;
     const [pacientInfo, setPacientInfo] = useState();
-    const role = 'user';
+    // const role = 'user';
     const { email } = useParams();
     const { getPacientByEmail } = Appwrite();
     const [user, setUser] = useState(null);
@@ -33,6 +33,7 @@ export const SeePatient = (props: SeePatientProps) => {
         };
         funct().then((response) => {
             setUser(response);
+            console.log(response);
         });
     }, []);
 
@@ -41,82 +42,30 @@ export const SeePatient = (props: SeePatientProps) => {
         else if (value > 3) return 'high';
         else return 'medium';
     };
-    const setClassName = (role: string) => {
-        if (role === 'user') return 'readonly';
-        else return 'editable';
-    };
-    const className = setClassName(role);
+    console.log(role);
     return (
-        <Box sx={style}>
-            {role == 'user' ? <ModalTitle>My Info</ModalTitle> : <ModalTitle>Pacient Info</ModalTitle>}
-            <FormContainer2Columns>
-                <NameInput
-                    className={className}
-                    id="outlined-required"
-                    label={role === 'user' ? `${user?.FirstName}` : 'First Name'}
-                    variant="outlined"
-                    onChange={(e) => {
-                        // setRegisterUser({
-                        //     ...registerUser,
-                        //     firstName: e.target.value,
-                        // });
-                    }}
-                    disabled={role === 'user'}
-                />
-                <NameInput
-                    id="outlined-required"
-                    className={className}
-                    label={role === 'user' ? 'Nume de familie' : 'Last Name'}
-                    disabled={role === 'user'}
-                    variant="outlined"
-                    onChange={(e) => {
-                        // setRegisterUser({
-                        //     ...registerUser,
-                        //     lastName: e.target.value,
-                        // });
-                    }}
-                />
-            </FormContainer2Columns>
-            <FormContainer2Columns>
-                <EmailInput
-                    id="outlined-required"
-                    className={className}
-                    label={role === 'user' ? 'email@mail.com' : 'Email'}
-                    disabled={role === 'user'}
-                    variant="outlined"
-                    onChange={() => {
-                        console.log('fbd');
-                    }}
-                />
-                <PhoneInput
-                    id="outlined-required"
-                    className={className}
-                    label={role === 'user' ? '0766000000' : 'PhoneNumber'}
-                    disabled={role === 'user'}
-                    variant="outlined"
-                    onChange={() => {
-                        console.log('fbd');
-                    }}
-                />
-            </FormContainer2Columns>
-            <CNPInput
-                id="outlined-required"
-                className={className}
-                label={role === 'user' ? '123456789012' : 'CNP'}
-                disabled={role === 'user'}
-                variant="outlined"
-                onChange={() => {
-                    console.log('fbd');
-                }}
-                sx={{ width: '95%' }}
-            />
-            <FormContainer2Columns>
-                {role === 'user' ? (
+        <CardContainerFlex>
+            <CardContent sx={style}>
+                {role == 'user' ? <ModalTitle>My Info</ModalTitle> : <ModalTitle>Pacient Info</ModalTitle>}
+                <FormContainer2Columns>
                     <NameInput
                         id="outlined-required"
-                        className={className}
-                        label={role === 'user' ? 'Anxietate' : 'Diagnostics'}
+                        // label={`${user?.FirstName}`}
+                        variant="outlined"
+                        value={`${user?.FirstName}`}
+                        onChange={(e) => {
+                            // setRegisterUser({
+                            //     ...registerUser,
+                            //     firstName: e.target.value,
+                            // });
+                        }}
                         disabled={role === 'user'}
+                    />
+                    <NameInput
+                        id="outlined-required"
+                        // label={role === 'user' ? 'Nume de familie' : 'Last Name'}
+                        disabled={role === 'user'}
+                        value={`${user?.LastName}`}
                         variant="outlined"
                         onChange={(e) => {
                             // setRegisterUser({
@@ -124,65 +73,116 @@ export const SeePatient = (props: SeePatientProps) => {
                             //     lastName: e.target.value,
                             // });
                         }}
-                        sx={{ width: 220 }}
                     />
-                ) : (
-                    <FilterForm>
-                        <InputLabel>Diagnostics</InputLabel>
-                        <DiagnosticInput
-                            labelId="diagnostics"
-                            className={className}
-                            id="diagnostics"
-                            // value={filterValue}
-                            label="Diagnostics"
-                            // onChange={handleChangeFilter}
-                            style={{ width: '170px' }}
-                        >
-                            {diagnostics.map((diagnostic) => {
-                                return <MenuItem value={diagnostic.id}>{diagnostic.label}</MenuItem>;
-                            })}
-                        </DiagnosticInput>
-                    </FilterForm>
+                </FormContainer2Columns>
+                <FormContainer2Columns>
+                    <EmailInput
+                        id="outlined-required"
+                        // label={role === 'user' ? 'email@mail.com' : 'Email'}
+                        disabled={role === 'user'}
+                        value={`${user?.email}`}
+                        variant="outlined"
+                        onChange={() => {
+                            console.log('fbd');
+                        }}
+                    />
+                    <PhoneInput
+                        id="outlined-required"
+                        // label={role === 'user' ? '0766000000' : 'PhoneNumber'}
+                        disabled={role === 'user'}
+                        value={`${user?.phone}`}
+                        variant="outlined"
+                        onChange={() => {
+                            console.log('fbd');
+                        }}
+                    />
+                </FormContainer2Columns>
+                <CNPInput
+                    id="outlined-required"
+                    // label={role === 'user' ? '123456789012' : 'CNP'}
+                    disabled={role === 'user'}
+                    variant="outlined"
+                    value={`${user?.PersonalId}`}
+                    onChange={() => {
+                        console.log('fbd');
+                    }}
+                    sx={{ width: '95%' }}
+                />
+                <FormContainer2Columns>
+                    {role === 'user' ? (
+                        <NameInput
+                            id="outlined-required"
+                            // label={role === 'user' ? 'Anxietate' : 'Diagnostics'}
+                            disabled={role === 'user'}
+                            variant="outlined"
+                            // value={`${user?.diagnostics}`}
+                            onChange={(e) => {
+                                // setRegisterUser({
+                                //     ...registerUser,
+                                //     lastName: e.target.value,
+                                // });
+                            }}
+                            sx={{ width: 220 }}
+                        />
+                    ) : (
+                        <FilterForm>
+                            <InputLabel>Diagnostics</InputLabel>
+                            <DiagnosticInput
+                                labelId="diagnostics"
+                                id="diagnostics"
+                                // value={filterValue}
+                                label="Diagnostics"
+                                defaultValue={`${user?.diagnostics}`} //NU MERGE SA SELECTEZ VALOAREA DIN USER
+                                // onChange={handleChangeFilter}
+                                style={{ width: '170px' }}
+                            >
+                                {diagnostics.map((diagnostic) => {
+                                    return <MenuItem value={diagnostic.id}>{diagnostic.label}</MenuItem>;
+                                })}
+                            </DiagnosticInput>
+                        </FilterForm>
+                    )}
+                    {role === 'user' ? (
+                        <GradeSlider
+                            max={5}
+                            min={1}
+                            marks={marks}
+                            defaultValue={3}
+                            getAriaValueText={sliderText}
+                            aria-label="Severity Grade"
+                            valueLabelDisplay="off"
+                            disabled
+                            // sx={{ width: 100 }}
+                        />
+                    ) : (
+                        <GradeSlider
+                            max={5}
+                            min={1}
+                            marks={marks}
+                            defaultValue={parseInt(`${user?.diagnosticGrade}`)}
+                            getAriaValueText={sliderText}
+                            aria-label="Severity Grade"
+                            valueLabelDisplay="off"
+                        />
+                    )}
+                </FormContainer2Columns>
+                {role === 'doctor' && (
+                    <FooterContainer>
+                        <SubmitButton>Save</SubmitButton>
+                        <AddMedication
+                            diagnostic={`${user?.diagnostics}`}
+                            severity={user?.diagnosticGrade} //NU MERGE SA PARSEZ MAI DEPARTE SEVERITY GRADE FIX IT PLS
+                        ></AddMedication>
+                    </FooterContainer>
                 )}
-                {role === 'user' ? (
-                    <GradeSlider
-                        max={5}
-                        min={1}
-                        marks={marks}
-                        defaultValue={3}
-                        getAriaValueText={sliderText}
-                        aria-label="Severity Grade"
-                        valueLabelDisplay="off"
-                        disabled
-                        // sx={{ width: 100 }}
-                    />
-                ) : (
-                    <GradeSlider
-                        className={className}
-                        max={5}
-                        min={1}
-                        marks={marks}
-                        defaultValue={3}
-                        getAriaValueText={sliderText}
-                        aria-label="Severity Grade"
-                        valueLabelDisplay="off"
-                    />
-                )}
-            </FormContainer2Columns>
-            {role === 'doctor' && (
-                <FooterContainer>
-                    <SubmitButton>Save</SubmitButton>
-                    <AddMedication diagnostic="anxiety" severity={3}></AddMedication>
-                </FooterContainer>
-            )}
-        </Box>
+            </CardContent>
+        </CardContainerFlex>
     );
 };
 const style = {
-    position: 'absolute' as const,
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
+    // position: 'absolute' as const,
+    padding: '47px',
+    position: 'relative' as const,
     width: 400,
     bgcolor: `white`,
     borderRadius: '50px',

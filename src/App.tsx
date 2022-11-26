@@ -3,27 +3,49 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Layout from './components/containers/Layout';
 import {
     SeparateViewWithDoctorMenu,
-    SeparateViewWithExercises,
-    SeparateViewWithEditExercises,
     SeparateViewWithForm,
-    SeparateViewWithSeePatient,
+    SeparateViewWithPatientMenu,
 } from './Pages/SeparateView/SeparateView';
 import { SeePatient } from './Pages/DoctorPatients/SeePatient';
 import { EditPatient } from './Pages/DoctorPatients/EditPatient';
+import { Appwrite } from './services/Appwrite';
+import { useState, useEffect } from 'react';
 
 const App = () => {
+    // const { getRole } = Appwrite();
+    // const [role, setRole] = useState();
+    // useEffect(() => {
+    //     const funct = async () => {
+    //         const role = await getRole();
+    //         return role;
+    //     };
+    //     funct().then((r) => setRole(r));
+    // }, []);
+    const role = 1;
     return (
         <>
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Layout />}>
                         <Route path="/" element={<SeparateViewWithForm form="Login" />} />
-                        <Route path="register" element={<SeparateViewWithForm form="Register" />} />
-                        <Route path="patients" element={<SeparateViewWithDoctorMenu view="patients" />} />
-                        <Route path="addExercises" element={<SeparateViewWithDoctorMenu view="addExercises" />} />
-                        {/* <Route path="exercises" element={<SeparateViewWithExercises />} /> */}
-                        <Route path="seePatient/:email" element={<SeePatient role="doctor" />} />
-                        <Route path="editPatient/:id" element={<EditPatient />} />
+                        {/* {role == 2 ? ( */}
+                        <>
+                            <Route path="register" element={<SeparateViewWithForm form="Register" />} />
+                            <Route path="patients" element={<SeparateViewWithDoctorMenu view="patients" />} />
+                            <Route path="addExercises" element={<SeparateViewWithDoctorMenu view="addExercises" />} />
+                            <Route
+                                path="seePatient/:email"
+                                element={<SeparateViewWithDoctorMenu view="seePatient" id={'email'} />}
+                            />
+                        </>
+                        {/* ) : ( */}
+                        <>
+                            <Route path="exercises" element={<SeparateViewWithPatientMenu view="exercises" />} />
+                            <Route path="medication" element={<SeparateViewWithPatientMenu view="medication" />} />
+                        </>
+                        {/* )} */}
+
+                        {/* <Route path="editPatient/:id" element={<EditPatient />} /> */}
                     </Route>
                 </Routes>
             </BrowserRouter>

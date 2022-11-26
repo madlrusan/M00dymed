@@ -184,7 +184,7 @@ export const GradeSlider = styled(Slider)`
     }
     margin-left: 30px;
     /* padding-left: 100px !important; */
-    margin-right: 0px;
+    margin-right: 20px;
     width: 300px !important;
 `;
 export const ModalTitle = styled.h2`

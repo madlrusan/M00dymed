@@ -23,7 +23,7 @@ export const MedicationTable = () => {
             </CardContentDay>
             <CardContentDay>
                 <DayHighlight>{moment().add(1, 'days').format('D.MM.YYYY')}</DayHighlight>
-                <div>Medicament 1</div>
+                <div>Medicament 1 - 2 pills /take - when you feel you need it</div>
                 <div>Medicament 2</div>
             </CardContentDay>
             <CardContentDay>
