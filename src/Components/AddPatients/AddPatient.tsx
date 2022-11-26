@@ -1,10 +1,8 @@
 import { Box, InputLabel, MenuItem, Modal, Slider, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
-import { transparentWhite } from '../../modules/theme';
 import {
     CNPInput,
     DiagnosticInput,
-    DOBInput,
     EmailInput,
     FormContainer2Columns,
     GradeSlider,
@@ -14,8 +12,6 @@ import {
     SubmitButton,
 } from '../common/CredentialsForm.components';
 import { AddBtn, FilterForm, FooterContainer } from '../common/Doctors.components';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 export const AddPatient = () => {
     const [openModal, setOpenModal] = useState(false);
     const handleOpen = () => setOpenModal(true);
@@ -80,27 +76,14 @@ export const AddPatient = () => {
                             }}
                         />
                     </FormContainer2Columns>
-                    <FormContainer2Columns>
-                        <CNPInput
-                            id="outlined-required"
-                            label="CNP"
-                            variant="outlined"
-                            onChange={() => {
-                                console.log('fbd');
-                            }}
-                        />
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DOBInput
-                                views={['day']}
-                                label="Date Of Birth"
-                                value={0}
-                                onChange={(newValue) => {
-                                    console.log(newValue);
-                                }}
-                                renderInput={(params) => <TextField {...params} helperText={null} />}
-                            />
-                        </LocalizationProvider>
-                    </FormContainer2Columns>
+                    <CNPInput
+                        id="outlined-required"
+                        label="CNP"
+                        variant="outlined"
+                        onChange={() => {
+                            console.log('fbd');
+                        }}
+                    />
                     <FormContainer2Columns>
                         <FilterForm>
                             <InputLabel>Diagnostics</InputLabel>
