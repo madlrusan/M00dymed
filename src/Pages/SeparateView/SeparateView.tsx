@@ -9,6 +9,7 @@ import { Login } from '../Login/Login';
 import { Register } from '../Register/Register';
 import { DoctorMenu } from '../../components/DoctorMenu/DoctorMenu';
 import { DoctorPatients } from '../DoctorPatients/DoctorPatients';
+import { Exercises } from '../Exercises/PacientExercises';
 type SeparateViewWithFormProps = {
     form: string;
 };
@@ -30,6 +31,17 @@ export const SeparateViewWithDoctorMenu = () => {
             <DoctorMenu />
             <RightContainerLogged>
                 <DoctorPatients></DoctorPatients>
+            </RightContainerLogged>
+        </LoggedContainer>
+    );
+};
+
+export const SeparateViewWithExercises = () => {
+    return (
+        <LoggedContainer>
+            <DoctorMenu />
+            <RightContainerLogged>
+                <Exercises/>
             </RightContainerLogged>
         </LoggedContainer>
     );

@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 export const StyledTable = styled(Table)`
     height: 100%;
-    background-color: pink;
+    background-color: none;
 `
 
 export const ContentGrid = styled.div`
@@ -18,7 +18,7 @@ export const ContentGrid = styled.div`
 export const TopCard = styled.div`
     height: 100%;
     padding: 2vh;
-    background-color: red;
+    background-color: none;
 `
 
 export const Exercises = () => {
@@ -53,7 +53,7 @@ export const Exercises = () => {
             <ContentGrid>
                 <TopCard> Test </TopCard>
                 <StyledTable>
-                    <TableBody>
+                    <TableBody sx={{height: '100%'}}>
                         {(cardsPerPage > 0
                         ? content.slice(page * cardsPerPage, page * cardsPerPage + cardsPerPage)
                         : content

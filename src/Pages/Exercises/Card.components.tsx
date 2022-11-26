@@ -11,7 +11,7 @@ export const StyledCard = styled.div`
     display: grid;
     grid-template-columns: auto 70%;
     background-color: inherit;
-      }
+  }
 
   .content {
     text-align: left;
