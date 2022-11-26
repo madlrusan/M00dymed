@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, SideMenu, StyledItem } from './DoctorMenu.components';
+import { mediumPurple } from '../../modules/theme';
 
 export const DoctorMenu = () => {
     const [className, setClassName] = useState('');
@@ -9,7 +10,9 @@ export const DoctorMenu = () => {
     console.log(window.location.pathname);
     return (
         <SideMenu>
-            <div>LOGO</div>
+            <div>
+                <img src={'../../../assets/logo.svg'} style={{ color: mediumPurple }} alt="Logo"></img>
+            </div>
             <Menu>
                 <StyledItem className={className} path={window.location.pathname}>
                     Patients
