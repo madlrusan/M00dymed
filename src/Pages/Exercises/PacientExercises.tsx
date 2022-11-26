@@ -29,6 +29,7 @@ export const DoctorContentGrid = styled.div`
 export const TopCard = styled.div`
     height: 100%;
     padding: 3vh;
+    margin-top: 2vh;
     font-size: 3vh;
     font-weight: bold;
     background-color: none;
@@ -59,7 +60,7 @@ export const Exercises = (props: any) => {
             title: "Title",
             media: media,
             description: text,
-            diagnostic: "test"
+            diagnostic: kk%2 + 1
         })
     }
 
