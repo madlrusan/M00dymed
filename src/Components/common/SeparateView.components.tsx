@@ -31,3 +31,8 @@ export const RightContainerLogged = styled.div`
     justify-content: center;
     align-items: center;
 `;
+export const DiagnosticSeverityText = styled.div`
+    color: black;
+    text-align: center;
+    text-transform: uppercase;
+`;

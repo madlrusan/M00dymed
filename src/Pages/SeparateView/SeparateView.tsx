@@ -41,7 +41,7 @@ export const SeparateViewWithExercises = () => {
         <LoggedContainer>
             <DoctorMenu />
             <RightContainerLogged>
-                <Exercises isPatient={true}/>
+                <Exercises isPatient={true} />
             </RightContainerLogged>
         </LoggedContainer>
     );
@@ -52,7 +52,7 @@ export const SeparateViewWithEditExercises = () => {
         <LoggedContainer>
             <DoctorMenu />
             <RightContainerLogged>
-                <Exercises isPatient={false}/>
+                <Exercises isPatient={false} />
             </RightContainerLogged>
         </LoggedContainer>
     );

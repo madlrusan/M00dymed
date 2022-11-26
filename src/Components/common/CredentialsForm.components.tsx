@@ -189,14 +189,7 @@ export const GradeSlider = styled(Slider)`
 `;
 export const ModalTitle = styled.h2`
     font-size: 20px;
-    /* font-weight: bold; */
     font-style: italic;
-    /* margin-top: -50px; */
-    /* margin-bottom: 50px; */
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
     color: ${darkPurple};
 `;

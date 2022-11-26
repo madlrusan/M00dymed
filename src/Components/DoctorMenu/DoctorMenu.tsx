@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Menu, SideMenu, StyledItem } from './DoctorMenu.components';
 import { mediumPurple } from '../../modules/theme';
-
+import Logo from '.././../../asset/resource/logo.svg';
 export const DoctorMenu = () => {
     const [className, setClassName] = useState('');
     // const handleClick = () => {
@@ -11,7 +11,11 @@ export const DoctorMenu = () => {
     return (
         <SideMenu>
             <div>
-                <img src={'../../../assets/logo.svg'} style={{ color: mediumPurple }} alt="Logo"></img>
+                <img
+                    src={Logo}
+                    style={{ color: mediumPurple, height: 100, width: 100, alignContent: 'center' }}
+                    alt="Logo"
+                ></img>
             </div>
             <Menu>
                 <StyledItem className={className} path={window.location.pathname}>

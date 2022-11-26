@@ -1,5 +1,5 @@
 import React from 'react';
-import rightImage from './../../assets/rightImage.png';
+import rightImage from './../../asset/resource/rightImage.png';
 import { Image } from './RightImage.components';
 
 export const RightImage = () => {

@@ -75,5 +75,5 @@ export const FooterContainer = styled.div`
 `;
 export const AddBtn = styled(Button)`
     background-color: ${darkPurple} !important;
-    margin-top: 0px !important;
+    margin-top: 50px !important;
 `;

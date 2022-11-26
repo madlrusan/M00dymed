@@ -1,4 +1,4 @@
-import { Box, InputLabel, MenuItem, Modal, Slider, TextField, Typography } from '@mui/material';
+import { Box, InputLabel, MenuItem, Modal } from '@mui/material';
 import React, { useState } from 'react';
 import {
     CNPInput,

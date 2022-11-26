@@ -12,12 +12,13 @@ import {
     SubmitButton,
 } from '../../components/common/CredentialsForm.components';
 import { FilterForm, FooterContainer } from '../../components/common/Doctors.components';
+import { AddMedication } from './AddMedication';
 // type SeePatientProps = {
 //     role: string;
 // };
 export const SeePatient = () => {
     // const { role } = props;
-    const role = 'user';
+    const role = 'doctor';
     const { id } = useParams();
     const sliderText = (value: number) => {
         if (value < 3) return 'low';
@@ -155,6 +156,7 @@ export const SeePatient = () => {
             {role === 'doctor' && (
                 <FooterContainer>
                     <SubmitButton>Save</SubmitButton>
+                    <AddMedication diagnostic="anxiety" severity={3}></AddMedication>
                 </FooterContainer>
             )}
         </Box>
