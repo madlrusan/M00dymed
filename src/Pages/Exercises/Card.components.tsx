@@ -5,7 +5,7 @@ export const StyledCard = styled.div`
   .card {
     width: auto;
     height: 15vh;
-    margin: 2vh;
+    margin: 3vh;
     border: none;
     box-shadow: none !important;
     display: grid;
