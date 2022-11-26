@@ -8,6 +8,7 @@ export const Appwrite = () => {
     const db = new Databases(client);
     const USERCONTENTID = '63812ca6dcd85979bef0';
     const DATABASEID = '63812c9edc4254a2b672';
+    const DIAGNOSISCONTENTID = '63822e8aa10d6b58e433';
     const getTeams = () => {
         const promise = teams.list();
         promise.then((r) => console.log(r));
@@ -19,11 +20,25 @@ export const Appwrite = () => {
     const createEmailSession = async (email: string, password: string) => {
         return account.createEmailSession(email, password);
     };
-
+    const getUser = async () => {
+        try {
+            const user = await account.get();
+            return user;
+        } catch (e) {}
+    };
     const getRole = async () => {
-        const user = await account.get();
-        const userList = await db.listDocuments('63812c9edc4254a2b672', '63812ca6dcd85979bef0');
-        return userList.documents.filter((d) => d.email.toLowerCase() === user.email.toLowerCase())[0].role;
+        try {
+            const user = await account.get();
+            const userList = await db.listDocuments(DATABASEID, USERCONTENTID);
+            return userList.documents.filter((d) => d.email.toLowerCase() === user.email.toLowerCase())[0].role;
+        } catch (e) {}
+    };
+    const getDiagnosis = async () => {
+        const diagnosis = await db.listDocuments(DATABASEID, DIAGNOSISCONTENTID);
+        try {
+            const diagnosis = await db.listDocuments(DATABASEID, DIAGNOSISCONTENTID);
+            return diagnosis;
+        } catch (e) {}
     };
     const registerAdmin = async (email: string, password: string, firstName: string, lastName: string) => {
         const id = ID.unique();
@@ -44,5 +59,15 @@ export const Appwrite = () => {
     const checkSession = () => {
         return account.getSession('current').then((r) => console.log(r));
     };
-    return { registerAdmin, getTeams, loginUser, createEmailSession, checkSession, logout, getRole };
+    return {
+        registerAdmin,
+        getTeams,
+        loginUser,
+        createEmailSession,
+        checkSession,
+        logout,
+        getRole,
+        getUser,
+        getDiagnosis,
+    };
 };

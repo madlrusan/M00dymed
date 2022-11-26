@@ -1,5 +1,5 @@
-import { Box, InputLabel, MenuItem, Modal } from '@mui/material';
-import React, { useState } from 'react';
+import { Box, InputLabel, MenuItem, Modal, SelectChangeEvent } from '@mui/material';
+import React, { FC, useEffect, useState } from 'react';
 import {
     CNPInput,
     DiagnosticInput,
@@ -12,15 +12,25 @@ import {
     SubmitButton,
 } from '../common/CredentialsForm.components';
 import { AddBtn, FilterForm, FooterContainer } from '../common/Doctors.components';
-export const AddPatient = () => {
+
+interface AddPatientProps {
+    diagnostics: any;
+}
+
+export const AddPatient: FC<AddPatientProps> = ({ diagnostics }) => {
     const [openModal, setOpenModal] = useState(false);
     const handleOpen = () => setOpenModal(true);
     const handleClose = () => setOpenModal(false);
+    const [filterValue, setFilterValue] = useState('');
+    const handleChangeFilter = (event: SelectChangeEvent) => {
+        setFilterValue(event.target.value);
+    };
     const sliderText = (value: number) => {
         if (value < 3) return 'low';
         else if (value > 3) return 'high';
         else return 'medium';
     };
+
     return (
         <div>
             <AddBtn variant="contained" onClick={handleOpen}>
@@ -90,13 +100,13 @@ export const AddPatient = () => {
                             <DiagnosticInput
                                 labelId="diagnostics"
                                 id="diagnostics"
-                                // value={filterValue}
+                                value={filterValue}
                                 label="Diagnostics"
-                                // onChange={handleChangeFilter}
+                                onChange={handleChangeFilter}
                                 style={{ width: '170px' }}
                             >
-                                {diagnostics.map((diagnostic) => {
-                                    return <MenuItem value={diagnostic.id}>{diagnostic.label}</MenuItem>;
+                                {diagnostics.map((d) => {
+                                    return <MenuItem value={d.id}>{d.Name}</MenuItem>;
                                 })}
                             </DiagnosticInput>
                         </FilterForm>
@@ -132,12 +142,12 @@ const style = {
 };
 const diagnostics = [
     {
-        id: 1,
-        label: 'depression',
+        id: 'Depression',
+        label: 'Depression',
     },
     {
-        id: 2,
-        label: 'anxiety',
+        id: 'Anxiety',
+        label: 'Anxiety',
     },
 ];
 const marks = [
