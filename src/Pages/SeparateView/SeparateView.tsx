@@ -1,4 +1,9 @@
-import { Container, RightContainer, RightContainerLogged } from '../../components/common/SeparateView.components';
+import {
+    Container,
+    LoggedContainer,
+    RightContainer,
+    RightContainerLogged,
+} from '../../components/common/SeparateView.components';
 import { RightImage } from '../.././components/RightImage';
 import { Login } from '../Login/Login';
 import { Register } from '../Register/Register';
@@ -21,11 +26,11 @@ export const SeparateViewWithForm = (props: SeparateViewWithFormProps) => {
 
 export const SeparateViewWithDoctorMenu = () => {
     return (
-        <Container>
+        <LoggedContainer>
             <DoctorMenu />
             <RightContainerLogged>
                 <DoctorPatients></DoctorPatients>
             </RightContainerLogged>
-        </Container>
+        </LoggedContainer>
     );
 };

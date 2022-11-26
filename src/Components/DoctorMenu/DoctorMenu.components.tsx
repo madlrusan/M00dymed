@@ -1,8 +1,10 @@
 import { MenuItem } from '@mui/material';
 import styled, { css } from 'styled-components';
+import { darkBlue, darkPurple, mediumPurple } from '../../modules/theme';
 
 export const Menu = styled.div`
-    color: #7eb1d7;
+    font-weight: bold;
+    color: ${darkBlue};
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -22,14 +24,19 @@ export const SideMenu = styled.div`
 
 export const StyledItem = styled(MenuItem)<{ className?: string; path?: string }>`
     ${(props) => {
-        if (props.className === 'clicked') {
-            return css`
-                color: red !important;
-            `;
-        }
         if (props.path === '/patients') {
             return css`
-                color: red !important;
+                color: ${darkPurple} !important;
+            `;
+        }
+        if (props.path === '/exercises') {
+            return css`
+                color: ${darkPurple} !important;
+            `;
+        }
+        if (props.path === '/goodReading') {
+            return css`
+                color: ${darkPurple} !important;
             `;
         }
     }}
