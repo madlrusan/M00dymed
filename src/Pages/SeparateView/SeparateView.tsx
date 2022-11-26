@@ -7,7 +7,7 @@ import { DoctorPatients } from '../DoctorPatients/DoctorPatients';
 type SeparateViewWithFormProps = {
     form: string;
 };
-export const SeparateViewWithFormProps = (props: SeparateViewWithFormProps) => {
+export const SeparateViewWithForm = (props: SeparateViewWithFormProps) => {
     const { form } = props;
     return (
         <Container>
