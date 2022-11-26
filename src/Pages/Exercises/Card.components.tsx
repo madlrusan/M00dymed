@@ -6,15 +6,17 @@ export const StyledCard = styled.div`
     width: auto;
     height: 15vh;
     margin: 2vh;
-    border: 10px solid teal;
+    border: none;
     box-shadow: none !important;
     display: grid;
     grid-template-columns: auto 70%;
-    background-color: teal;
+    background-color: inherit;
       }
 
   .content {
     text-align: left;
+    overflow-y: scroll;
+    margin-left: 1vw;
   }
 
   .media {
