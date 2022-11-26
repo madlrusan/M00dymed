@@ -1,4 +1,3 @@
-import { MenuItem } from '@mui/material';
 import React, { useState } from 'react';
 import { Menu, SideMenu, StyledItem } from './DoctorMenu.components';
 

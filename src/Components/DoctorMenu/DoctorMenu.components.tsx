@@ -1,6 +1,6 @@
 import { MenuItem } from '@mui/material';
 import styled, { css } from 'styled-components';
-import { darkBlue, darkPurple, mediumPurple } from '../../modules/theme';
+import { darkBlue, darkPurple } from '../../modules/theme';
 
 export const Menu = styled.div`
     font-weight: bold;
