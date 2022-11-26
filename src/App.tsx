@@ -5,7 +5,10 @@ import {
     SeparateViewWithDoctorMenu,
     SeparateViewWithExercises,
     SeparateViewWithForm,
+    SeparateViewWithSeePatient,
 } from './Pages/SeparateView/SeparateView';
+import { SeePatient } from './Pages/DoctorPatients/SeePatient';
+import { EditPatient } from './Pages/DoctorPatients/EditPatient';
 const App = () => {
     return (
         <>
@@ -16,6 +19,8 @@ const App = () => {
                         <Route path="register" element={<SeparateViewWithForm form="Register" />} />
                         <Route path="patients" element={<SeparateViewWithDoctorMenu />} />
                         <Route path="exercises" element={<SeparateViewWithExercises />} />
+                        <Route path="seePatient/:id" element={<SeePatient />} />
+                        <Route path="editPatient/:id" element={<EditPatient />} />
                     </Route>
                 </Routes>
             </BrowserRouter>

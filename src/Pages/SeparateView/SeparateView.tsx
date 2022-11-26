@@ -46,3 +46,14 @@ export const SeparateViewWithExercises = () => {
         </LoggedContainer>
     );
 };
+
+export const SeparateViewWithSeePatient = () => {
+    return (
+        <LoggedContainer>
+            <DoctorMenu />
+            <RightContainerLogged>
+                <Exercises />
+            </RightContainerLogged>
+        </LoggedContainer>
+    );
+};

@@ -26,8 +26,8 @@ import {
     TableHeader,
 } from '../../components/common/Doctors.components';
 import { AppwritePatients } from '../../services/AppwritePatients';
-import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import { AddPatient } from '../../components/AddPatients/AddPatient';
+import { useNavigate } from 'react-router-dom';
 export const DoctorPatients = () => {
     const [filterValue, setFilterValue] = useState('All');
     const [searchValue, setSearchValue] = useState('');
@@ -111,13 +111,7 @@ export const DoctorPatients = () => {
                                                 <TableCell key={column.id} align={column.align}>
                                                     {column.id === 'actions' ? (
                                                         <div>
-                                                            <Menu
-                                                                id={row.id}
-                                                                firstName={row.firstName}
-                                                                lastName={row.lastName}
-                                                                diagnostics={row.diagnostics}
-                                                                diagnosticsGrade={row.diagnosticsGrade}
-                                                            />
+                                                            <Menu patientId={row.$id} />
                                                         </div>
                                                     ) : (
                                                         value
@@ -212,16 +206,19 @@ interface PatientData {
     actions?: string;
 }
 
-const Menu = (Pacient: PatientData) => {
+const Menu = (patientId: string) => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-
+    const [open, setOpen] = useState(false);
+    const navigate = useNavigate();
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(anchorEl ? null : event.currentTarget);
+        setOpen(!open);
     };
-    let open = Boolean(anchorEl);
+
     const id = open ? 'simple-popper' : undefined;
-    const handleActionClick = (id: string, action: string) => {
-        open = !Boolean(anchorEl);
+    const handleActionClick = (action: string) => {
+        setOpen(false);
+        navigate('/' + action + '/' + patientId.patientId);
     };
     return (
         <>
@@ -243,14 +240,14 @@ const Menu = (Pacient: PatientData) => {
                 >
                     <MenuItem
                         onClick={() => {
-                            handleActionClick(Pacient.firstName, 'seeProfile');
+                            handleActionClick('seePatient');
                         }}
                     >
                         See Profile
                     </MenuItem>
                     <MenuItem
                         onClick={() => {
-                            handleActionClick(Pacient.firstName, 'editProfile');
+                            handleActionClick('editPatient');
                         }}
                     >
                         Edit Profile

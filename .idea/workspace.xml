@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="39b29278-2253-454c-af8f-2e6802678d19" name="Changes" comment="Add functionality to patients list">
-      <change afterPath="$PROJECT_DIR$/src/services/AppwritePatients.ts" afterDir="false" />
+    <list default="true" id="39b29278-2253-454c-af8f-2e6802678d19" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Pages/DoctorPatients/EditPatient.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Pages/DoctorPatients/SeePatient.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Pages/DoctorPatients/DoctorPatients.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/DoctorPatients/DoctorPatients.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/Appwrite.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/Appwrite.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/SeparateView/SeparateView.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/SeparateView/SeparateView.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +18,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="TypeScript File" />
+        <option value="com.haulmont.rcb.arrow_function_component" />
       </list>
     </option>
   </component>
@@ -37,7 +39,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Projects/M00dymed&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Projects/iTEC2022/Frontend&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;D:\\Projects\\M00dymed\\node_modules\\prettier&quot;,
     &quot;ts.external.directory.path&quot;: &quot;D:\\Projects\\M00dymed\\node_modules\\typescript\\lib&quot;,
@@ -60,7 +62,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1669457663037</updated>
-      <workItem from="1669457665056" duration="12722000" />
+      <workItem from="1669457665056" duration="16219000" />
     </task>
     <task id="LOCAL-00001" summary="Add appwrite for user">
       <created>1669464135459</created>
@@ -69,7 +71,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669464135459</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add functionality to patients list">
+      <created>1669470469641</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1669470469641</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
