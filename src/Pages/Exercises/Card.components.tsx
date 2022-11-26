@@ -4,25 +4,30 @@ import styled from 'styled-components';
 export const StyledCard = styled.div`
   .card {
     width: auto;
-    border: 5px red !important;
+    height: 15vh;
+    margin: 2vh;
+    border: 10px solid teal;
     box-shadow: none !important;
     display: grid;
     grid-template-columns: auto 70%;
-  }
+    background-color: teal;
+      }
 
   .content {
     text-align: left;
-    overflow-x: auto;
   }
 
   .media {
-    width: 100%;
-    height: auto;
+    height: 100%;
+    box-sizing: border-box;
+    border: none;
+    padding: 0;
+    margin: 0;
   }
 `;
 
 
-export const ExerciseCard = (props) => {
+export const ExerciseCard = (props: any) => {
   return (
     <StyledCard>
         <Card className='card'>
