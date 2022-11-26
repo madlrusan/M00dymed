@@ -26,7 +26,7 @@ import {
 } from '../../components/common/Doctors.components';
 import { AppwritePatients } from '../../services/AppwritePatients';
 import { AddPatient } from '../../components/AddPatients/AddPatient';
-import { useNavigate } from 'react-router-dom';
+import { unstable_HistoryRouter, useNavigate } from 'react-router-dom';
 import { Appwrite } from '../../services/Appwrite';
 export const DoctorPatients = () => {
     const [filterValue, setFilterValue] = useState('All');
@@ -36,7 +36,10 @@ export const DoctorPatients = () => {
     const { getPatients } = AppwritePatients();
     const { getDiagnosis } = Appwrite();
     useEffect(() => {
-        getDiagnosis().then((d) => setDiagnostics(d.documents));
+        getDiagnosis().then((d) => {
+            d.documents.unshift({ Name: 'All' });
+            setDiagnostics(d.documents);
+        });
     }, []);
     useEffect(() => {
         getPatients(filterValue, searchValue ? searchValue : '').then((r) => setRows(r));
