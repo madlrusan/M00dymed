@@ -1,9 +1,5 @@
 import {
-    Autocomplete,
-    Button,
     CardContent,
-    FormControl,
-    Icon,
     IconButton,
     InputLabel,
     MenuItem,
@@ -14,13 +10,12 @@ import {
     TableBody,
     TableCell,
     TableContainer,
-    TableHead,
     TablePagination,
     TableRow,
     TextField,
 } from '@mui/material';
 import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     AddBtn,
     CardContainer,
@@ -30,9 +25,16 @@ import {
     SearchInput,
     TableHeader,
 } from '../../components/common/Doctors.components';
-import FilterAltIcon from '@mui/icons-material/FilterAlt';
+import { AppwritePatients } from '../../services/AppwritePatients';
 export const DoctorPatients = () => {
-    const [filterValue, setFilterValue] = useState('');
+    const [filterValue, setFilterValue] = useState('All');
+    const [searchValue, setSearchValue] = useState('');
+    const [rows, setRows] = useState<PatientData[]>([]);
+    const { getPatients } = AppwritePatients();
+    useEffect(() => {
+        getPatients(filterValue, searchValue ? searchValue : '').then((r) => setRows(r));
+        // setRows(elements);\
+    }, [filterValue, searchValue]);
     const handleChangeFilter = (event: SelectChangeEvent) => {
         setFilterValue(event.target.value);
     };
@@ -56,13 +58,14 @@ export const DoctorPatients = () => {
                         id="free-solo-demo"
                         freeSolo
                         options={[]}
+                        onInputChange={(e) => setSearchValue(e.target.value)}
                         sx={{ m: 0, minWidth: 100, maxHeight: 50 }}
                         renderInput={(params) => <TextField {...params} label="Search patients" />}
                     />
                     {/* filter */}
                     <div style={{ marginRight: '10px' }}>
                         <FilterForm size="small" sx={{ m: 1, minWidth: 100, maxHeight: 50 }}>
-                            <InputLabel size="small">Filter by Diagnostics</InputLabel>
+                            <InputLabel size="small">Diagnostics</InputLabel>
                             <Select
                                 size="small"
                                 labelId="filter-diagnostics"
@@ -97,12 +100,11 @@ export const DoctorPatients = () => {
                         </TableHeader>
                         <TableBody>
                             {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                                console.log(row.firstName);
                                 return (
                                     <TableRow hover tabIndex={-1} key={row.id}>
                                         {tableColumns.map((column) => {
                                             const value = row[column.id];
-                                            console.log(row.firstName);
+
                                             return (
                                                 <TableCell key={column.id} align={column.align}>
                                                     {column.id === 'actions' ? (
@@ -112,7 +114,7 @@ export const DoctorPatients = () => {
                                                                 firstName={row.firstName}
                                                                 lastName={row.lastName}
                                                                 diagnostics={row.diagnostics}
-                                                                severityGrade={row.severityGrade}
+                                                                diagnosticsGrade={row.diagnosticsGrade}
                                                             />
                                                         </div>
                                                     ) : (
@@ -136,8 +138,16 @@ export const DoctorPatients = () => {
                     onPageChange={handleChangePage}
                     onRowsPerPageChange={handleChangeRowsPerPage}
                 />
+
                 <FooterContainer>
-                    <AddBtn variant="contained">Add</AddBtn>
+                    <AddBtn
+                        variant="contained"
+                        onClick={() => {
+                            console.log(searchValue);
+                        }}
+                    >
+                        Add
+                    </AddBtn>
                 </FooterContainer>
             </CardContent>
         </CardContainer>
@@ -146,30 +156,34 @@ export const DoctorPatients = () => {
 
 const diagnostics = [
     {
-        id: 1,
-        label: 'depression',
+        id: 'All',
+        label: 'All',
     },
     {
-        id: 2,
-        label: 'anxiety',
+        id: 'Depression',
+        label: 'Depression',
+    },
+    {
+        id: 'Anxiety',
+        label: 'Anxiety',
     },
 ];
 
 interface Column {
-    id: 'firstName' | 'lastName' | 'diagnostics' | 'severityGrade' | 'actions';
+    id: 'FirstName' | 'LastName' | 'diagnostics' | 'diagnosticsGrade' | 'actions';
     label: string;
     minWidth: number;
     align: 'left';
 }
 const tableColumns: Column[] = [
     {
-        id: 'firstName',
+        id: 'FirstName',
         label: 'First Name',
         align: 'left',
         minWidth: 50,
     },
     {
-        id: 'lastName',
+        id: 'LastName',
         label: 'Last Name',
         align: 'left',
         minWidth: 50,
@@ -181,7 +195,7 @@ const tableColumns: Column[] = [
         minWidth: 50,
     },
     {
-        id: 'severityGrade',
+        id: 'diagnosticsGrade',
         label: 'Severity Grade',
         align: 'left',
         minWidth: 50,
@@ -195,37 +209,13 @@ const tableColumns: Column[] = [
 ];
 
 interface PatientData {
-    id: number;
-    firstName: string;
-    lastName: string;
+    id: string;
+    FirstName: string;
+    LastName: string;
     diagnostics: string;
-    severityGrade: string;
+    diagnosticsGrade: string;
     actions?: string;
 }
-
-const createData = (
-    id: number,
-    firstName: string,
-    lastName: string,
-    diagnostics: string,
-    severityGrade: string,
-): PatientData => {
-    return {
-        id,
-        firstName,
-        lastName,
-        diagnostics,
-        severityGrade,
-    };
-};
-const createRows = () => {
-    const rows = [];
-    for (let i = 0; i < 20; i++) {
-        rows.push(createData(i, `firstName${i}`, 'lastName', 'diagnostics', 'severityGrade'));
-    }
-    return rows;
-};
-const rows = createRows();
 
 const Menu = (Pacient: PatientData) => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -236,9 +226,7 @@ const Menu = (Pacient: PatientData) => {
     let open = Boolean(anchorEl);
     const id = open ? 'simple-popper' : undefined;
     const handleActionClick = (id: string, action: string) => {
-        console.log('handleActionClick ' + action + ' ' + id);
         open = !Boolean(anchorEl);
-        console.log(open);
     };
     return (
         <>
