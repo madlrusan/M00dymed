@@ -1,5 +1,5 @@
 import { Button, TextField, InputLabel, Select, Slider, Typography } from '@mui/material';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { lightBlue, darkPurple, mediumPurple, pink, transparentPink, transparentWhite } from '../../modules/theme';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 export const LogoContainer = styled.div`
@@ -22,7 +22,7 @@ export const StyledForm = styled.div`
     padding-bottom: 30%;
 `;
 
-export const NameInput = styled(TextField)`
+export const NameInput = styled(TextField)<{ className?: string }>`
     margin-bottom: 20px !important;
     margin-left: 10px !important;
     margin-right: 10px !important;
@@ -36,6 +36,13 @@ export const NameInput = styled(TextField)`
     .Mui-focused {
         color: ${darkPurple} !important;
     }
+    ${(props) => {
+        if (props.className == 'readonly') {
+            return css`
+                cursor: not-allowed;
+            `;
+        }
+    }};
 `;
 
 export const FormContainer2Columns = styled.div`
@@ -175,9 +182,10 @@ export const GradeSlider = styled(Slider)`
         height 20px;
         /* width 150px; */
     }
-    margin-left: -50px;
-    margin-right: 10px;
-    width 300px !important;
+    margin-left: 30px;
+    /* padding-left: 100px !important; */
+    margin-right: 0px;
+    width: 300px !important;
 `;
 export const ModalTitle = styled.h2`
     font-size: 20px;
