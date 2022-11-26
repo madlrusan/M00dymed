@@ -11,6 +11,8 @@ import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { Appwrite } from '../../services/Appwrite';
 import { useNavigate } from 'react-router-dom';
+import { mediumPurple } from '../../modules/theme';
+import Logo from '.././../../asset/resource/logo.svg';
 
 export const Register = () => {
     const [registerUser, setRegisterUser] = useState({
@@ -44,9 +46,15 @@ export const Register = () => {
         navigate('/login');
     };
     return (
-        <StyledForm>
-            <LogoContainer>LOGO</LogoContainer>
-            <FormContainer2Columns>
+        <StyledForm style={{ marginBottom: '0vh' }}>
+            <div style={{ marginTop: '0vh' }}>
+                <img
+                    src={Logo}
+                    style={{ color: mediumPurple, height: '100%', width: '60vh', alignContent: 'center' }}
+                    alt="Logo"
+                ></img>
+            </div>
+            <FormContainer2Columns style={{ marginTop: '10vh' }}>
                 <NameInput
                     id="filled-required"
                     label="First Name"
