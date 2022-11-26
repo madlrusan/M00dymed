@@ -11,13 +11,14 @@ import {
     TablePagination,
     TableRow,
 } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ExerciseCard } from './ExerciseCard';
-import { transparentWhite, } from '../../modules/theme';
-import { FilterForm, } from '../../components/common/Doctors.components';
+import { transparentWhite } from '../../modules/theme';
+import { FilterForm } from '../../components/common/Doctors.components';
 import { AddExercise, DeleteExercise, EditExercise } from './ExerciseEdit';
 import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
 import styled from 'styled-components';
+import { Appwrite } from '../../services/Appwrite';
 
 export const StyledTable = styled(Table)`
     height: 100%;
@@ -50,31 +51,26 @@ export const TopCard = styled.div`
 `;
 
 export const Exercises = (props: any) => {
-    const isPatient = props.isPatient;
-    const content = [];
-    const text =
-        "Lorem Ipsum este pur şi simplu o machetă pentru text a industriei tipografice. \
-    Lorem Ipsum a fost macheta standard a industriei încă din secolul al XVI-lea, când un tipograf \
-    anonim a luat o planşetă de litere şi le-a amestecat pentru a crea o carte demonstrativă pentru \
-    literele respective. Nu doar că a supravieţuit timp de cinci secole, dar şi a facut saltul în \
-    tipografia electronică practic neschimbată. A fost popularizată în anii '60 odată cu ieşirea \
-    colilor Letraset care conţineau pasaje Lorem Ipsum, iar mai recent, prin programele de publicare \
-    pentru calculator, ca Aldus PageMaker care includeau versiuni de Lorem Ipsum.";
-    const media = 'https://www.youtube.com/embed/muuK4SpRR5M';
-    const diagnostics = [
-        { id: 1, label: 'depression' },
-        { id: 2, label: 'anxiety' },
-    ];
-
-    for (let kk = 0; kk < 11; ++kk) {
-        content.push({
-            id: kk,
-            title: 'Title',
-            media: media,
-            description: text,
-            diagnostic: (kk % 2) + 1,
+    const [diagnostics, setDiagnostics] = useState([]);
+    const { getDiagnosis } = Appwrite();
+    const [content, setContent] = useState([]);
+    const { getExercises } = AppwriteExercises();
+    useEffect(() => {
+        getDiagnosis().then((d) => {
+            d.documents.unshift({ Name: 'All' });
+            setDiagnostics(d.documents);
         });
-    }
+    }, []);
+    const [filterValue, setFilterValue] = useState('All');
+    useEffect(() => {
+        getExercises(filterValue).then((r) => setContent(r));
+    }, [filterValue]);
+    const addExercise = () => {
+        getExercises(filterValue).then((r) => setContent(r));
+    };
+    const isPatient = props.isPatient;
+
+    const media = 'https://www.youtube.com/embed/muuK4SpRR5M';
 
     const [page, setPage] = React.useState(0);
     const cardsPerPage = 3;
@@ -85,7 +81,6 @@ export const Exercises = (props: any) => {
         return;
     };
 
-    const [filterValue, setFilterValue] = useState('');
     const handleChangeFilter = (event: SelectChangeEvent) => {
         setFilterValue(event.target.value);
     };
@@ -144,7 +139,7 @@ export const Exercises = (props: any) => {
                                     onChange={handleChangeFilter}
                                 >
                                     {diagnostics.map((diagnostic) => {
-                                        return <MenuItem value={diagnostic.id}>{diagnostic.label}</MenuItem>;
+                                        return <MenuItem value={diagnostic.Name}>{diagnostic.Name}</MenuItem>;
                                     })}
                                 </Select>
                             </FilterForm>
@@ -160,7 +155,7 @@ export const Exercises = (props: any) => {
                                 ).map((row) => (
                                     <TableRow>
                                         <TableCell>
-                                            <ExerciseCard url={row.media} content={row.description} />
+                                            <ExerciseCard url={row.Media} content={row.Content} />
                                         </TableCell>
                                         <TableCell>
                                             <MenuButtons row={row} />
@@ -231,3 +226,6 @@ export const MenuButtons = (props: any) => {
         </>
     );
 };
+function AppwriteExercises(): { getExercises: any } {
+    throw new Error('Function not implemented.');
+}
