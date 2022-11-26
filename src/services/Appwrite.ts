@@ -36,7 +36,7 @@ export const Appwrite = () => {
     const getPacientByEmail = async (email: string) => {
         try {
             const userList = await db.listDocuments(DATABASEID, USERCONTENTID);
-            return userList.documents.filter((d) => d.id.toLowerCase() === email.toLowerCase())[0];
+            return userList.documents.filter((d) => d.email.toLowerCase() === email.toLowerCase())[0];
         } catch (e) {}
     };
     const getDiagnosis = async () => {

@@ -28,13 +28,11 @@ export const SeePatient = (props: SeePatientProps) => {
     const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
         const funct = async () => {
-            const user = email ? await getPacientByEmail(email) : {};
-            return { user };
+            const user = await getPacientByEmail(email);
+            return user;
         };
         funct().then((response) => {
             setUser(response);
-            console.log(response);
-            setIsLoading(false);
         });
     }, []);
 

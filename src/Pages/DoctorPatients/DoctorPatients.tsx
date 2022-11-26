@@ -212,7 +212,7 @@ const Menu = (email: string) => {
     const id = open ? 'simple-popper' : undefined;
     const handleActionClick = (action: string) => {
         setOpen(false);
-        navigate('/' + action + '/' + email);
+        navigate('/' + action + '/' + email.email);
     };
     return (
         <>
