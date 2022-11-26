@@ -11,7 +11,6 @@ const App = () => {
                     <Route path="/" element={<Layout />}>
                         <Route path="login" element={<SeparateViewWithForm form="Login" />} />
                         <Route path="register" element={<SeparateViewWithForm form="Register" />} />
-
                         <Route path="patients" element={<SeparateViewWithDoctorMenu />} />
                     </Route>
                 </Routes>

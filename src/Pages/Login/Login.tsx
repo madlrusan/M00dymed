@@ -1,8 +1,15 @@
-import { FilledInput, FormControl, IconButton, InputAdornment, InputLabel, TextField } from '@mui/material';
+import { IconButton, InputAdornment } from '@mui/material';
 import React, { useState } from 'react';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { PasswordInput, PasswordLabel, SubmitButton, EmailInput, LogoContainer, StyledForm } from '../../components/common/CredentialsForm.components';
+import {
+    PasswordInput,
+    SubmitButton,
+    EmailInput,
+    LogoContainer,
+    StyledForm,
+} from '../../components/common/CredentialsForm.components';
+import { Appwrite } from '../../services/Appwrite';
 
 interface LoginState {
     emailInput: string;
@@ -10,9 +17,20 @@ interface LoginState {
     showPassword: boolean;
 }
 export const Login = () => {
+    const { loginUser, logout } = Appwrite();
     const [values, setValues] = useState<LoginState>({ emailInput: '', passwordInput: '', showPassword: false });
     const handleChange = (prop: keyof LoginState) => (event: React.ChangeEvent<HTMLInputElement>) => {
         setValues({ ...values, [prop]: event.target.value });
+    };
+    const Login = async () => {
+        try {
+            await loginUser(values.emailInput, values.passwordInput);
+        } catch (e) {}
+    };
+    const TEST = async () => {
+        try {
+            await logout();
+        } catch (e) {}
     };
 
     const handleClickShowPassword = () => {
@@ -28,7 +46,7 @@ export const Login = () => {
     return (
         <StyledForm>
             <LogoContainer>LOGO</LogoContainer>
-            <EmailInput id="filled-required" label="Email" variant="filled" />
+            <EmailInput id="filled-required" label="Email" variant="filled" onChange={handleChange('emailInput')} />
             {/* <PasswordLabel htmlFor="filled-adornment-password">Password</PasswordLabel> */}
             <PasswordInput
                 id="filled-adornment-password"
@@ -52,7 +70,12 @@ export const Login = () => {
                     ),
                 }}
             />
-            <SubmitButton variant="contained">Login</SubmitButton>
+            <SubmitButton variant="contained" onClick={Login}>
+                Login
+            </SubmitButton>
+            <SubmitButton variant="contained" onClick={TEST}>
+                TEST
+            </SubmitButton>
         </StyledForm>
     );
 };

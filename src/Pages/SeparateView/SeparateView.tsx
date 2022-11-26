@@ -4,7 +4,7 @@ import {
     RightContainer,
     RightContainerLogged,
 } from '../../components/common/SeparateView.components';
-import { RightImage } from '../.././components/RightImage';
+import { RightImage } from '../../Components/RightImage';
 import { Login } from '../Login/Login';
 import { Register } from '../Register/Register';
 import { DoctorMenu } from '../../components/DoctorMenu/DoctorMenu';
