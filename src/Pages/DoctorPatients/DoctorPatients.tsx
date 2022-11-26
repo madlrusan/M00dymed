@@ -18,7 +18,7 @@ import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
 import React, { useEffect, useState } from 'react';
 import {
     AddBtn,
-    CardContainer,
+    CardContainerFlex,
     FilterForm,
     FooterContainer,
     HeaderContainer,
@@ -26,6 +26,8 @@ import {
     TableHeader,
 } from '../../components/common/Doctors.components';
 import { AppwritePatients } from '../../services/AppwritePatients';
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
+import { AddPatient } from '../../components/AddPatients/AddPatient';
 export const DoctorPatients = () => {
     const [filterValue, setFilterValue] = useState('All');
     const [searchValue, setSearchValue] = useState('');
@@ -50,7 +52,7 @@ export const DoctorPatients = () => {
     };
 
     return (
-        <CardContainer>
+        <CardContainerFlex>
             <CardContent>
                 <HeaderContainer>
                     <SearchInput
@@ -140,17 +142,10 @@ export const DoctorPatients = () => {
                 />
 
                 <FooterContainer>
-                    <AddBtn
-                        variant="contained"
-                        onClick={() => {
-                            console.log(searchValue);
-                        }}
-                    >
-                        Add
-                    </AddBtn>
+                    <AddPatient />
                 </FooterContainer>
             </CardContent>
-        </CardContainer>
+        </CardContainerFlex>
     );
 };
 

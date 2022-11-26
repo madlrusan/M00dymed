@@ -2,7 +2,7 @@ import {
     CNPInput,
     EmailInput,
     LogoContainer,
-    NameContainer,
+    FormContainer2Columns,
     NameInput,
     StyledForm,
     SubmitButton,
@@ -46,7 +46,7 @@ export const Register = () => {
     return (
         <StyledForm>
             <LogoContainer>LOGO</LogoContainer>
-            <NameContainer>
+            <FormContainer2Columns>
                 <NameInput
                     id="filled-required"
                     label="First Name"
@@ -69,7 +69,7 @@ export const Register = () => {
                         });
                     }}
                 />
-            </NameContainer>
+            </FormContainer2Columns>
             <EmailInput
                 id="filled-required"
                 label="Email"
