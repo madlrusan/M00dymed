@@ -10,10 +10,10 @@ export const DoctorMenu = () => {
     console.log(window.location.pathname);
     return (
         <SideMenu>
-            <div>
+            <div style={{ marginTop: '-20vh', marginBottom: '20vh' }}>
                 <img
                     src={Logo}
-                    style={{ color: mediumPurple, height: 100, width: 100, alignContent: 'center' }}
+                    style={{ color: mediumPurple, height: '100%', width: '30vh', alignContent: 'center' }}
                     alt="Logo"
                 ></img>
             </div>
@@ -23,6 +23,7 @@ export const DoctorMenu = () => {
                 </StyledItem>
                 <StyledItem className={className}>Exercises</StyledItem>
                 <StyledItem className={className}>Good Reading</StyledItem>
+                <StyledItem className={className}>Log out</StyledItem>
             </Menu>
         </SideMenu>
     );

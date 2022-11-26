@@ -2,6 +2,7 @@ import { IconButton, InputAdornment } from '@mui/material';
 import React, { useState } from 'react';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import Logo from '.././../../asset/resource/logo.svg';
 import {
     PasswordInput,
     SubmitButton,
@@ -10,6 +11,7 @@ import {
     StyledForm,
 } from '../../components/common/CredentialsForm.components';
 import { Appwrite } from '../../services/Appwrite';
+import { mediumPurple } from '../../modules/theme';
 
 interface LoginState {
     emailInput: string;
@@ -44,8 +46,14 @@ export const Login = () => {
         event.preventDefault();
     };
     return (
-        <StyledForm>
-            <LogoContainer>LOGO</LogoContainer>
+        <StyledForm style={{ marginBottom: '0vh' }}>
+            <div style={{ marginTop: '-30vh', marginBottom: '20vh' }}>
+                <img
+                    src={Logo}
+                    style={{ color: mediumPurple, height: '100%', width: '60vh', alignContent: 'center' }}
+                    alt="Logo"
+                ></img>
+            </div>
             <EmailInput id="filled-required" label="Email" variant="filled" onChange={handleChange('emailInput')} />
             {/* <PasswordLabel htmlFor="filled-adornment-password">Password</PasswordLabel> */}
             <PasswordInput
