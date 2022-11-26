@@ -76,6 +76,8 @@ export const Exercises = (props: any) => {
             <>
             <ContentGrid>
                 <TopCard> Doctor's recommendations for today </TopCard>
+                <DoctorContentGrid>
+
                 <StyledTable>
                     <TableBody sx={{height: '100%'}}>
                         {(cardsPerPage > 0
@@ -103,6 +105,8 @@ export const Exercises = (props: any) => {
                         onRowsPerPageChange={handleChangeRowsPerPage}
                         />
                 </StyledTable>
+                </DoctorContentGrid>
+
             </ContentGrid>
             </>
         )
