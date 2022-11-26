@@ -1,4 +1,4 @@
-import { Box, InputLabel, MenuItem, Modal, Slider, TextField, Typography } from '@mui/material';
+import { Box, InputLabel, MenuItem, Modal, } from '@mui/material';
 import React, { useState } from 'react';
 import {
     DiagnosticInput,
@@ -19,15 +19,10 @@ const style = {
     boxShadow: 24,
     p: 4,
 };
+
 const diagnostics = [
-    {
-        id: 1,
-        label: 'depression',
-    },
-    {
-        id: 2,
-        label: 'anxiety',
-    },
+    { id: 1, label: 'depression', },
+    { id: 2, label: 'anxiety', },
 ];
 
 interface ExerciseValues {
@@ -42,7 +37,7 @@ export const AddExercise = () => {
         titleInput: '',
         descriptionInput: '',
         mediaInput: '',
-        diagnosticInput: '',
+        diagnosticInput: 0,
     });
     const handleChange = (prop: keyof ExerciseValues) => (event: React.ChangeEvent<HTMLInputElement>) => {
         setValues({ ...values, [prop]: event.target.value });

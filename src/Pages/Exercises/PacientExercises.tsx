@@ -13,11 +13,11 @@ import {
 } from '@mui/material';
 import React, { useState } from 'react';
 import { ExerciseCard } from './ExerciseCard';
-import styled from 'styled-components';
-import { darkPurple, grey, mediumPurple, pink, transparentWhite, transparentPink } from '../../modules/theme';
-import { AddBtn, FilterForm, FooterContainer } from '../../components/common/Doctors.components';
+import { transparentWhite, } from '../../modules/theme';
+import { FilterForm, } from '../../components/common/Doctors.components';
+import { AddExercise, DeleteExercise, EditExercise } from './ExerciseEdit';
 import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
-import { AddExercise, DeleteExercise, EditExercise } from './AddExercise';
+import styled from 'styled-components';
 
 export const StyledTable = styled(Table)`
     height: 100%;
