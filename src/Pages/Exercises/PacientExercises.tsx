@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { darkPurple, grey, mediumPurple, pink, transparentWhite, transparentPink } from '../../modules/theme';
 import { AddBtn, FilterForm, FooterContainer } from "../../components/common/Doctors.components";
 import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
-import { AddExercise } from "./AddExercise";
+import { AddExercise, DeleteExercise, EditExercise } from "./AddExercise";
 
 export const StyledTable = styled(Table)`
     height: 100%;
@@ -48,22 +48,23 @@ export const Exercises = (props: any) => {
     colilor Letraset care conţineau pasaje Lorem Ipsum, iar mai recent, prin programele de publicare \
     pentru calculator, ca Aldus PageMaker care includeau versiuni de Lorem Ipsum."
     const media = "https://www.youtube.com/embed/muuK4SpRR5M"
-
-    for (let kk = 0; kk < 11; ++kk) {
-        content.push({
-            id: {kk},
-            content: <ExerciseCard url={media} content={text}/>,
-        })
-    }
     const diagnostics = [
         { id: 1, label: 'depression', },
         { id: 2, label: 'anxiety', },
     ];
 
+    for (let kk = 0; kk < 11; ++kk) {
+        content.push({
+            id: kk,
+            title: "Title",
+            media: media,
+            description: text,
+            diagnostic: "test"
+        })
+    }
+
     const [page, setPage] = React.useState(0);
     const cardsPerPage = 3
-    const emptyRows =
-        page > 0 ? Math.max(0, (1 + page) * cardsPerPage - content.length) : 0;
     const handleChangePage = (event: any, newPage: number) => {
         setPage(newPage);
     };
@@ -88,7 +89,7 @@ export const Exercises = (props: any) => {
                         : content
                         ).map((row) => (
                             <TableRow>
-                                {row.content}
+                                <ExerciseCard url={row.media} content={row.description}/>
                             </TableRow>
                         ))}
                     </TableBody>
@@ -148,7 +149,7 @@ export const Exercises = (props: any) => {
                             ).map((row) => (
                                 <TableRow>
                                     <TableCell>
-                                        {row.content}
+                                        <ExerciseCard url={row.media} content={row.description}/>
                                     </TableCell>
                                     <TableCell>
                                         <MenuButtons row={row}/>
@@ -212,20 +213,8 @@ export const MenuButtons = (props: any) => {
                 borderRadius: 10,
             }}
         >
-            <MenuItem
-                onClick={() => {
-                    handleActionClick(row.id, 'edit');
-                }}
-            >
-                Edit
-            </MenuItem>
-            <MenuItem
-                onClick={() => {
-                    handleActionClick(row.id, 'delete');
-                }}
-            >
-                Delete
-            </MenuItem>
+            <EditExercise row={row}/>
+            <DeleteExercise row={row}/>
         </div>
         </Popper>
         </>
