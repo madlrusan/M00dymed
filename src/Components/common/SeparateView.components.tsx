@@ -13,10 +13,9 @@ export const Container = styled.div`
 export const LoggedContainer = styled.div`
     display: grid;
     align-content: stretch;
-    justify-content: space-between;
     align-items: center;
     justify-items: stretch;
-    grid-template-columns: 250px auto;
+    grid-template-columns: 30vw auto;
 `;
 export const RightContainer = styled.div`
     height: 120vh;
@@ -25,13 +24,12 @@ export const RightContainer = styled.div`
 export const RightContainerLogged = styled.div`
     background: linear-gradient(89.88deg, #81dae4 24.22%, #7a4e8f 99.42%);
     height: 100vh;
-    width: auto;
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
+    flex-direction: both;
     align-content: center;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
 `;
 export const DiagnosticSeverityText = styled.div`
     color: black;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { mediumPurple } from '../../modules/theme';
-import { Menu, SideMenu, StyledItem } from '../DoctorMenu/DoctorMenu.components';
+import { Menu, SideMenu, RouteMenuItem } from '../DoctorMenu/DoctorMenu.components';
 import Logo from '../../.././asset/resource/logo.svg';
 
 export const PatientMenu = () => {
@@ -18,11 +18,11 @@ export const PatientMenu = () => {
                 ></img>
             </div>
             <Menu>
-                <StyledItem className={className}>Me</StyledItem>
-                <StyledItem className={className}>Medication</StyledItem>
-                <StyledItem className={className}>Exercises</StyledItem>
-                <StyledItem className={className}>Good Reading</StyledItem>
-                <StyledItem className={className}>Log out</StyledItem>
+                <RouteMenuItem display="Me" path=""/>
+                <RouteMenuItem display="Medication" path="/medication"/>
+                <RouteMenuItem display="Exercises" path="/exercises"/>
+                <RouteMenuItem display="Good Reading" path="#"/>
+                <RouteMenuItem display="Log out" path="/login"/>
             </Menu>
         </SideMenu>
     );
