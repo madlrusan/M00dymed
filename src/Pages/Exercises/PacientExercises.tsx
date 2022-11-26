@@ -14,7 +14,7 @@ export const StyledTable = styled(Table)`
 export const ContentGrid = styled.div`
     height: 100vh;
     display: grid;
-    grid-template-rows: 5vh auto;
+    grid-template-rows: 10vh auto;
 `
 
 export const DoctorContentGrid = styled.div`
@@ -28,6 +28,8 @@ export const DoctorContentGrid = styled.div`
 export const TopCard = styled.div`
     height: 100%;
     padding: 3vh;
+    font-size: 3vh;
+    font-weight: bold;
     background-color: none;
 `
 
@@ -72,41 +74,36 @@ export const Exercises = (props: any) => {
     if (isPatient) {
         return (
             <>
-                <ContentGrid>
-                    <TopCard> Test </TopCard>
-                    <StyledTable>
-                        <TableBody sx={{height: '100%'}}>
-                            {(cardsPerPage > 0
-                            ? content.slice(page * cardsPerPage, page * cardsPerPage + cardsPerPage)
-                            : content
-                            ).map((row) => (
-                                <TableRow>
-                                    {row}
-                                </TableRow>
-                            ))}
-                            {emptyRows > 0 && (
-                                <TableRow style={{ height: 53 * emptyRows }}>
-                                    <TableCell colSpan={1} />
-                                </TableRow>
-                            )}
-                        </TableBody>
-                        <TablePagination
-                            rowsPerPageOptions={[]}
-                            colSpan={3}
-                            count={content.length}
-                            rowsPerPage={cardsPerPage}
-                            page={page}
-                            SelectProps={{
-                                inputProps: {
-                                'aria-label': 'rows per page',
-                                },
-                                native: true,
-                            }}
-                            onPageChange={handleChangePage}
-                            onRowsPerPageChange={handleChangeRowsPerPage}
-                            />
-                    </StyledTable>
-                </ContentGrid>
+            <ContentGrid>
+                <TopCard> Doctor's recommendations for today </TopCard>
+                <StyledTable>
+                    <TableBody sx={{height: '100%'}}>
+                        {(cardsPerPage > 0
+                        ? content.slice(page * cardsPerPage, page * cardsPerPage + cardsPerPage)
+                        : content
+                        ).map((row) => (
+                            <TableRow>
+                                {row.content}
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                    <TablePagination
+                        rowsPerPageOptions={[]}
+                        colSpan={3}
+                        count={content.length}
+                        rowsPerPage={cardsPerPage}
+                        page={page}
+                        SelectProps={{
+                            inputProps: {
+                            'aria-label': 'rows per page',
+                            },
+                            native: true,
+                        }}
+                        onPageChange={handleChangePage}
+                        onRowsPerPageChange={handleChangeRowsPerPage}
+                        />
+                </StyledTable>
+            </ContentGrid>
             </>
         )
         
