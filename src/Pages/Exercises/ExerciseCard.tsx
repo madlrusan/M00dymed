@@ -17,6 +17,8 @@ export const StyledCard = styled.div`
         text-align: left;
         overflow-y: scroll;
         margin-left: 1vw;
+        font-size: 1vw;
+        padding: 0px;
     }
 
     .media {
@@ -26,6 +28,11 @@ export const StyledCard = styled.div`
         padding: 0;
         margin: 0;
     }
+
+    .title {
+        font-size: 1.3vw;
+        font-weight: bold;
+    }
 `;
 
 export const ExerciseCard = (props: any) => {
@@ -33,7 +40,14 @@ export const ExerciseCard = (props: any) => {
         <StyledCard>
             <Card className="card">
                 <CardMedia className="media" component="iframe" image={props.url} />
-                <CardContent className="content">{props.content}</CardContent>
+                <CardContent className="content">
+                    <div className="title">
+                        {props.title}
+                    </div>
+                    <div>
+                        {props.content}
+                    </div>
+                </CardContent>
             </Card>
         </StyledCard>
     );

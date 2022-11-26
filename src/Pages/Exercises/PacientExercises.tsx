@@ -103,7 +103,7 @@ export const Exercises = (props: any) => {
                                     : content
                                 ).map((row) => (
                                     <TableRow>
-                                        <ExerciseCard url={row.media} content={row.description} />
+                                        <ExerciseCard url={row.media} content={row.description} title={row.title} />
                                     </TableRow>
                                 ))}
                             </TableBody>
@@ -160,7 +160,7 @@ export const Exercises = (props: any) => {
                                 ).map((row) => (
                                     <TableRow>
                                         <TableCell>
-                                            <ExerciseCard url={row.media} content={row.description} />
+                                            <ExerciseCard url={row.media} content={row.description} title={row.title} />
                                         </TableCell>
                                         <TableCell>
                                             <MenuButtons row={row} />
