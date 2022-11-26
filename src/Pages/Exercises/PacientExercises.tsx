@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { darkPurple, grey, mediumPurple, pink, transparentWhite, transparentPink } from '../../modules/theme';
 import { AddBtn, FilterForm, FooterContainer } from "../../components/common/Doctors.components";
 import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
+import { AddExercise } from "./AddExercise";
 
 export const StyledTable = styled(Table)`
     height: 100%;
@@ -31,6 +32,8 @@ export const TopCard = styled.div`
     font-size: 3vh;
     font-weight: bold;
     background-color: none;
+    display: grid;
+    grid-template-columns: 20% auto;
 `
 
 
@@ -117,7 +120,7 @@ export const Exercises = (props: any) => {
             <ContentGrid>
                 <TopCard>
                 <div style={{ marginRight: '10px' }}>
-                    <FilterForm size="small" sx={{ width: '50%' }}>
+                    <FilterForm size="small" sx={{ width: '100%' }}>
                         <InputLabel size="small">Filter by Diagnostics</InputLabel>
                         <Select
                             size="small"
@@ -132,9 +135,9 @@ export const Exercises = (props: any) => {
                             })}
                         </Select>
                     </FilterForm>
-                    <AddBtn variant="contained">Add</AddBtn>
-
                 </div>
+                <AddExercise/>
+
                 </TopCard>
                 <DoctorContentGrid>
                     <StyledTable>
