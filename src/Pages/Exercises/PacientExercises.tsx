@@ -12,7 +12,7 @@ import {
     TableRow,
 } from '@mui/material';
 import React, { useState } from 'react';
-import { ExerciseCard } from './Card.components';
+import { ExerciseCard } from './ExerciseCard';
 import styled from 'styled-components';
 import { darkPurple, grey, mediumPurple, pink, transparentWhite, transparentPink } from '../../modules/theme';
 import { AddBtn, FilterForm, FooterContainer } from '../../components/common/Doctors.components';
@@ -72,8 +72,8 @@ export const Exercises = (props: any) => {
             title: 'Title',
             media: media,
             description: text,
-            diagnostic: kk%2 + 1
-        })
+            diagnostic: (kk % 2) + 1,
+        });
     }
 
     const [page, setPage] = React.useState(0);

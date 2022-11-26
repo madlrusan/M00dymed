@@ -13,13 +13,31 @@ import {
 } from '../../components/common/CredentialsForm.components';
 import { FilterForm, FooterContainer } from '../../components/common/Doctors.components';
 import { AddMedication } from './AddMedication';
-// type SeePatientProps = {
-//     role: string;
-// };
-export const SeePatient = () => {
+import { Appwrite } from '../../services/Appwrite';
+import { useEffect, useState } from 'react';
+type SeePatientProps = {
+    role: string;
+};
+export const SeePatient = (props: SeePatientProps) => {
     // const { role } = props;
-    const role = 'doctor';
-    const { id } = useParams();
+    const [pacientInfo, setPacientInfo] = useState();
+    const role = 'user';
+    const { email } = useParams();
+    const { getPacientByEmail } = Appwrite();
+    const [user, setUser] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+    useEffect(() => {
+        const funct = async () => {
+            const user = email ? await getPacientByEmail(email) : {};
+            return { user };
+        };
+        funct().then((response) => {
+            setUser(response);
+            console.log(response);
+            setIsLoading(false);
+        });
+    }, []);
+
     const sliderText = (value: number) => {
         if (value < 3) return 'low';
         else if (value > 3) return 'high';
@@ -37,7 +55,7 @@ export const SeePatient = () => {
                 <NameInput
                     className={className}
                     id="outlined-required"
-                    label={role === 'user' ? 'Prenume' : 'First Name'}
+                    label={role === 'user' ? `${user?.FirstName}` : 'First Name'}
                     variant="outlined"
                     onChange={(e) => {
                         // setRegisterUser({

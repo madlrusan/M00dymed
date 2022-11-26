@@ -117,7 +117,7 @@ export const DoctorPatients = () => {
                                                 <TableCell key={column.id} align={column.align}>
                                                     {column.id === 'actions' ? (
                                                         <div>
-                                                            <Menu patientId={row.$id} />
+                                                            <Menu email={row.email} />
                                                         </div>
                                                     ) : (
                                                         value
@@ -192,11 +192,12 @@ interface PatientData {
     id: string;
     FirstName: string;
     LastName: string;
+    email: string;
     diagnostics: string;
     diagnosticsGrade: string;
     actions?: string;
 }
-const Menu = (patientId: string) => {
+const Menu = (email: string) => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
@@ -208,7 +209,7 @@ const Menu = (patientId: string) => {
     const id = open ? 'simple-popper' : undefined;
     const handleActionClick = (action: string) => {
         setOpen(false);
-        navigate('/' + action + '/' + patientId.patientId);
+        navigate('/' + action + '/' + email);
     };
     return (
         <>

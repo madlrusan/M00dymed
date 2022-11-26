@@ -33,6 +33,12 @@ export const Appwrite = () => {
             return userList.documents.filter((d) => d.email.toLowerCase() === user.email.toLowerCase())[0].role;
         } catch (e) {}
     };
+    const getPacientByEmail = async (email: string) => {
+        try {
+            const userList = await db.listDocuments(DATABASEID, USERCONTENTID);
+            return userList.documents.filter((d) => d.id.toLowerCase() === email.toLowerCase())[0];
+        } catch (e) {}
+    };
     const getDiagnosis = async () => {
         const diagnosis = await db.listDocuments(DATABASEID, DIAGNOSISCONTENTID);
         try {
@@ -97,6 +103,7 @@ export const Appwrite = () => {
         checkSession,
         logout,
         getRole,
+        getPacientByEmail,
         getUser,
         registerUser,
         getDiagnosis,
