@@ -16,7 +16,7 @@ export const LoggedContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     justify-items: stretch;
-    grid-template-columns: 200px auto;
+    grid-template-columns: 250px auto;
 `;
 export const RightContainer = styled.div`
     height: 120vh;

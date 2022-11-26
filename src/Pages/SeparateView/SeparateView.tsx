@@ -10,9 +10,11 @@ import { Register } from '../Register/Register';
 import { DoctorMenu } from '../../components/DoctorMenu/DoctorMenu';
 import { DoctorPatients } from '../DoctorPatients/DoctorPatients';
 import { Exercises } from '../Exercises/PacientExercises';
+import { SeePatient } from '../DoctorPatients/SeePatient';
 type SeparateViewWithFormProps = {
     form: string;
 };
+
 export const SeparateViewWithForm = (props: SeparateViewWithFormProps) => {
     const { form } = props;
     return (
@@ -24,47 +26,33 @@ export const SeparateViewWithForm = (props: SeparateViewWithFormProps) => {
         </Container>
     );
 };
-
-export const SeparateViewWithDoctorMenu = () => {
+type SeparateViewWithDoctorMenuProps = {
+    view: string;
+    id?: string;
+};
+export const SeparateViewWithDoctorMenu = (props: SeparateViewWithDoctorMenuProps) => {
+    const { view, id } = props;
     return (
         <LoggedContainer>
             <DoctorMenu />
             <RightContainerLogged>
-                <DoctorPatients></DoctorPatients>
+                {view === 'patients' && <DoctorPatients />}
+                {view === 'addExercises' && <Exercises isPatient={false} />}
+                {view === 'seePatient' && id && <SeePatient />}
             </RightContainerLogged>
         </LoggedContainer>
     );
 };
 
-export const SeparateViewWithExercises = () => {
-    return (
-        <LoggedContainer>
-            <DoctorMenu />
-            <RightContainerLogged>
-                <Exercises isPatient={true} />
-            </RightContainerLogged>
-        </LoggedContainer>
-    );
+type SeparateViewWithPatientMenuProps = {
+    view: string;
 };
-
-export const SeparateViewWithEditExercises = () => {
+export const SeparateViewWithPatientMenu = (props: SeparateViewWithPatientMenuProps) => {
+    const { view } = props;
     return (
         <LoggedContainer>
             <DoctorMenu />
-            <RightContainerLogged>
-                <Exercises isPatient={false} />
-            </RightContainerLogged>
-        </LoggedContainer>
-    );
-};
-
-export const SeparateViewWithSeePatient = () => {
-    return (
-        <LoggedContainer>
-            <DoctorMenu />
-            <RightContainerLogged>
-                <Exercises />
-            </RightContainerLogged>
+            <RightContainerLogged>{view == 'Me' && <SeePatient />}</RightContainerLogged>
         </LoggedContainer>
     );
 };

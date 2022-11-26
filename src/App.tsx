@@ -19,10 +19,10 @@ const App = () => {
                     <Route path="/" element={<Layout />}>
                         <Route path="/" element={<SeparateViewWithForm form="Login" />} />
                         <Route path="register" element={<SeparateViewWithForm form="Register" />} />
-                        <Route path="patients" element={<SeparateViewWithDoctorMenu />} />
-                        <Route path="exercises" element={<SeparateViewWithExercises />} />
-                        <Route path="editExercises" element={<SeparateViewWithEditExercises />} />
-                        <Route path="seePatient/:id" element={<SeePatient />} />
+                        <Route path="patients" element={<SeparateViewWithDoctorMenu view="patients" />} />
+                        <Route path="addExercises" element={<SeparateViewWithDoctorMenu view="addExercises" />} />
+                        {/* <Route path="exercises" element={<SeparateViewWithExercises />} /> */}
+                        <Route path="seePatient/:email" element={<SeePatient role="doctor" />} />
                         <Route path="editPatient/:id" element={<EditPatient />} />
                     </Route>
                 </Routes>
