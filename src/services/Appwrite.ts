@@ -40,17 +40,46 @@ export const Appwrite = () => {
             return diagnosis;
         } catch (e) {}
     };
-    const registerAdmin = async (email: string, password: string, firstName: string, lastName: string) => {
+    const registerAdmin = async (
+        email: string,
+        password: string,
+        firstName: string,
+        lastName: string,
+        phone: string,
+    ) => {
         const id = ID.unique();
         await account.create(id, email, password, firstName + ' ' + lastName);
         await db.createDocument(DATABASEID, USERCONTENTID, id, {
             FirstName: firstName,
             LastName: lastName,
+            phone: phone,
             email: email,
             PersonalId: password,
             role: 1,
         });
         await createEmailSession(email, password);
+    };
+    const registerUser = async (
+        email: string,
+        password: string,
+        firstName: string,
+        lastName: string,
+        phone: string,
+        diagnostic: string,
+        diagnosticGrade: number,
+    ) => {
+        const id = ID.unique();
+        await account.create(id, email, password, firstName + ' ' + lastName);
+        await db.createDocument(DATABASEID, USERCONTENTID, id, {
+            FirstName: firstName,
+            LastName: lastName,
+            phone: phone,
+            email: email,
+            PersonalId: password,
+            diagnostics: diagnostic,
+            diagnosticsGrade: diagnosticGrade,
+            role: 0,
+        });
     };
     const logout = async () => {
         await account.deleteSession('current');
@@ -59,6 +88,7 @@ export const Appwrite = () => {
     const checkSession = () => {
         return account.getSession('current').then((r) => console.log(r));
     };
+
     return {
         registerAdmin,
         getTeams,
@@ -68,6 +98,7 @@ export const Appwrite = () => {
         logout,
         getRole,
         getUser,
+        registerUser,
         getDiagnosis,
     };
 };

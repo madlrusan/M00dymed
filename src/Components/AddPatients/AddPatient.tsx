@@ -1,5 +1,6 @@
 import { Box, InputLabel, MenuItem, Modal, SelectChangeEvent } from '@mui/material';
 import React, { FC, useEffect, useState } from 'react';
+import { Appwrite } from '../../services/Appwrite';
 import {
     CNPInput,
     DiagnosticInput,
@@ -17,20 +18,34 @@ interface AddPatientProps {
     diagnostics: any;
 }
 
-export const AddPatient: FC<AddPatientProps> = ({ diagnostics }) => {
+export const AddPatient: FC<AddPatientProps> = ({ diagnostics, addUser }) => {
     const [openModal, setOpenModal] = useState(false);
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [cnp, setCnp] = useState('');
+    const [phone, setPhone] = useState('');
+    const [email, setEmail] = useState('');
     const handleOpen = () => setOpenModal(true);
     const handleClose = () => setOpenModal(false);
-    const [filterValue, setFilterValue] = useState('');
+    const [diagnostic, setDiagnostic] = useState('');
+    const [diagnosticGrade, setDiagnosticGrade] = useState(0);
+    const { registerUser } = Appwrite();
+    const save = async () => {
+        await registerUser(email, cnp, firstName, lastName, phone, diagnostic, diagnosticGrade);
+        addUser();
+        handleClose();
+    };
     const handleChangeFilter = (event: SelectChangeEvent) => {
-        setFilterValue(event.target.value);
+        setDiagnostic(event.target.value);
     };
     const sliderText = (value: number) => {
         if (value < 3) return 'low';
         else if (value > 3) return 'high';
         else return 'medium';
     };
-
+    const handleChange = (event: Event, newValue: number | number[]) => {
+        setDiagnosticGrade(newValue as number);
+    };
     return (
         <div>
             <AddBtn variant="contained" onClick={handleOpen}>
@@ -50,10 +65,7 @@ export const AddPatient: FC<AddPatientProps> = ({ diagnostics }) => {
                             label="First Name"
                             variant="outlined"
                             onChange={(e) => {
-                                // setRegisterUser({
-                                //     ...registerUser,
-                                //     firstName: e.target.value,
-                                // });
+                                setFirstName(e.target.value);
                             }}
                         />
                         <NameInput
@@ -61,10 +73,7 @@ export const AddPatient: FC<AddPatientProps> = ({ diagnostics }) => {
                             label="Last Name"
                             variant="outlined"
                             onChange={(e) => {
-                                // setRegisterUser({
-                                //     ...registerUser,
-                                //     lastName: e.target.value,
-                                // });
+                                setLastName(e.target.value);
                             }}
                         />
                     </FormContainer2Columns>
@@ -73,16 +82,16 @@ export const AddPatient: FC<AddPatientProps> = ({ diagnostics }) => {
                             id="outlined-required"
                             label="Email"
                             variant="outlined"
-                            onChange={() => {
-                                console.log('fbd');
+                            onChange={(e) => {
+                                setEmail(e.target.value);
                             }}
                         />
                         <PhoneInput
                             id="outlined-required"
                             label="Phone"
                             variant="outlined"
-                            onChange={() => {
-                                console.log('fbd');
+                            onChange={(e) => {
+                                setPhone(e.target.value);
                             }}
                         />
                     </FormContainer2Columns>
@@ -90,23 +99,23 @@ export const AddPatient: FC<AddPatientProps> = ({ diagnostics }) => {
                         id="outlined-required"
                         label="CNP"
                         variant="outlined"
-                        onChange={() => {
-                            console.log('fbd');
+                        onChange={(e) => {
+                            setCnp(e.target.value);
                         }}
                     />
                     <FormContainer2Columns>
                         <FilterForm>
                             <InputLabel>Diagnostics</InputLabel>
                             <DiagnosticInput
+                                size="small"
                                 labelId="diagnostics"
                                 id="diagnostics"
-                                value={filterValue}
-                                label="Diagnostics"
+                                value={diagnostic}
+                                label="Filter by Diagnostics"
                                 onChange={handleChangeFilter}
-                                style={{ width: '170px' }}
                             >
                                 {diagnostics.map((d) => {
-                                    return <MenuItem value={d.id}>{d.Name}</MenuItem>;
+                                    return <MenuItem value={d.Name}>{d.Name}</MenuItem>;
                                 })}
                             </DiagnosticInput>
                         </FilterForm>
@@ -118,10 +127,11 @@ export const AddPatient: FC<AddPatientProps> = ({ diagnostics }) => {
                             getAriaValueText={sliderText}
                             aria-label="Severity Grade"
                             valueLabelDisplay="off"
+                            onChange={handleChange}
                         />
                     </FormContainer2Columns>
                     <FooterContainer>
-                        <SubmitButton>Save</SubmitButton>
+                        <SubmitButton onClick={() => save()}>Save</SubmitButton>
                         <SubmitButton onClick={handleClose}>Cancel</SubmitButton>
                     </FooterContainer>
                 </Box>

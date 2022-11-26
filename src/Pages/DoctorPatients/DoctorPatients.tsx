@@ -32,7 +32,7 @@ export const DoctorPatients = () => {
     const [filterValue, setFilterValue] = useState('All');
     const [searchValue, setSearchValue] = useState('');
     const [rows, setRows] = useState<PatientData[]>([]);
-    const [diagnostics, setDiagnostics] = useState<Diagnostics[]>([]);
+    const [diagnostics, setDiagnostics] = useState([]);
     const { getPatients } = AppwritePatients();
     const { getDiagnosis } = Appwrite();
     useEffect(() => {
@@ -41,6 +41,9 @@ export const DoctorPatients = () => {
     useEffect(() => {
         getPatients(filterValue, searchValue ? searchValue : '').then((r) => setRows(r));
     }, [filterValue, searchValue]);
+    const addUser = () => {
+        getPatients(filterValue, searchValue ? searchValue : '').then((r) => setRows(r));
+    };
     const handleChangeFilter = (event: SelectChangeEvent) => {
         setFilterValue(event.target.value);
     };
@@ -139,7 +142,7 @@ export const DoctorPatients = () => {
                 />
 
                 <FooterContainer>
-                    <AddPatient diagnostics={diagnostics} />
+                    <AddPatient addUser={addUser} diagnostics={diagnostics} />
                 </FooterContainer>
             </CardContent>
         </CardContainerFlex>

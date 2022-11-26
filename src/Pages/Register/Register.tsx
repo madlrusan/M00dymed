@@ -21,6 +21,7 @@ export const Register = () => {
         firstName: '',
         lastName: '',
         confirmPassword: '',
+        phone: '',
     });
     const [validRegister, setValidRegister] = useState(false);
     const navigate = useNavigate();
@@ -42,7 +43,13 @@ export const Register = () => {
     }, [registerUser]);
 
     const registerAccount = async () => {
-        await registerAdmin(registerUser.email, registerUser.password, registerUser.firstName, registerUser.lastName);
+        await registerAdmin(
+            registerUser.email,
+            registerUser.password,
+            registerUser.firstName,
+            registerUser.lastName,
+            registerUser.phone,
+        );
         navigate('/login');
     };
     return (
@@ -113,8 +120,7 @@ export const Register = () => {
             />
 
             <SubmitButton variant="contained" disabled={!validRegister} onClick={() => registerAccount()}>
-                {' '}
-                REGISTER{' '}
+                REGISTER
             </SubmitButton>
         </StyledForm>
     );
