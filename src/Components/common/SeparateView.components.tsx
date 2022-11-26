@@ -31,7 +31,7 @@ export const RightContainerLogged = styled.div`
     flex-wrap: nowrap;
     align-content: center;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
 `;
 export const DiagnosticSeverityText = styled.div`
     color: black;

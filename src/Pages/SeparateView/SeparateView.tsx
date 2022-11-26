@@ -9,8 +9,10 @@ import { Login } from '../Login/Login';
 import { Register } from '../Register/Register';
 import { DoctorMenu } from '../../components/DoctorMenu/DoctorMenu';
 import { DoctorPatients } from '../DoctorPatients/DoctorPatients';
+import { MedicationTable } from '../../components/MedicationTable/MedicationTable';
 import { Exercises } from '../Exercises/PacientExercises';
 import { SeePatient } from '../DoctorPatients/SeePatient';
+
 type SeparateViewWithFormProps = {
     form: string;
 };
@@ -43,6 +45,12 @@ export const SeparateViewWithDoctorMenu = (props: SeparateViewWithDoctorMenuProp
         </LoggedContainer>
     );
 };
+
+export const SeparateViewWithMedicationTable = () => {
+    return (
+        <RightContainerLogged>
+            <MedicationTable></MedicationTable>
+        </RightContainerLogged>
 
 type SeparateViewWithPatientMenuProps = {
     view: string;

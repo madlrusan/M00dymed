@@ -9,7 +9,7 @@ export const CardContainerFlex = styled(Card)`
     flex-wrap: nowrap;
     align-content: center;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     margin: 20px;
 `;
 
