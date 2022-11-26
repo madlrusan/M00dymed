@@ -1,7 +1,7 @@
-import { Button, TextField, InputLabel } from '@mui/material';
+import { Button, TextField, InputLabel, Select, Slider, Typography } from '@mui/material';
 import styled from 'styled-components';
-import { darkPurple, mediumPurple, pink, transparentPink } from '../../modules/theme';
-
+import { lightBlue, darkPurple, mediumPurple, pink, transparentPink, transparentWhite } from '../../modules/theme';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 export const LogoContainer = styled.div`
     padding: 50px;
     align-items: center;
@@ -34,11 +34,11 @@ export const NameInput = styled(TextField)`
         color: ${pink};
     }
     .Mui-focused {
-        color: ${mediumPurple} !important;
+        color: ${darkPurple} !important;
     }
 `;
 
-export const NameContainer = styled.div`
+export const FormContainer2Columns = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -57,13 +57,13 @@ export const PasswordInput = styled(TextField)`
         color: ${pink};
     }
     label.Mui-focused {
-        color: ${mediumPurple} !important;
+        color: ${darkPurple} !important;
     }
 `;
 
 export const PasswordLabel = styled(InputLabel)`
     label.Mui-focused {
-        color: ${mediumPurple} !important;
+        color: ${darkPurple} !important;
     }
     div::after {
         border-color: ${pink};
@@ -83,7 +83,7 @@ export const EmailInput = styled(TextField)`
         color: ${pink};
     }
     .Mui-focused {
-        color: ${mediumPurple} !important;
+        color: ${darkPurple} !important;
     }
 `;
 
@@ -98,12 +98,97 @@ export const CNPInput = styled(TextField)`
         color: ${pink};
     }
     .Mui-focused {
-        color: ${mediumPurple} !important;
+        color: ${darkPurple} !important;
     }
 `;
 
 export const SubmitButton = styled(Button)`
     margin-left: 10px !important;
-    margin-right: 10px !important;  background-color: ${darkPurple} !important;
+    margin-right: 10px !important;
+    background-color: ${darkPurple} !important;
     margin-top: 50px !important;
+    color: white !important;
+`;
+
+export const PhoneInput = styled(TextField)`
+    margin-bottom: 20px !important;
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+    background: ${transparentPink};
+    div::after {
+        border-color: ${pink};
+        border-bottom: 1px solid ${pink} !important;
+        color: ${pink};
+    }
+    .Mui-focused {
+        color: ${darkPurple} !important;
+    }
+`;
+
+export const DOBInput = styled(DatePicker)`
+    margin-bottom: 20px !important;
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+    background: ${transparentPink};
+    width: 200px;
+    div::after {
+        border-color: ${pink};
+        border-bottom: 1px solid ${pink} !important;
+        color: ${pink};
+    }
+    .Mui-focused {
+        color: ${darkPurple} !important;
+    }
+`;
+export const DiagnosticInput = styled(Select)`
+    margin-bottom: 20px !important;
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+    background: ${transparentPink};
+    div::after {
+        border-color: ${pink};
+        border-bottom: 1px solid ${pink} !important;
+        color: ${pink};
+    }
+    .Mui-focused {
+        color: ${darkPurple} !important;
+    }
+`;
+export const GradeSlider = styled(Slider)`
+    .MuiSlider-thumbColorPrimary, .MuiSlider-thumbColorPrimary:hover {
+        color: ${transparentWhite} !important;
+        height: 5px !important;
+        width: 5px !important;
+        box-shadow: ${mediumPurple} !important;
+    }
+    .MuiSlider-mark.MuiSlider-Active {
+        background: linear-gradient(89.93deg, #029e2e 0.05%, #f9ff00 49.47%, #a80606 99.94%) !important;
+    }
+    .MuiSlider-track {
+        background: transparent !important;
+        height 20px;
+        border: 1px solid ${mediumPurple} !important;
+    }
+    .MuiSlider-rail {
+        background: linear-gradient(89.93deg, #029e2e 0.05%, #f9ff00 49.47%, #a80606 99.94%) !important;
+        opacity: 1;
+        height 20px;
+        /* width 150px; */
+    }
+    margin-left: -50px;
+    margin-right: 10px;
+    width 300px !important;
+`;
+export const ModalTitle = styled.h2`
+    font-size: 20px;
+    /* font-weight: bold; */
+    font-style: italic;
+    /* margin-top: -50px; */
+    /* margin-bottom: 50px; */
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    color: ${darkPurple};
 `;

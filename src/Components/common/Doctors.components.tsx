@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Autocomplete, Button, Card, FormControl, TableHead } from '@mui/material';
 import { darkPurple, grey, mediumPurple, pink, transparentWhite, transparentPink } from '../../modules/theme';
-export const CardContainer = styled(Card)`
+export const CardContainerFlex = styled(Card)`
     background-color: ${transparentWhite} !important;
     border-radius: 50px !important;
     display: flex;

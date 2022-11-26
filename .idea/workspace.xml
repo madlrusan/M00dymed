@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="39b29278-2253-454c-af8f-2e6802678d19" name="Changes" comment="Add appwrite for user">
-      <change afterPath="$PROJECT_DIR$/Models/User.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/Appwrite.ts" afterDir="false" />
+    <list default="true" id="39b29278-2253-454c-af8f-2e6802678d19" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Pages/DoctorPatients/EditPatient.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Pages/DoctorPatients/SeePatient.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/Login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Login/Login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/Register/Register.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Register/Register.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/DoctorPatients/DoctorPatients.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/DoctorPatients/DoctorPatients.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Pages/SeparateView/SeparateView.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/SeparateView/SeparateView.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -21,6 +18,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="TypeScript File" />
+        <option value="com.haulmont.rcb.arrow_function_component" />
       </list>
     </option>
   </component>
@@ -35,19 +33,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/Projects/M00dymed",
-    "nodejs_package_manager_path": "npm",
-    "prettierjs.PrettierConfiguration.Package": "D:\\Projects\\M00dymed\\node_modules\\prettier",
-    "ts.external.directory.path": "D:\\Projects\\M00dymed\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Projects/iTEC2022/Frontend&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;D:\\Projects\\M00dymed\\node_modules\\prettier&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\Projects\\M00dymed\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="ReactDesignerToolWindowState">
     <option name="myId2Visible">
       <map>
@@ -64,8 +62,23 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1669457663037</updated>
-      <workItem from="1669457665056" duration="6382000" />
+      <workItem from="1669457665056" duration="16219000" />
     </task>
+    <task id="LOCAL-00001" summary="Add appwrite for user">
+      <created>1669464135459</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1669464135459</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Add functionality to patients list">
+      <created>1669470469641</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1669470469641</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -78,6 +91,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add appwrite for user" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add appwrite for user" />
+    <MESSAGE value="Add functionality to patients list" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add functionality to patients list" />
   </component>
 </project>

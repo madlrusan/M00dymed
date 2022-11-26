@@ -1,7 +1,5 @@
 import { Account, Client, Databases, ID, Teams } from 'appwrite';
-import { useState } from 'react';
 export const Appwrite = () => {
-    const [setUser] = useState<any>();
     const client = new Client()
         .setEndpoint('https://d4dd-93-122-160-173.eu.ngrok.io/v1')
         .setProject('6380ffa1e30188a45bab');
@@ -21,13 +19,7 @@ export const Appwrite = () => {
     const createEmailSession = async (email: string, password: string) => {
         return account.createEmailSession(email, password);
     };
-    const fetchUser = () => {
-        try {
-            account.get().then((r) => setUser(r));
-        } catch (error) {
-            console.log(error);
-        }
-    };
+
     const getRole = async () => {
         const user = await account.get();
         const userList = await db.listDocuments('63812c9edc4254a2b672', '63812ca6dcd85979bef0');
@@ -52,5 +44,5 @@ export const Appwrite = () => {
     const checkSession = () => {
         return account.getSession('current').then((r) => console.log(r));
     };
-    return { registerAdmin, getTeams, loginUser, createEmailSession, checkSession, logout, fetchUser, getRole };
+    return { registerAdmin, getTeams, loginUser, createEmailSession, checkSession, logout, getRole };
 };
