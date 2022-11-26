@@ -4,8 +4,10 @@ import {
     CardContent,
     FormControl,
     Icon,
+    IconButton,
     InputLabel,
     MenuItem,
+    Popper,
     Select,
     SelectChangeEvent,
     Table,
@@ -44,6 +46,7 @@ export const DoctorPatients = () => {
         setRowsPerPage(+event.target.value);
         setPage(0);
     };
+
     return (
         <CardContainer>
             <CardContent>
@@ -94,13 +97,27 @@ export const DoctorPatients = () => {
                         </TableHeader>
                         <TableBody>
                             {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+                                console.log(row.firstName);
                                 return (
                                     <TableRow hover tabIndex={-1} key={row.id}>
                                         {tableColumns.map((column) => {
                                             const value = row[column.id];
+                                            console.log(row.firstName);
                                             return (
                                                 <TableCell key={column.id} align={column.align}>
-                                                    {column.id === 'actions' ? <MoreVertOutlinedIcon /> : value}
+                                                    {column.id === 'actions' ? (
+                                                        <div>
+                                                            <Menu
+                                                                id={row.id}
+                                                                firstName={row.firstName}
+                                                                lastName={row.lastName}
+                                                                diagnostics={row.diagnostics}
+                                                                severityGrade={row.severityGrade}
+                                                            />
+                                                        </div>
+                                                    ) : (
+                                                        value
+                                                    )}
                                                 </TableCell>
                                             );
                                         })}
@@ -209,3 +226,54 @@ const createRows = () => {
     return rows;
 };
 const rows = createRows();
+
+const Menu = (Pacient: PatientData) => {
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorEl(anchorEl ? null : event.currentTarget);
+    };
+    let open = Boolean(anchorEl);
+    const id = open ? 'simple-popper' : undefined;
+    const handleActionClick = (id: string, action: string) => {
+        console.log('handleActionClick ' + action + ' ' + id);
+        open = !Boolean(anchorEl);
+        console.log(open);
+    };
+    return (
+        <>
+            <IconButton
+                id={id}
+                onClick={(e) => {
+                    handleClick(e);
+                }}
+            >
+                <MoreVertOutlinedIcon />{' '}
+            </IconButton>
+            <Popper id={id} open={open} anchorEl={anchorEl}>
+                <div
+                    style={{
+                        background: 'white',
+                        fontSize: 5,
+                        borderRadius: 10,
+                    }}
+                >
+                    <MenuItem
+                        onClick={() => {
+                            handleActionClick(Pacient.firstName, 'seeProfile');
+                        }}
+                    >
+                        See Profile
+                    </MenuItem>
+                    <MenuItem
+                        onClick={() => {
+                            handleActionClick(Pacient.firstName, 'editProfile');
+                        }}
+                    >
+                        Edit Profile
+                    </MenuItem>
+                </div>
+            </Popper>
+        </>
+    );
+};
