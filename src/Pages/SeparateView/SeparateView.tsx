@@ -37,5 +37,9 @@ export const SeparateViewWithDoctorMenu = () => {
 };
 
 export const SeparateViewWithMedicationTable = () => {
-    return <MedicationTable></MedicationTable>;
+    return (
+        <RightContainerLogged>
+            <MedicationTable></MedicationTable>
+        </RightContainerLogged>
+    );
 };
