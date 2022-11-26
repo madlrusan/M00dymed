@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Menu, SideMenu, StyledItem } from './DoctorMenu.components';
 import { mediumPurple } from '../../modules/theme';
 import Logo from '.././../../asset/resource/logo.svg';
-export const DoctorMenu = () => {
+export const DoctorMenu = (selectedTab) => {
     const [className, setClassName] = useState('');
     // const handleClick = () => {
     //     setClassName('clicked');

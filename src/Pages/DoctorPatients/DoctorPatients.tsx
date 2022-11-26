@@ -17,7 +17,6 @@ import {
 import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
 import React, { useEffect, useState } from 'react';
 import {
-    AddBtn,
     CardContainerFlex,
     FilterForm,
     FooterContainer,
@@ -28,14 +27,19 @@ import {
 import { AppwritePatients } from '../../services/AppwritePatients';
 import { AddPatient } from '../../components/AddPatients/AddPatient';
 import { useNavigate } from 'react-router-dom';
+import { Appwrite } from '../../services/Appwrite';
 export const DoctorPatients = () => {
     const [filterValue, setFilterValue] = useState('All');
     const [searchValue, setSearchValue] = useState('');
     const [rows, setRows] = useState<PatientData[]>([]);
+    const [diagnostics, setDiagnostics] = useState<Diagnostics[]>([]);
     const { getPatients } = AppwritePatients();
+    const { getDiagnosis } = Appwrite();
+    useEffect(() => {
+        getDiagnosis().then((d) => setDiagnostics(d.documents));
+    }, []);
     useEffect(() => {
         getPatients(filterValue, searchValue ? searchValue : '').then((r) => setRows(r));
-        // setRows(elements);\
     }, [filterValue, searchValue]);
     const handleChangeFilter = (event: SelectChangeEvent) => {
         setFilterValue(event.target.value);
@@ -64,7 +68,6 @@ export const DoctorPatients = () => {
                         sx={{ m: 0, minWidth: 100, maxHeight: 50 }}
                         renderInput={(params) => <TextField {...params} label="Search patients" />}
                     />
-                    {/* filter */}
                     <div style={{ marginRight: '10px' }}>
                         <FilterForm size="small" sx={{ m: 1, minWidth: 100, maxHeight: 50 }}>
                             <InputLabel size="small">Diagnostics</InputLabel>
@@ -76,8 +79,8 @@ export const DoctorPatients = () => {
                                 label="Filter by Diagnostics"
                                 onChange={handleChangeFilter}
                             >
-                                {diagnostics.map((diagnostic) => {
-                                    return <MenuItem value={diagnostic.id}>{diagnostic.label}</MenuItem>;
+                                {diagnostics.map((d) => {
+                                    return <MenuItem value={d.Name}>{d.Name}</MenuItem>;
                                 })}
                             </Select>
                         </FilterForm>
@@ -136,27 +139,12 @@ export const DoctorPatients = () => {
                 />
 
                 <FooterContainer>
-                    <AddPatient />
+                    <AddPatient diagnostics={diagnostics} />
                 </FooterContainer>
             </CardContent>
         </CardContainerFlex>
     );
 };
-
-const diagnostics = [
-    {
-        id: 'All',
-        label: 'All',
-    },
-    {
-        id: 'Depression',
-        label: 'Depression',
-    },
-    {
-        id: 'Anxiety',
-        label: 'Anxiety',
-    },
-];
 
 interface Column {
     id: 'FirstName' | 'LastName' | 'diagnostics' | 'diagnosticsGrade' | 'actions';
@@ -205,7 +193,6 @@ interface PatientData {
     diagnosticsGrade: string;
     actions?: string;
 }
-
 const Menu = (patientId: string) => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const [open, setOpen] = useState(false);
