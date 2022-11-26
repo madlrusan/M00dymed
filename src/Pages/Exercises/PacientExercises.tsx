@@ -19,6 +19,7 @@ import { AddExercise, DeleteExercise, EditExercise } from './ExerciseEdit';
 import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
 import styled from 'styled-components';
 import { Appwrite } from '../../services/Appwrite';
+import { AppWriteExercises } from '../../services/AppwriteExercises';
 
 export const StyledTable = styled(Table)`
     height: 100%;
@@ -52,9 +53,9 @@ export const TopCard = styled.div`
 
 export const Exercises = (props: any) => {
     const [diagnostics, setDiagnostics] = useState([]);
-    const { getDiagnosis } = Appwrite();
     const [content, setContent] = useState([]);
-    const { getExercises } = AppwriteExercises();
+    const { getExercises } = AppWriteExercises();
+    const { getDiagnosis } = Appwrite();
     useEffect(() => {
         getDiagnosis().then((d) => {
             d.documents.unshift({ Name: 'All' });
@@ -64,6 +65,7 @@ export const Exercises = (props: any) => {
     const [filterValue, setFilterValue] = useState('All');
     useEffect(() => {
         getExercises(filterValue).then((r) => setContent(r));
+        console.log(content);
     }, [filterValue]);
     const addExercise = () => {
         getExercises(filterValue).then((r) => setContent(r));
@@ -98,7 +100,7 @@ export const Exercises = (props: any) => {
                                     : content
                                 ).map((row) => (
                                     <TableRow>
-                                        <ExerciseCard url={row.media} content={row.description} />
+                                        <ExerciseCard url={row.Media} content={row.Content} title={row.Title} />
                                     </TableRow>
                                 ))}
                             </TableBody>
@@ -144,7 +146,7 @@ export const Exercises = (props: any) => {
                                 </Select>
                             </FilterForm>
                         </div>
-                        <AddExercise />
+                        <AddExercise refresh={addExercise} />
                     </TopCard>
                     <DoctorContentGrid>
                         <StyledTable>
@@ -155,7 +157,7 @@ export const Exercises = (props: any) => {
                                 ).map((row) => (
                                     <TableRow>
                                         <TableCell>
-                                            <ExerciseCard url={row.Media} content={row.Content} />
+                                            <ExerciseCard url={row.Media} content={row.Content} title={row.Title} />
                                         </TableCell>
                                         <TableCell>
                                             <MenuButtons row={row} />
@@ -226,6 +228,3 @@ export const MenuButtons = (props: any) => {
         </>
     );
 };
-function AppwriteExercises(): { getExercises: any } {
-    throw new Error('Function not implemented.');
-}

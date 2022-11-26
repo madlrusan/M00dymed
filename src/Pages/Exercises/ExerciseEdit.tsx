@@ -1,5 +1,5 @@
-import { Box, InputLabel, MenuItem, Modal, } from '@mui/material';
-import React, { useState } from 'react';
+import { Box, InputLabel, MenuItem, Modal } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 import {
     DiagnosticInput,
     ModalTitle,
@@ -7,6 +7,8 @@ import {
     SubmitButton,
 } from '../../components/common/CredentialsForm.components';
 import { AddBtn, FilterForm, FooterContainer } from '../../components/common/Doctors.components.tsx';
+import { Appwrite } from '../../services/Appwrite';
+import { AppWriteExercises } from '../../services/AppwriteExercises';
 
 const style = {
     position: 'absolute' as const,
@@ -21,29 +23,42 @@ const style = {
 };
 
 const diagnostics = [
-    { id: 1, label: 'depression', },
-    { id: 2, label: 'anxiety', },
+    { id: 1, label: 'depression' },
+    { id: 2, label: 'anxiety' },
 ];
 
 interface ExerciseValues {
     titleInput: string;
     descriptionInput: string;
     mediaInput: string;
-    diagnosticInput: number;
+    diagnosticInput: string;
 }
 
-export const AddExercise = () => {
+export const AddExercise = ({ refresh }) => {
+    const { getDiagnosis } = Appwrite();
+    const [diagnostics, setDiagnostics] = useState([]);
+    useEffect(() => {
+        getDiagnosis().then((d) => {
+            setDiagnostics(d.documents);
+        });
+    }, []);
     const [values, setValues] = useState<ExerciseValues>({
         titleInput: '',
         descriptionInput: '',
         mediaInput: '',
-        diagnosticInput: 0,
+        diagnosticInput: '',
     });
+    const { addExercise } = AppWriteExercises();
+    const save = async () => {
+        await addExercise(values.titleInput, values.descriptionInput, values.mediaInput, values.diagnosticInput);
+        refresh();
+        handleClose();
+    };
     const handleChange = (prop: keyof ExerciseValues) => (event: React.ChangeEvent<HTMLInputElement>) => {
         setValues({ ...values, [prop]: event.target.value });
     };
     const Insert = async () => {
-        console.log(values);
+        await save();
     };
     const [openModal, setOpenModal] = useState(false);
     const handleOpen = () => setOpenModal(true);
@@ -78,14 +93,12 @@ export const AddExercise = () => {
                         <DiagnosticInput
                             labelId="diagnostics"
                             id="diagnostics"
-                            // value={filterValue}
                             label="Diagnostics"
-                            // onChange={handleChangeFilter}
                             style={{ width: '100%' }}
                             onChange={handleChange('diagnosticInput')}
                         >
                             {diagnostics.map((diagnostic) => {
-                                return <MenuItem value={diagnostic.id}>{diagnostic.label}</MenuItem>;
+                                return <MenuItem value={diagnostic.Name}>{diagnostic.Name}</MenuItem>;
                             })}
                         </DiagnosticInput>
                     </FilterForm>

@@ -16,6 +16,7 @@ import { AddBtn, FilterForm, FooterContainer } from '../common/Doctors.component
 
 interface AddPatientProps {
     diagnostics: any;
+    addUser: any;
 }
 
 export const AddPatient: FC<AddPatientProps> = ({ diagnostics, addUser }) => {
