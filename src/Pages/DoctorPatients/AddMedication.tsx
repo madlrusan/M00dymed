@@ -1,5 +1,5 @@
 import { Box, Checkbox, FormControlLabel, InputAdornment, InputLabel, MenuItem, Modal } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     DiagnosticInput,
     FormContainer2Columns,
@@ -10,6 +10,7 @@ import {
 import { AddBtn, FilterForm, FooterContainer } from '../../components/common/Doctors.components';
 import { DiagnosticSeverityText } from '../../components/common/SeparateView.components';
 import { grey } from '../../modules/theme';
+import { AppwriteMedication } from '../../services/AppwriteMedication';
 type AddMedicationProps = {
     diagnostic: string;
     severity: number;
@@ -18,8 +19,18 @@ type AddMedicationProps = {
 export const AddMedication = (props: AddMedicationProps) => {
     const { diagnostic, severity } = props;
     const [openModal, setOpenModal] = useState(false);
+    const [medication, setMedication] = useState('');
+    const [everyday, setEveryday] = useState(false);
+    const [quantity, setQuantity] = useState(0);
+    const [hoursValue, setHoursValue] = useState('');
+    const { addMedication } = AppwriteMedication();
+    const save = async () => {
+        await addMedication(medication, everyday, quantity, hoursValue);
+        handleClose();
+    };
     const handleOpen = () => setOpenModal(true);
     const handleClose = () => setOpenModal(false);
+
     const declareSeverity = (severity: number) => {
         switch (severity) {
             case 1:
@@ -59,10 +70,7 @@ export const AddMedication = (props: AddMedicationProps) => {
                             variant="outlined"
                             required={true}
                             onChange={(e) => {
-                                // setRegisterUser({
-                                //     ...registerUser,
-                                //     firstName: e.target.value,
-                                // });
+                                setMedication(e.target.value);
                             }}
                         />
                         <NameInput
@@ -71,10 +79,7 @@ export const AddMedication = (props: AddMedicationProps) => {
                             variant="outlined"
                             required={true}
                             onChange={(e) => {
-                                // setRegisterUser({
-                                //     ...registerUser,
-                                //     firstName: e.target.value,
-                                // });
+                                setQuantity(e.target.value);
                             }}
                             type="number"
                             InputProps={{
@@ -96,6 +101,9 @@ export const AddMedication = (props: AddMedicationProps) => {
                                     }}
                                 />
                             }
+                            onChange={(e) => {
+                                setEveryday(!everyday);
+                            }}
                             label="Everyday"
                         />
                         <FilterForm>
@@ -106,17 +114,19 @@ export const AddMedication = (props: AddMedicationProps) => {
                                 id="hours"
                                 // value={filterValue}
                                 label="Hours to take the medication"
-                                // onChange={handleChangeFilter}
+                                onChange={(e) => {
+                                    setHoursValue(e.target.value);
+                                }}
                                 style={{ width: '250px' }}
                             >
                                 {hours.map((hour) => {
-                                    return <MenuItem value={hour.id}>{hour.label}</MenuItem>;
+                                    return <MenuItem value={hour.label}>{hour.label}</MenuItem>;
                                 })}
                             </DiagnosticInput>
                         </FilterForm>
                     </FormContainer2Columns>
                     <FooterContainer>
-                        <SubmitButton>Save</SubmitButton>
+                        <SubmitButton onClick={save}>Save</SubmitButton>
                         <SubmitButton onClick={handleClose}>Cancel</SubmitButton>
                     </FooterContainer>
                 </Box>
