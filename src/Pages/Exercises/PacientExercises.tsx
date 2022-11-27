@@ -28,6 +28,7 @@ export const StyledTable = styled(Table)`
 
 export const ContentGrid = styled.div`
     height: 100vh;
+    width: 100%;
     display: grid;
     grid-template-rows: 10vh auto;
 `;
@@ -51,6 +52,15 @@ export const TopCard = styled.div`
     grid-template-columns: 20% auto;
 `;
 
+export const TitleCard = styled.div`
+    height: 100%;
+    padding: 3vh;
+    margin-top: 2vh;
+    font-size: 3vh;
+    font-weight: bold;
+    background-color: none;
+`;
+
 export const Exercises = (props: any) => {
     const [diagnostics, setDiagnostics] = useState([]);
     const [content, setContent] = useState([]);
@@ -72,8 +82,6 @@ export const Exercises = (props: any) => {
     };
     const isPatient = props.isPatient;
 
-    const media = 'https://www.youtube.com/embed/muuK4SpRR5M';
-
     const [page, setPage] = React.useState(0);
     const cardsPerPage = 3;
     const handleChangePage = (event: any, newPage: number) => {
@@ -91,7 +99,7 @@ export const Exercises = (props: any) => {
         return (
             <>
                 <ContentGrid>
-                    <TopCard> Doctor's recommendations for today </TopCard>
+                    <TitleCard> Doctor's recommendations for today </TitleCard>
                     <DoctorContentGrid>
                         <StyledTable>
                             <TableBody sx={{ height: '100%' }}>
