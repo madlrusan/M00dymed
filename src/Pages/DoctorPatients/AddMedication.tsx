@@ -61,7 +61,8 @@ export const AddMedication = (props: AddMedicationProps) => {
                 <Box sx={style}>
                     <ModalTitle>
                         Add Medication for
-                        <DiagnosticSeverityText>{diagnostic}</DiagnosticSeverityText> with severity grade{' '}
+                        <DiagnosticSeverityText>{diagnostic}</DiagnosticSeverityText> 
+                        with severity grade{' '}
                         <DiagnosticSeverityText>{severityText}</DiagnosticSeverityText>
                     </ModalTitle>
                     <FormContainer2Columns>
