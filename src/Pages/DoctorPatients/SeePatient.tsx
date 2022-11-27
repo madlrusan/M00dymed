@@ -107,7 +107,7 @@ export const SeePatient = (props: props) => {
                         disabled={true}
                     />
                 </FormContainer2Columns>
-                {role === '1' && (
+                {role === 1 && (
                     <FooterContainer>
                         <AddMedication
                             email={user?.email}

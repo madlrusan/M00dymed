@@ -50,7 +50,7 @@ export const MedicationTable = () => {
                 {time.map((day) => (
                     <CardContentDay>
                         <DayHighlight>{day}</DayHighlight>
-                        {medication.map(
+                        {medication?.map(
                             (e) =>
                                 (e.everyday || day === today + ' - Today') && (
                                     <div>
