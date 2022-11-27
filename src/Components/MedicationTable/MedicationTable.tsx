@@ -1,10 +1,11 @@
 import React from 'react';
 import moment from 'moment';
-import { CardContent } from '@mui/material';
 import { CardContainerGrid, CardContentDay, DayHighlight } from './MedicationTable.components';
 import styled from '@emotion/styled';
+import { transparentWhite } from '../../modules/theme';
 
 export const ContentGrid = styled.div`
+    background-color: ${transparentWhite};
     height: 100vh;
     width: 100%;
     display: grid;
