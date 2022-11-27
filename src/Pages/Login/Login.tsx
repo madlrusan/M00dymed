@@ -58,12 +58,6 @@ export const Login = () => {
         } catch (e) {}
     };
 
-    const TEST = async () => {
-        try {
-            await logout();
-        } catch (e) {}
-    };
-
     const handleClickShowPassword = () => {
         setValues({
             ...values,
@@ -112,12 +106,16 @@ export const Login = () => {
                 <SubmitButton variant="contained" onClick={Login}>
                     Login
                 </SubmitButton>
-                <SubmitButton variant="contained" onClick={TEST}>
-                    TEST
-                </SubmitButton>
             </StyledForm>
         );
-    } else {
+    } else if (window.localStorage.getItem('role') === 1) {
         return <Navigate to={'/patients'} />;
+    } else {
+        navigate('/seePatient/' + values.emailInput + '/' + window.localStorage.getItem('role'));
+        return (
+            <Navigate
+                to={'/seePatient/' + window.localStorage.getItem('email') + '/' + window.localStorage.getItem('role')}
+            />
+        );
     }
 };

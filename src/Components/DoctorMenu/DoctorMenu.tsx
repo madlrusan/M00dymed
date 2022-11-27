@@ -18,13 +18,15 @@ export const DoctorMenu = () => {
             <Menu>
                 <RouteMenuItem display="Patients" path="/patients" />
                 <RouteMenuItem display="Exercises" path="/addExercises" />
-                <RouteMenuItem
+                <StyledItem
                     onClick={() => {
                         logout();
                         navigate('/');
                     }}
-                    display="Logout"
-                ></RouteMenuItem>
+                    sx={{ 'font-size': '2vw' }}
+                >
+                    Logout
+                </StyledItem>
             </Menu>
         </SideMenu>
     );

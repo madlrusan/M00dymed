@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { mediumPurple } from '../../modules/theme';
 import { Appwrite } from '../../services/Appwrite';
-import { Menu, SideMenu, RouteMenuItem } from '../DoctorMenu/DoctorMenu.components';
+import { Menu, SideMenu, RouteMenuItem, StyledItem } from '../DoctorMenu/DoctorMenu.components';
 
 export const PatientMenu = () => {
     const [meUrl, setMeUrl] = useState('');
-    const { getUser } = Appwrite();
+    const { getUser, logout } = Appwrite();
+    const navigate = useNavigate();
     const [user, setUser] = useState(null);
     useEffect(() => {
         const funct = async () => {
@@ -31,7 +32,16 @@ export const PatientMenu = () => {
                 <RouteMenuItem display="Medication" path="/medication" />
                 <RouteMenuItem display="Exercises" path="/exercises" />
                 <RouteMenuItem display="Good Reading" path="#" />
-                <RouteMenuItem display="Log out" path="/" />
+                <StyledItem
+                    onClick={() => {
+                        logout();
+
+                        navigate('/');
+                    }}
+                    sx={{ 'font-size': '2vw' }}
+                >
+                    Logout
+                </StyledItem>
             </Menu>
         </SideMenu>
     );
