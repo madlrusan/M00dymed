@@ -27,7 +27,6 @@ export const PatientMenu = () => {
                 <RouteMenuItem display="Me" path={meUrl} />
                 <RouteMenuItem display="Medication" path="/medication" />
                 <RouteMenuItem display="Exercises" path="/exercises" />
-                <RouteMenuItem display="Good Reading" path="#" />
                 <StyledItem
                     onClick={() => {
                         logout();
