@@ -37,7 +37,10 @@ const App = () => {
                         {/* ) : ( */}
                         <>
                             <Route path="exercises" element={<SeparateViewWithPatientMenu view="exercises" />} />
-                            <Route path="medication" element={<SeparateViewWithPatientMenu view="medication" />} />
+                            <Route
+                                path="medication/:email"
+                                element={<SeparateViewWithPatientMenu view="medication" />}
+                            />
                         </>
                         {/* )} */}
 

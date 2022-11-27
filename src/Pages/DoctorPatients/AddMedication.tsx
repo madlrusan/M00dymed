@@ -12,12 +12,13 @@ import { DiagnosticSeverityText } from '../../components/common/SeparateView.com
 import { grey } from '../../modules/theme';
 import { AppwriteMedication } from '../../services/AppwriteMedication';
 type AddMedicationProps = {
+    email: string;
     diagnostic: string;
     severity: number;
 };
 
 export const AddMedication = (props: AddMedicationProps) => {
-    const { diagnostic, severity } = props;
+    const { diagnostic, severity, email } = props;
     const [openModal, setOpenModal] = useState(false);
     const [medication, setMedication] = useState('');
     const [everyday, setEveryday] = useState(false);

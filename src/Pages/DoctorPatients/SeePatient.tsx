@@ -63,28 +63,23 @@ export const SeePatient = () => {
                     />
                 </FormContainer2Columns>
                 <FormContainer2Columns>
-                    <EmailInput
+                    <NameInput
                         id="outlined-required"
                         label={'Email'}
                         disabled={true}
                         value={`${user?.email}`}
                         variant="outlined"
-                        onChange={() => {
-                            console.log('fbd');
-                        }}
                     />
-                    <PhoneInput
+                    <NameInput
                         id="outlined-required"
                         label={'PhoneNumber'}
                         disabled={true}
                         value={`${user?.phone}`}
                         variant="outlined"
-                        onChange={() => {
-                            console.log('fbd');
-                        }}
                     />
                 </FormContainer2Columns>
                 <CNPInput
+                    style={{ width: '98%' }}
                     id="outlined-required"
                     label={'CNP'}
                     disabled={true}
@@ -112,6 +107,7 @@ export const SeePatient = () => {
                 {role === '1' && (
                     <FooterContainer>
                         <AddMedication
+                            email={user?.email}
                             diagnostic={`${user?.diagnostics}`}
                             severity={parseInt(user?.diagnosticsGrade)}
                         ></AddMedication>
@@ -125,7 +121,8 @@ const style = {
     // position: 'absolute' as const,
     padding: '47px',
     position: 'relative' as const,
-    width: 400,
+    width: '60vw',
+    height: '50vh',
     bgcolor: `white`,
     borderRadius: '50px',
     boxShadow: 24,

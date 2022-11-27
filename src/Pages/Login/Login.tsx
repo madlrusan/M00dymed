@@ -42,8 +42,10 @@ export const Login = () => {
         try {
             await loginUser(values.emailInput, values.passwordInput);
 
+            window.localStorage.setItem('email', values.emailInput);
             funct().then((p) => {
                 getRole().then((r) => {
+                    window.localStorage.setItem('role', r);
                     if (r === 1) {
                         navigate('/patients');
                     } else {

@@ -49,7 +49,7 @@ export const Register = () => {
             registerUser.lastName,
             registerUser.phone,
         );
-        navigate('/login');
+        navigate('/');
     };
     return (
         <StyledForm style={{ marginBottom: '0vh' }}>

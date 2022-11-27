@@ -97,7 +97,6 @@ export const EmailInput = styled(TextField)`
 export const CNPInput = styled(TextField)`
     margin-bottom: 20px !important;
     margin-left: 10px !important;
-    margin-right: 10px !important;
     background: ${transparentPink};
     div::after {
         border-color: ${pink};
