@@ -26,7 +26,8 @@ export const AppwriteMedication = () => {
     };
     const getMedicationForUser = async (email: string) => {
         const medications = await db.listDocuments(DATABASEID, MEDICATIONCONTENTID);
-        return medications.documents.filter((medication) => medication.PatientEmail.toLowerCase() === email);
+
+        return medications.documents.filter((medication) => medication?.PatientEmail === email);
     };
     return { addMedication, getMedicationForUser };
 };

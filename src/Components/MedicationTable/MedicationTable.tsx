@@ -33,55 +33,33 @@ export const MedicationTable = () => {
             return value;
         };
         funct().then((r) => setMedication(r));
-        console.log(medication);
     }, []);
+    const time = [
+        today + ' - Today',
+        moment().add(1, 'days').format('D.MM.YYYY'),
+        moment().add(2, 'days').format('D.MM.YYYY'),
+        moment().add(3, 'days').format('D.MM.YYYY'),
+        moment().add(4, 'days').format('D.MM.YYYY'),
+        moment().add(5, 'days').format('D.MM.YYYY'),
+        moment().add(6, 'days').format('D.MM.YYYY'),
+    ];
     return (
         <ContentGrid>
             <TitleCard> Your Medication Schedule </TitleCard>
             <CardContainerGrid>
-                <CardContentDay>
-                    <DayHighlight>{today + ' - Today'}</DayHighlight>
-                    <div style={{ maxHeight: '100px', overflowY: 'scroll' }}>
-                        <div>Medicament 1</div>
-                        <div>Medicament 2</div>
-                        <div>Medicament 1</div>
-                        <div>Medicament 2</div>
-                        <div>Medicament 1</div>
-                        <div>Medicament 2</div>
-                        <div>Medicament 1</div>
-                        <div>Medicament 2</div>
-                    </div>
-                </CardContentDay>
-                <CardContentDay>
-                    <DayHighlight>{moment().add(1, 'days').format('D.MM.YYYY')}</DayHighlight>
-                    <div>Medicament 1 - 2 pills /take - when you feel you need it</div>
-                    <div>Medicament 2</div>
-                </CardContentDay>
-                <CardContentDay>
-                    <DayHighlight>{moment().add(2, 'days').format('D.MM.YYYY')}</DayHighlight>
-                    <div>Medicament 1</div>
-                    <div>Medicament 2</div>
-                </CardContentDay>
-                <CardContentDay>
-                    <DayHighlight>{moment().add(3, 'days').format('D.MM.YYYY')}</DayHighlight>
-                    <div>Medicament 1</div>
-                    <div>Medicament 2</div>
-                </CardContentDay>
-                <CardContentDay>
-                    <DayHighlight>{moment().add(4, 'days').format('D.MM.YYYY')}</DayHighlight>
-                    <div>Medicament 1</div>
-                    <div>Medicament 2</div>
-                </CardContentDay>
-                <CardContentDay>
-                    <DayHighlight>{moment().add(5, 'days').format('D.MM.YYYY')}</DayHighlight>
-                    <div>Medicament 1</div>
-                    <div>Medicament 2</div>
-                </CardContentDay>
-                <CardContentDay>
-                    <DayHighlight>{moment().add(6, 'days').format('D.MM.YYYY')}</DayHighlight>
-                    <div>Medicament 1</div>
-                    <div>Medicament 2</div>
-                </CardContentDay>
+                {time.map((day) => (
+                    <CardContentDay>
+                        <DayHighlight>{day}</DayHighlight>
+                        {medication.map(
+                            (e) =>
+                                (e.everyday || day === today + ' - Today') && (
+                                    <div>
+                                        {e.Name}, Hour:{e.hours}
+                                    </div>
+                                ),
+                        )}
+                    </CardContentDay>
+                ))}
             </CardContainerGrid>
         </ContentGrid>
     );

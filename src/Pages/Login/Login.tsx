@@ -25,8 +25,10 @@ export const Login = () => {
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
     const funct = async () => {
-        const user = await getUser();
-        return { user };
+        try {
+            const user = await getUser();
+            return { user };
+        } catch (e) {}
     };
     useEffect(() => {
         funct().then((response) => {
@@ -53,8 +55,6 @@ export const Login = () => {
                     }
                 });
             });
-
-            // navigate('/patients');
         } catch (e) {}
     };
 
