@@ -1,6 +1,6 @@
 import { MenuItem, Link } from '@mui/material';
 import styled, { css } from 'styled-components';
-import { darkBlue, darkPurple } from '../../modules/theme';
+import { darkBlue, darkPurple, lightBlue } from '../../modules/theme';
 
 export const Menu = styled.div`
     font-weight: bold;
@@ -32,7 +32,7 @@ export const RouteMenuItem = (props: any) => {
     const path = props.path
     return (
         <StyledItem>
-            <Link href={path} underline="none" sx={{width: '100%'}}>
+            <Link href={path} underline="none" sx={{width: '100%', color: darkPurple}}>
                 {display} 
             </Link>
         </StyledItem>

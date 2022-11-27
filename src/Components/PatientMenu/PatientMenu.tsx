@@ -16,7 +16,7 @@ export const PatientMenu = () => {
                 <RouteMenuItem display="Medication" path="/medication" />
                 <RouteMenuItem display="Exercises" path="/exercises" />
                 <RouteMenuItem display="Good Reading" path="#" />
-                <RouteMenuItem display="Log out" path="/login" />
+                <RouteMenuItem display="Log out" path="/" />
             </Menu>
         </SideMenu>
     );
