@@ -4,7 +4,8 @@ import {
     RightContainer,
     RightContainerLogged,
 } from '../../components/common/SeparateView.components';
-import { RightImage } from '../../Components/RightImage';
+// import { RightImage } from '../../Components/RightImage';
+
 import { Login } from '../Login/Login';
 import { Register } from '../Register/Register';
 import { DoctorMenu } from '../../components/DoctorMenu/DoctorMenu';
@@ -14,6 +15,7 @@ import { Exercises } from '../Exercises/PacientExercises';
 import { SeePatient } from '../DoctorPatients/SeePatient';
 
 import { PatientMenu } from '../../components/PatientMenu/PatientMenu';
+import { RightImage } from '../../components/RightImage';
 type SeparateViewWithFormProps = {
     form: string;
 };

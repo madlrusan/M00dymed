@@ -6,10 +6,6 @@ import {
     SeparateViewWithForm,
     SeparateViewWithPatientMenu,
 } from './Pages/SeparateView/SeparateView';
-import { SeePatient } from './Pages/DoctorPatients/SeePatient';
-import { EditPatient } from './Pages/DoctorPatients/EditPatient';
-import { Appwrite } from './services/Appwrite';
-import { useState, useEffect } from 'react';
 
 const App = () => {
     // const { getRole } = Appwrite();
@@ -21,7 +17,7 @@ const App = () => {
     //     };
     //     funct().then((r) => setRole(r));
     // }, []);
-    const role = 1;
+    // const role = 1;
     return (
         <>
             <BrowserRouter>

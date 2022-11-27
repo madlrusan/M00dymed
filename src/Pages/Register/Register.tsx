@@ -12,7 +12,7 @@ import { useEffect, useState } from 'react';
 import { Appwrite } from '../../services/Appwrite';
 import { useNavigate } from 'react-router-dom';
 import { mediumPurple } from '../../modules/theme';
-import Logo from '.././../../asset/resource/logo.svg';
+// import * as Logo from '../../../asset/resource/logo.svg';
 
 export const Register = () => {
     const [registerUser, setRegisterUser] = useState({
@@ -56,10 +56,11 @@ export const Register = () => {
         <StyledForm style={{ marginBottom: '0vh' }}>
             <div style={{ marginTop: '0vh' }}>
                 <img
-                    src={Logo}
+                    src="https://svgshare.com/i/oQG.svg"
                     style={{ color: mediumPurple, height: '100%', width: '60vh', alignContent: 'center' }}
                     alt="Logo"
                 ></img>
+                {/* <img src={require('../../../asset/resource/logo.svg')} /> */}
             </div>
             <FormContainer2Columns style={{ marginTop: '10vh' }}>
                 <NameInput

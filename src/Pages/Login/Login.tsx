@@ -6,11 +6,11 @@ import {
     PasswordInput,
     SubmitButton,
     EmailInput,
-    LogoContainer,
     StyledForm,
 } from '../../components/common/CredentialsForm.components';
 import { Appwrite } from '../../services/Appwrite';
 import { Navigate } from 'react-router-dom';
+import { mediumPurple } from '../../modules/theme';
 
 interface LoginState {
     emailInput: string;
@@ -65,7 +65,11 @@ export const Login = () => {
     if (!user) {
         return (
             <StyledForm>
-                <LogoContainer>LOGO</LogoContainer>
+                <img
+                    src="https://svgshare.com/i/oQG.svg"
+                    style={{ color: mediumPurple, height: '100%', width: '60vh', alignContent: 'center' }}
+                    alt="Logo"
+                ></img>
                 <EmailInput id="filled-required" label="Email" variant="filled" onChange={handleChange('emailInput')} />
 
                 <PasswordInput
