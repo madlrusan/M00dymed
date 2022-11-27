@@ -15,11 +15,8 @@ import { CardContainerFlex, FilterForm, FooterContainer } from '../../components
 import { AddMedication } from './AddMedication';
 import { Appwrite } from '../../services/Appwrite';
 import { useEffect, useState } from 'react';
-type SeePatientProps = {
-    role: string;
-};
-export const SeePatient = (props: SeePatientProps) => {
-    const { role } = props;
+
+export const SeePatient = () => {
     const [pacientInfo, setPacientInfo] = useState();
     const { getDiagnosis } = Appwrite();
     const [diagnostics, setDiagnostics] = useState([]);
@@ -28,7 +25,7 @@ export const SeePatient = (props: SeePatientProps) => {
             setDiagnostics(d.documents);
         });
     }, []);
-    const { email } = useParams();
+    const { email, role } = useParams();
     const { getPacientByEmail } = Appwrite();
     const [user, setUser] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
@@ -39,7 +36,6 @@ export const SeePatient = (props: SeePatientProps) => {
         };
         funct().then((response) => {
             setUser(response);
-            console.log(response);
         });
     }, []);
     const sliderText = (value: number) => {
@@ -47,11 +43,10 @@ export const SeePatient = (props: SeePatientProps) => {
         else if (value > 3) return 'high';
         else return 'medium';
     };
-    console.log(role);
     return (
         <CardContainerFlex>
             <CardContent sx={style}>
-                {role == 'user' ? <ModalTitle>My Info</ModalTitle> : <ModalTitle>Pacient Info</ModalTitle>}
+                {role === '0' ? <ModalTitle>My Info</ModalTitle> : <ModalTitle>Pacient Info</ModalTitle>}
                 <FormContainer2Columns>
                     <NameInput
                         id="outlined-required"
@@ -117,7 +112,7 @@ export const SeePatient = (props: SeePatientProps) => {
                     </FilterForm>
                     {user?.diagnosticsGrade}
                 </FormContainer2Columns>
-                {role === 'doctor' && (
+                {role === '1' && (
                     <FooterContainer>
                         <AddMedication
                             diagnostic={`${user?.diagnostics}`}

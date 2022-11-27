@@ -24,11 +24,11 @@ export const Login = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
+    const funct = async () => {
+        const user = await getUser();
+        return { user };
+    };
     useEffect(() => {
-        const funct = async () => {
-            const user = await getUser();
-            return { user };
-        };
         funct().then((response) => {
             setUser(response.user);
             setIsLoading(false);
@@ -41,7 +41,18 @@ export const Login = () => {
     const Login = async () => {
         try {
             await loginUser(values.emailInput, values.passwordInput);
-            navigate('/patients');
+
+            funct().then((p) => {
+                getRole().then((r) => {
+                    if (r === 1) {
+                        navigate('/patients');
+                    } else {
+                        navigate('/seePatient/' + values.emailInput + '/' + r);
+                    }
+                });
+            });
+
+            // navigate('/patients');
         } catch (e) {}
     };
 

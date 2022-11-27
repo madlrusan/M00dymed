@@ -43,7 +43,7 @@ export const SeparateViewWithDoctorMenu = (props: SeparateViewWithDoctorMenuProp
             <RightContainerLogged>
                 {view === 'patients' && <DoctorPatients />}
                 {view === 'addExercises' && <Exercises isPatient={false} />}
-                {view === 'seePatient' && <SeePatient role="doctor" />}
+                {view === 'seePatient' && <SeePatient />}
             </RightContainerLogged>
         </LoggedContainer>
     );
