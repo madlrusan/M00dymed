@@ -19,7 +19,7 @@ interface LoginState {
 }
 
 export const Login = () => {
-    const { loginUser, logout, getUser } = Appwrite();
+    const { loginUser, logout, getUser, getRole } = Appwrite();
     const [values, setValues] = useState<LoginState>({ emailInput: '', passwordInput: '', showPassword: false });
     const [isLoading, setIsLoading] = useState(true);
     const [user, setUser] = useState(null);
