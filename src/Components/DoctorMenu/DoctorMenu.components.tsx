@@ -1,4 +1,4 @@
-import { MenuItem } from '@mui/material';
+import { MenuItem, Link } from '@mui/material';
 import styled, { css } from 'styled-components';
 import { darkBlue, darkPurple } from '../../modules/theme';
 
@@ -11,6 +11,7 @@ export const Menu = styled.div`
     align-content: stretch;
     justify-content: center;
     align-items: flex-start;
+    width: 100%;
 `;
 
 export const SideMenu = styled.div`
@@ -22,22 +23,18 @@ export const SideMenu = styled.div`
     align-items: flex-start;
 `;
 
-export const StyledItem = styled(MenuItem)<{ className?: string; path?: string }>`
-    ${(props) => {
-        if (props.path === '/patients') {
-            return css`
-                color: ${darkPurple} !important;
-            `;
-        }
-        if (props.path === '/exercises') {
-            return css`
-                color: ${darkPurple} !important;
-            `;
-        }
-        if (props.path === '/goodReading') {
-            return css`
-                color: ${darkPurple} !important;
-            `;
-        }
-    }}
+export const StyledItem = styled(MenuItem)`
+    width: 100%;
 `;
+
+export const RouteMenuItem = (props: any) => {
+    const display = props.display
+    const path = props.path
+    return (
+        <StyledItem>
+            <Link href={path} underline="none">
+                {display} 
+            </Link>
+        </StyledItem>
+    )
+}
