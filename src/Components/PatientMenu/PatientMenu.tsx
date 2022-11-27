@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { mediumPurple } from '../../modules/theme';
 import { Menu, SideMenu, RouteMenuItem } from '../DoctorMenu/DoctorMenu.components';
 
@@ -12,11 +14,11 @@ export const PatientMenu = () => {
                 ></img>
             </div>
             <Menu>
-                <RouteMenuItem display="Me" path="" />
+                <RouteMenuItem display="Me" path="#" />
                 <RouteMenuItem display="Medication" path="/medication" />
                 <RouteMenuItem display="Exercises" path="/exercises" />
                 <RouteMenuItem display="Good Reading" path="#" />
-                <RouteMenuItem display="Log out" path="/login" />
+                <RouteMenuItem display="Log out" path="/" />
             </Menu>
         </SideMenu>
     );
