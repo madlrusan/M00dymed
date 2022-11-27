@@ -9,7 +9,7 @@ import {
     StyledForm,
 } from '../../components/common/CredentialsForm.components';
 import { Appwrite } from '../../services/Appwrite';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { mediumPurple } from '../../modules/theme';
 
 interface LoginState {
@@ -23,6 +23,7 @@ export const Login = () => {
     const [values, setValues] = useState<LoginState>({ emailInput: '', passwordInput: '', showPassword: false });
     const [isLoading, setIsLoading] = useState(true);
     const [user, setUser] = useState(null);
+    const navigate = useNavigate();
     useEffect(() => {
         const funct = async () => {
             const user = await getUser();
@@ -40,6 +41,7 @@ export const Login = () => {
     const Login = async () => {
         try {
             await loginUser(values.emailInput, values.passwordInput);
+            navigate('/patients');
         } catch (e) {}
     };
 

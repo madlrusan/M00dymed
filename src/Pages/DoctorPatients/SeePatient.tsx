@@ -21,7 +21,13 @@ type SeePatientProps = {
 export const SeePatient = (props: SeePatientProps) => {
     const { role } = props;
     const [pacientInfo, setPacientInfo] = useState();
-    // const role = 'user';
+    const { getDiagnosis } = Appwrite();
+    const [diagnostics, setDiagnostics] = useState([]);
+    useEffect(() => {
+        getDiagnosis().then((d) => {
+            setDiagnostics(d.documents);
+        });
+    }, []);
     const { email } = useParams();
     const { getPacientByEmail } = Appwrite();
     const [user, setUser] = useState(null);
@@ -36,7 +42,6 @@ export const SeePatient = (props: SeePatientProps) => {
             console.log(response);
         });
     }, []);
-
     const sliderText = (value: number) => {
         if (value < 3) return 'low';
         else if (value > 3) return 'high';
@@ -59,12 +64,12 @@ export const SeePatient = (props: SeePatientProps) => {
                             //     firstName: e.target.value,
                             // });
                         }}
-                        disabled={role === 'user'}
+                        disabled={true}
                     />
                     <NameInput
                         id="outlined-required"
                         // label={role === 'user' ? 'Nume de familie' : 'Last Name'}
-                        disabled={role === 'user'}
+                        disabled={true}
                         value={`${user?.LastName}`}
                         variant="outlined"
                         onChange={(e) => {
@@ -79,7 +84,7 @@ export const SeePatient = (props: SeePatientProps) => {
                     <EmailInput
                         id="outlined-required"
                         // label={role === 'user' ? 'email@mail.com' : 'Email'}
-                        disabled={role === 'user'}
+                        disabled={true}
                         value={`${user?.email}`}
                         variant="outlined"
                         onChange={() => {
@@ -89,7 +94,7 @@ export const SeePatient = (props: SeePatientProps) => {
                     <PhoneInput
                         id="outlined-required"
                         // label={role === 'user' ? '0766000000' : 'PhoneNumber'}
-                        disabled={role === 'user'}
+                        disabled={true}
                         value={`${user?.phone}`}
                         variant="outlined"
                         onChange={() => {
@@ -100,78 +105,23 @@ export const SeePatient = (props: SeePatientProps) => {
                 <CNPInput
                     id="outlined-required"
                     // label={role === 'user' ? '123456789012' : 'CNP'}
-                    disabled={role === 'user'}
+                    disabled={true}
                     variant="outlined"
                     value={`${user?.PersonalId}`}
-                    onChange={() => {
-                        console.log('fbd');
-                    }}
                     sx={{ width: '95%' }}
                 />
                 <FormContainer2Columns>
-                    {role === 'user' ? (
-                        <NameInput
-                            id="outlined-required"
-                            // label={role === 'user' ? 'Anxietate' : 'Diagnostics'}
-                            disabled={role === 'user'}
-                            variant="outlined"
-                            // value={`${user?.diagnostics}`}
-                            onChange={(e) => {
-                                // setRegisterUser({
-                                //     ...registerUser,
-                                //     lastName: e.target.value,
-                                // });
-                            }}
-                            sx={{ width: 220 }}
-                        />
-                    ) : (
-                        <FilterForm>
-                            <InputLabel>Diagnostics</InputLabel>
-                            <DiagnosticInput
-                                labelId="diagnostics"
-                                id="diagnostics"
-                                // value={filterValue}
-                                label="Diagnostics"
-                                defaultValue={`${user?.diagnostics}`} //NU MERGE SA SELECTEZ VALOAREA DIN USER
-                                // onChange={handleChangeFilter}
-                                style={{ width: '170px' }}
-                            >
-                                {diagnostics.map((diagnostic) => {
-                                    return <MenuItem value={diagnostic.id}>{diagnostic.label}</MenuItem>;
-                                })}
-                            </DiagnosticInput>
-                        </FilterForm>
-                    )}
-                    {role === 'user' ? (
-                        <GradeSlider
-                            max={5}
-                            min={1}
-                            marks={marks}
-                            defaultValue={3}
-                            getAriaValueText={sliderText}
-                            aria-label="Severity Grade"
-                            valueLabelDisplay="off"
-                            disabled
-                            // sx={{ width: 100 }}
-                        />
-                    ) : (
-                        <GradeSlider
-                            max={5}
-                            min={1}
-                            marks={marks}
-                            defaultValue={parseInt(`${user?.diagnosticGrade}`)}
-                            getAriaValueText={sliderText}
-                            aria-label="Severity Grade"
-                            valueLabelDisplay="off"
-                        />
-                    )}
+                    <FilterForm>
+                        <InputLabel>Diagnostics</InputLabel>
+                        {user?.diagnostics}
+                    </FilterForm>
+                    {user?.diagnosticsGrade}
                 </FormContainer2Columns>
                 {role === 'doctor' && (
                     <FooterContainer>
-                        <SubmitButton>Save</SubmitButton>
                         <AddMedication
                             diagnostic={`${user?.diagnostics}`}
-                            severity={user?.diagnosticGrade} //NU MERGE SA PARSEZ MAI DEPARTE SEVERITY GRADE FIX IT PLS
+                            severity={parseInt(user?.diagnosticsGrade)} //NU MERGE SA PARSEZ MAI DEPARTE SEVERITY GRADE FIX IT PLS
                         ></AddMedication>
                     </FooterContainer>
                 )}
@@ -189,27 +139,3 @@ const style = {
     boxShadow: 24,
     p: 4,
 };
-const diagnostics = [
-    {
-        id: 1,
-        label: 'depression',
-    },
-    {
-        id: 2,
-        label: 'anxiety',
-    },
-];
-const marks = [
-    {
-        value: 1,
-        label: 'Low',
-    },
-    {
-        value: 3,
-        label: 'Medium',
-    },
-    {
-        value: 5,
-        label: 'High',
-    },
-];
