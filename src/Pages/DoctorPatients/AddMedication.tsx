@@ -26,7 +26,7 @@ export const AddMedication = (props: AddMedicationProps) => {
     const [hoursValue, setHoursValue] = useState('');
     const { addMedication } = AppwriteMedication();
     const save = async () => {
-        await addMedication(medication, everyday, quantity, hoursValue);
+        await addMedication(medication, everyday, quantity, hoursValue, email);
         handleClose();
     };
     const handleOpen = () => setOpenModal(true);
