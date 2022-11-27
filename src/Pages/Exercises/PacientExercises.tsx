@@ -11,7 +11,7 @@ import {
     TablePagination,
     TableRow,
 } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { ExerciseCard } from './ExerciseCard';
 import { transparentWhite } from '../../modules/theme';
 import { FilterForm } from '../../components/common/Doctors.components';
@@ -65,7 +65,20 @@ export const Exercises = (props: any) => {
     const [diagnostics, setDiagnostics] = useState([]);
     const [content, setContent] = useState([]);
     const { getExercises } = AppWriteExercises();
-    const { getDiagnosis } = Appwrite();
+    const { getDiagnosis, getPacientByEmail } = Appwrite();
+    const [user, setUser] = useState(null);
+    useEffect(() => {
+        const emailLcl = window.localStorage.getItem('email');
+        const funct = async () => {
+            const user = await getPacientByEmail(emailLcl);
+            setUser(user);
+            return user;
+        };
+        funct().then((response) => {
+            setUser(response);
+        });
+    }, []);
+
     useEffect(() => {
         getDiagnosis().then((d) => {
             d.documents.unshift({ Name: 'All' });
@@ -94,7 +107,20 @@ export const Exercises = (props: any) => {
     const handleChangeFilter = (event: SelectChangeEvent) => {
         setFilterValue(event.target.value);
     };
+    const patientExercises = content.filter((content) => {
+        return content?.Diagnostic == user?.diagnostics;
+    });
+    function getMultipleRandom(arr: any[], num: number) {
+        const shuffled = [...arr].sort(() => 0.5 - Math.random());
 
+        return shuffled.slice(0, num);
+    }
+    let randomExercises: any[] = [];
+    useMemo(() => {
+        randomExercises = getMultipleRandom(patientExercises, 3);
+    }, [patientExercises]);
+
+    console.log(randomExercises);
     if (isPatient) {
         return (
             <>
@@ -104,8 +130,8 @@ export const Exercises = (props: any) => {
                         <StyledTable>
                             <TableBody sx={{ height: '100%' }}>
                                 {(cardsPerPage > 0
-                                    ? content.slice(page * cardsPerPage, page * cardsPerPage + cardsPerPage)
-                                    : content
+                                    ? randomExercises.slice(page * cardsPerPage, page * cardsPerPage + cardsPerPage)
+                                    : randomExercises
                                 ).map((row) => (
                                     <TableRow>
                                         <ExerciseCard url={row.Media} content={row.Content} title={row.Title} />
@@ -115,7 +141,7 @@ export const Exercises = (props: any) => {
                             <TablePagination
                                 rowsPerPageOptions={[]}
                                 colSpan={3}
-                                count={content.length}
+                                count={randomExercises.length}
                                 rowsPerPage={cardsPerPage}
                                 page={page}
                                 SelectProps={{
