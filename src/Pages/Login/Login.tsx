@@ -114,7 +114,7 @@ export const Login = () => {
                 </SubmitButton>
             </StyledForm>
         );
-    } else if (window.localStorage.getItem('role') === 1) {
+    } else if (window.localStorage.getItem('role') === '1') {
         return <Navigate to={'/patients'} />;
     } else {
         navigate('/seePatient/' + values.emailInput + '/' + window.localStorage.getItem('role'));

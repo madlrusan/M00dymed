@@ -11,15 +11,8 @@ import { Appwrite } from './services/Appwrite';
 
 const App = () => {
     const { getRole } = Appwrite();
-    const [role, setRole] = useState();
-    useEffect(() => {
-        const funct = async () => {
-            const role = await getRole();
-            return role;
-        };
-        funct().then((r) => setRole(r));
-    }, []);
-    // const role = 1;
+    const [role, setRole] = useState(window.localStorage.getItem('role'));
+
     return (
         <>
             <BrowserRouter>
@@ -34,7 +27,7 @@ const App = () => {
                             element={<SeparateViewWithDoctorMenu role={1} view="addExercises" />}
                         />
 
-                        {role == 1 ? (
+                        {role === '1' ? (
                             <Route
                                 path="seePatient/:email/:role"
                                 element={<SeparateViewWithDoctorMenu view="seePatient" role={1} />}

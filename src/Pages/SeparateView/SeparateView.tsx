@@ -67,7 +67,7 @@ export const SeparateViewWithPatientMenu = (props: SeparateViewWithPatientMenuPr
         <LoggedContainer>
             <PatientMenu />
             <RightContainerLogged>
-                {view == 'exercises' && <Exercises isPatient={true} />}
+                {view == 'exercises' && <Exercises isPatient={window.localStorage.getItem('role') === '0'} />}
                 {view == 'Me' && <SeePatient role={0} />}
                 {view == 'seePatient' && <SeePatient role={0} />}
                 {view == 'medication' && <MedicationTable />}
