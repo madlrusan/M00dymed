@@ -1,6 +1,7 @@
 import { MenuItem, Link } from '@mui/material';
-import styled, { css } from 'styled-components';
-import { darkBlue, darkPurple, lightBlue } from '../../modules/theme';
+import { useLocation } from 'react-router';
+import { darkBlue, darkPurple } from '../../modules/theme';
+import styled from 'styled-components';
 
 export const Menu = styled.div`
     font-weight: bold;
@@ -30,9 +31,14 @@ export const StyledItem = styled(MenuItem)`
 export const RouteMenuItem = (props: any) => {
     const display = props.display
     const path = props.path
+    const findPath = () => {
+        const location = useLocation();
+        return location.pathname;
+    }
+    const isColored = (path == findPath()) ? darkPurple : darkBlue
     return (
         <StyledItem>
-            <Link href={path} underline="none" sx={{width: '100%', color: darkPurple}}>
+            <Link href={path} underline="none" sx={{width: '100%', color: isColored, 'font-size': '2vw'}}>
                 {display} 
             </Link>
         </StyledItem>
