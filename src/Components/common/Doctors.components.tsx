@@ -11,6 +11,7 @@ export const CardContainerFlex = styled(Card)`
     justify-content: center;
     align-items: flex-end;
     margin: 20px;
+    margin-right: 95vh;
 `;
 
 export const HeaderContainer = styled.div`

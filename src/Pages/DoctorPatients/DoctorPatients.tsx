@@ -51,7 +51,7 @@ export const DoctorPatients = () => {
         setFilterValue(event.target.value);
     };
     const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(5);
+    const [rowsPerPage, setRowsPerPage] = useState(7);
     const handleChangePage = (event: unknown, newPage: number) => {
         setPage(newPage);
     };
@@ -135,7 +135,7 @@ export const DoctorPatients = () => {
                     </Table>
                 </TableContainer>
                 <TablePagination
-                    rowsPerPageOptions={[5]}
+                    rowsPerPageOptions={[7]}
                     component="div"
                     count={rows.length}
                     rowsPerPage={rowsPerPage}
@@ -163,31 +163,31 @@ const tableColumns: Column[] = [
         id: 'FirstName',
         label: 'First Name',
         align: 'left',
-        minWidth: 50,
+        minWidth: 200,
     },
     {
         id: 'LastName',
         label: 'Last Name',
         align: 'left',
-        minWidth: 50,
+        minWidth: 200,
     },
     {
         id: 'diagnostics',
         label: 'Diagnostics',
         align: 'left',
-        minWidth: 50,
+        minWidth: 200,
     },
     {
         id: 'diagnosticsGrade',
         label: 'Severity Grade',
         align: 'left',
-        minWidth: 50,
+        minWidth: 100,
     },
     {
         id: 'actions',
         label: '',
         align: 'left',
-        minWidth: 20,
+        minWidth: 100,
     },
 ];
 
