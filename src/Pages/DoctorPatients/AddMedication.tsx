@@ -26,7 +26,7 @@ export const AddMedication = (props: AddMedicationProps) => {
     const [hoursValue, setHoursValue] = useState('');
     const { addMedication } = AppwriteMedication();
     const save = async () => {
-        await addMedication(medication, everyday, quantity, hoursValue);
+        await addMedication(medication, everyday, quantity, hoursValue, email);
         handleClose();
     };
     const handleOpen = () => setOpenModal(true);
@@ -61,7 +61,8 @@ export const AddMedication = (props: AddMedicationProps) => {
                 <Box sx={style}>
                     <ModalTitle>
                         Add Medication for
-                        <DiagnosticSeverityText>{diagnostic}</DiagnosticSeverityText> with severity grade{' '}
+                        <DiagnosticSeverityText>{diagnostic}</DiagnosticSeverityText> 
+                        with severity grade{' '}
                         <DiagnosticSeverityText>{severityText}</DiagnosticSeverityText>
                     </ModalTitle>
                     <FormContainer2Columns>

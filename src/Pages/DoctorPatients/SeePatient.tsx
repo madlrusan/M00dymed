@@ -15,6 +15,8 @@ import { CardContainerFlex, FilterForm, FooterContainer } from '../../components
 import { AddMedication } from './AddMedication';
 import { Appwrite } from '../../services/Appwrite';
 import { useEffect, useState } from 'react';
+import { EditMedication } from './EditMedication';
+import { AppwriteMedication } from '../../services/AppwriteMedication';
 type props = {
     role: number;
 };
@@ -109,6 +111,11 @@ export const SeePatient = (props: props) => {
                 </FormContainer2Columns>
                 {role === 1 && (
                     <FooterContainer>
+                        <EditMedication
+                            email={user?.email}
+                            diagnostic={`${user?.diagnostics}`}
+                            severity={parseInt(user?.diagnosticsGrade)}
+                        ></EditMedication>
                         <AddMedication
                             email={user?.email}
                             diagnostic={`${user?.diagnostics}`}
