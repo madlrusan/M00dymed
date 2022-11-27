@@ -5,7 +5,6 @@ import styled from '@emotion/styled';
 import { transparentWhite } from '../../modules/theme';
 
 export const ContentGrid = styled.div`
-    background-color: ${transparentWhite};
     height: 100vh;
     width: 100%;
     display: grid;

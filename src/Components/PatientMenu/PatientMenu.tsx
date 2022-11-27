@@ -6,10 +6,10 @@ import { Menu, SideMenu, RouteMenuItem } from '../DoctorMenu/DoctorMenu.componen
 export const PatientMenu = () => {
     return (
         <SideMenu>
-            <div style={{ marginTop: '-20vh', marginBottom: '20vh' }}>
+            <div style={{ marginTop: '-20vh', marginBottom: '20vh', display: 'block' }}>
                 <img
                     src="https://svgshare.com/i/oQG.svg"
-                    style={{ color: mediumPurple, height: '100%', width: '30vh', alignContent: 'center' }}
+                    style={{ color: mediumPurple, height: '100%', width: '100%', alignContent: 'center' }}
                     alt="Logo"
                 ></img>
             </div>
