@@ -37,8 +37,8 @@ export const DoctorPatients = () => {
     const { getDiagnosis } = Appwrite();
     useEffect(() => {
         getDiagnosis().then((d) => {
-            d.documents.unshift({ Name: 'All' });
-            setDiagnostics(d.documents);
+            d?.documents.unshift({ Name: 'All' });
+            setDiagnostics(d?.documents);
         });
     }, []);
     useEffect(() => {

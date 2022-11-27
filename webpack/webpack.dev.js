@@ -17,4 +17,8 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin(),
         new ReactRefreshWebpackPlugin(),
     ],
+    // mime: {
+    //     'application/javascript': ['js'],
+    //     'text/css': ['css'],
+    // },
 };
