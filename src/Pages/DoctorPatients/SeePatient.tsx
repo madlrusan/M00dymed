@@ -45,6 +45,20 @@ export const SeePatient = (props: props) => {
         else if (value > 3) return 'high';
         else return 'medium';
     };
+    const declareSeverity = (severity: number) => {
+        switch (severity) {
+            case 1:
+                return 'Low';
+            case 2:
+                return 'Low to Medium';
+            case 3:
+                return 'Medium';
+            case 4:
+                return 'Medium to High';
+            case 5:
+                return 'High';
+        }
+    };
     return (
         <CardContainerFlex>
             <CardContent sx={style}>
@@ -98,12 +112,12 @@ export const SeePatient = (props: props) => {
                         value={`${user?.diagnostics}`}
                         disabled={true}
                     />
-                    <div></div>
+                    {/* <div>ffd</div> */}
                     <NameInput
                         id="outlined-required"
                         label="Severity grade"
                         variant="outlined"
-                        value={`${user?.diagnosticsGrade}`}
+                        value={declareSeverity(parseInt(user?.diagnosticsGrade))}
                         disabled={true}
                     />
                 </FormContainer2Columns>
