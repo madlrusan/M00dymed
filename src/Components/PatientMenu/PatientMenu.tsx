@@ -1,13 +1,8 @@
-import React, { useState } from 'react';
 import { mediumPurple } from '../../modules/theme';
 import { Menu, SideMenu, RouteMenuItem } from '../DoctorMenu/DoctorMenu.components';
 import Logo from '../../.././asset/resource/logo.svg';
 
 export const PatientMenu = () => {
-    const [className, setClassName] = useState('');
-    // const handleClick = () => {
-    //     setClassName('clicked');
-    // };
     return (
         <SideMenu>
             <div style={{ marginTop: '-20vh', marginBottom: '20vh' }}>

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
 import { Menu, RouteMenuItem, SideMenu } from './DoctorMenu.components';
 import { mediumPurple } from '../../modules/theme';
 import Logo from '.././../../asset/resource/logo.svg';
+
 export const DoctorMenu = () => {
     console.log(window.location.pathname);
     return (
