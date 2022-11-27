@@ -1,6 +1,5 @@
 import React from 'react';
 import moment from 'moment';
-import { CardContent } from '@mui/material';
 import { CardContainerGrid, CardContentDay, DayHighlight } from './MedicationTable.components';
 import styled from '@emotion/styled';
 import { transparentWhite } from '../../modules/theme';

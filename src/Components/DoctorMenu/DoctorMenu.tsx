@@ -1,9 +1,11 @@
-import { Menu, RouteMenuItem, SideMenu } from './DoctorMenu.components';
+import { Menu, RouteMenuItem, SideMenu, StyledItem } from './DoctorMenu.components';
 import { mediumPurple } from '../../modules/theme';
-import Logo from '.././../../asset/resource/logo.svg';
+import { Appwrite } from '../../services/Appwrite';
+import { useNavigate } from 'react-router';
 
 export const DoctorMenu = () => {
-    console.log(window.location.pathname);
+    const { logout } = Appwrite();
+    const navigate = useNavigate();
     return (
         <SideMenu>
             <div style={{ marginTop: '-20vh', marginBottom: '20vh', width: '100%' }}>
@@ -16,7 +18,14 @@ export const DoctorMenu = () => {
             <Menu>
                 <RouteMenuItem display="Patients" path="/patients" />
                 <RouteMenuItem display="Exercises" path="/addExercises" />
-                <RouteMenuItem display="Log out" path="/login" />
+                <StyledItem
+                    onClick={() => {
+                        logout();
+                        navigate('/');
+                    }}
+                >
+                    Logout
+                </StyledItem>
             </Menu>
         </SideMenu>
     );
