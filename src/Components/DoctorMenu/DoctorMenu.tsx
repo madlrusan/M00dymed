@@ -18,14 +18,14 @@ export const DoctorMenu = () => {
             <Menu>
                 <RouteMenuItem display="Patients" path="/patients" />
                 <RouteMenuItem display="Exercises" path="/addExercises" />
-                <StyledItem
+                <RouteMenuItem
                     onClick={() => {
                         logout();
                         navigate('/');
                     }}
+                    display="Logout"
                 >
-                    Logout
-                </StyledItem>
+                </RouteMenuItem>
             </Menu>
         </SideMenu>
     );
