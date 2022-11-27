@@ -15,13 +15,10 @@ import { CardContainerFlex, FilterForm, FooterContainer } from '../../components
 import { AddMedication } from './AddMedication';
 import { Appwrite } from '../../services/Appwrite';
 import { useEffect, useState } from 'react';
-type SeePatientProps = {
-    role: string;
-};
-export const SeePatient = (props: SeePatientProps) => {
-    const { role } = props;
-    const [pacientInfo, setPacientInfo] = useState();
-    const { getDiagnosis } = Appwrite();
+
+export const SeePatient = () => {
+    const [role, setRole] = useState();
+    const { getDiagnosis, getRole } = Appwrite();
     const [diagnostics, setDiagnostics] = useState([]);
     useEffect(() => {
         getDiagnosis().then((d) => {
@@ -31,7 +28,6 @@ export const SeePatient = (props: SeePatientProps) => {
     const { email } = useParams();
     const { getPacientByEmail } = Appwrite();
     const [user, setUser] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
         const funct = async () => {
             const user = await getPacientByEmail(email);
@@ -42,48 +38,38 @@ export const SeePatient = (props: SeePatientProps) => {
             console.log(response);
         });
     }, []);
-    const sliderText = (value: number) => {
-        if (value < 3) return 'low';
-        else if (value > 3) return 'high';
-        else return 'medium';
-    };
+    useEffect(() => {
+        const funct = async () => {
+            const role = await getRole();
+            return role;
+        };
+        funct().then((r) => setRole(r));
+    }, []);
     console.log(role);
     return (
         <CardContainerFlex>
             <CardContent sx={style}>
-                {role == 'user' ? <ModalTitle>My Info</ModalTitle> : <ModalTitle>Pacient Info</ModalTitle>}
+                {role == '2' ? <ModalTitle>My Info</ModalTitle> : <ModalTitle>Pacient Info</ModalTitle>}
                 <FormContainer2Columns>
                     <NameInput
                         id="outlined-required"
-                        // label={`${user?.FirstName}`}
+                        label={`FirstName`}
                         variant="outlined"
                         value={`${user?.FirstName}`}
-                        onChange={(e) => {
-                            // setRegisterUser({
-                            //     ...registerUser,
-                            //     firstName: e.target.value,
-                            // });
-                        }}
                         disabled={true}
                     />
                     <NameInput
                         id="outlined-required"
-                        // label={role === 'user' ? 'Nume de familie' : 'Last Name'}
+                        label={'Last Name'}
                         disabled={true}
                         value={`${user?.LastName}`}
                         variant="outlined"
-                        onChange={(e) => {
-                            // setRegisterUser({
-                            //     ...registerUser,
-                            //     lastName: e.target.value,
-                            // });
-                        }}
                     />
                 </FormContainer2Columns>
                 <FormContainer2Columns>
                     <EmailInput
                         id="outlined-required"
-                        // label={role === 'user' ? 'email@mail.com' : 'Email'}
+                        label={'Email'}
                         disabled={true}
                         value={`${user?.email}`}
                         variant="outlined"
@@ -93,7 +79,7 @@ export const SeePatient = (props: SeePatientProps) => {
                     />
                     <PhoneInput
                         id="outlined-required"
-                        // label={role === 'user' ? '0766000000' : 'PhoneNumber'}
+                        label={'PhoneNumber'}
                         disabled={true}
                         value={`${user?.phone}`}
                         variant="outlined"
@@ -104,24 +90,34 @@ export const SeePatient = (props: SeePatientProps) => {
                 </FormContainer2Columns>
                 <CNPInput
                     id="outlined-required"
-                    // label={role === 'user' ? '123456789012' : 'CNP'}
+                    label={'CNP'}
                     disabled={true}
                     variant="outlined"
                     value={`${user?.PersonalId}`}
                     sx={{ width: '95%' }}
                 />
                 <FormContainer2Columns>
-                    <FilterForm>
-                        <InputLabel>Diagnostics</InputLabel>
-                        {user?.diagnostics}
-                    </FilterForm>
-                    {user?.diagnosticsGrade}
+                    <NameInput
+                        id="outlined-required"
+                        label={`Diagnostic`}
+                        variant="outlined"
+                        value={`${user?.diagnostics}`}
+                        disabled={true}
+                    />
+                    <div></div>
+                    <NameInput
+                        id="outlined-required"
+                        label="Severity grade"
+                        variant="outlined"
+                        value={`${user?.diagnosticsGrade}`}
+                        disabled={true}
+                    />
                 </FormContainer2Columns>
-                {role === 'doctor' && (
+                {role === 1 && (
                     <FooterContainer>
                         <AddMedication
                             diagnostic={`${user?.diagnostics}`}
-                            severity={parseInt(user?.diagnosticsGrade)} //NU MERGE SA PARSEZ MAI DEPARTE SEVERITY GRADE FIX IT PLS
+                            severity={parseInt(user?.diagnosticsGrade)}
                         ></AddMedication>
                     </FooterContainer>
                 )}

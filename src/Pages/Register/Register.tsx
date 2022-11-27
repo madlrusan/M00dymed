@@ -1,7 +1,6 @@
 import {
     CNPInput,
     EmailInput,
-    LogoContainer,
     FormContainer2Columns,
     NameInput,
     StyledForm,
