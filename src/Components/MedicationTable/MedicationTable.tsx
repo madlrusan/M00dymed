@@ -2,11 +2,30 @@ import React from 'react';
 import moment from 'moment';
 import { CardContent } from '@mui/material';
 import { CardContainerGrid, CardContentDay, DayHighlight } from './MedicationTable.components';
+import styled from '@emotion/styled';
+
+export const ContentGrid = styled.div`
+    height: 100vh;
+    width: 100%;
+    display: grid;
+    grid-template-rows: 10vh auto;
+`;
+
+export const TitleCard = styled.div`
+    height: 100%;
+    padding: 3vh;
+    margin-top: 2vh;
+    font-size: 3vh;
+    font-weight: bold;
+    background-color: none;
+`;
 
 export const MedicationTable = () => {
     const today = moment().format('D.MM.YYYY');
 
     return (
+        <ContentGrid>
+            <TitleCard> Your Medication Schedule </TitleCard>
         <CardContainerGrid>
             <CardContentDay>
                 <DayHighlight>{today + ' - Today'}</DayHighlight>
@@ -56,5 +75,7 @@ export const MedicationTable = () => {
                 <div>lorem ipsum</div>
             </CardContentDay>
         </CardContainerGrid>
+        </ContentGrid>
+
     );
 };
