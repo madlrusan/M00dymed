@@ -6,14 +6,13 @@ import { Menu, SideMenu, RouteMenuItem, StyledItem } from '../DoctorMenu/DoctorM
 
 export const PatientMenu = () => {
     const [meUrl, setMeUrl] = useState('');
+    const { logout } = Appwrite();
+    const navigate = useNavigate();
     useMemo(() => {
         const emailLcl = window.localStorage.getItem('email');
         const roleLcl = window.localStorage.getItem('role');
         setMeUrl('/seePatient/' + emailLcl + '/' + `${roleLcl}`);
     }, []);
-    // const emailLcl = window.localStorage.getItem('email');
-    // const roleLcl = window.localStorage.getItem('role');
-    // setMeUrl('/' + emailLcl + '/' + `${roleLcl}`);
     return (
         <SideMenu>
             <div style={{ marginTop: '-20vh', marginBottom: '20vh', display: 'block' }}>
@@ -24,7 +23,15 @@ export const PatientMenu = () => {
                 ></img>
             </div>
             <Menu>
-                <RouteMenuItem display="Me" path={meUrl} />
+                <RouteMenuItem
+                    display="Me"
+                    path={
+                        '/seePatient/' +
+                        window.localStorage.getItem('email') +
+                        '/' +
+                        window.localStorage.getItem('role')
+                    }
+                />
                 <RouteMenuItem display="Medication" path="/medication" />
                 <RouteMenuItem display="Exercises" path="/exercises" />
                 <StyledItem

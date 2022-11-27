@@ -52,7 +52,7 @@ export const MedicationTable = () => {
                         <DayHighlight>{day}</DayHighlight>
                         {medication?.map(
                             (e) =>
-                                (e.everyday || day === today + ' - Today') && (
+                                (!e.everyday || day === today + ' - Today') && (
                                     <div>
                                         {e.Name}, Hour:{e.hours}
                                     </div>
