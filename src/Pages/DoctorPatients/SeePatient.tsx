@@ -114,10 +114,9 @@ export const SeePatient = (props: props) => {
                         value={`${user?.diagnostics}`}
                         disabled={true}
                     />
-                    {/* <div>ffd</div> */}
+                    <div></div>
                     <NameInput
                         id="outlined-required"
-                        label="Severity grade"
                         variant="outlined"
                         value={declareSeverity(parseInt(user?.diagnosticsGrade))}
                         disabled={true}

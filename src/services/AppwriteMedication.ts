@@ -29,5 +29,8 @@ export const AppwriteMedication = () => {
 
         return medications.documents.filter((medication) => medication?.PatientEmail === email);
     };
-    return { addMedication, getMedicationForUser };
+    const deleteMedication = async (id: string) => {
+        const promise = await db.deleteDocument(DATABASEID, MEDICATIONCONTENTID, id);
+    };
+    return { addMedication, getMedicationForUser, deleteMedication };
 };

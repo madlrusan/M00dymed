@@ -1,4 +1,16 @@
-import { Box, Checkbox, FormControlLabel, InputAdornment, InputLabel, MenuItem, Modal, Table, TableBody, TableCell, TableRow } from '@mui/material';
+import {
+    Box,
+    Checkbox,
+    FormControlLabel,
+    InputAdornment,
+    InputLabel,
+    MenuItem,
+    Modal,
+    Table,
+    TableBody,
+    TableCell,
+    TableRow,
+} from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import {
     DiagnosticInput,
@@ -26,14 +38,14 @@ export const EditMedication = (props: EditMedicationProps) => {
     const [everyday, setEveryday] = useState(false);
     const [quantity, setQuantity] = useState(0);
     const [hoursValue, setHoursValue] = useState('');
-    const { addMedication, getMedicationForUser } = AppwriteMedication();
-    const save = async () => {
-        // getMedicationForUser(email).then((r) => setContent(r));
-        // console.log(content)
+    const { addMedication, getMedicationForUser, deleteMedication } = AppwriteMedication();
+    const save = async (id: string) => {
+        await deleteMedication(id);
+        await getMedicationForUser(email).then((r) => setContent(r));
     };
     const handleOpen = async () => {
         getMedicationForUser(email).then((r) => setContent(r));
-        console.log(content)
+
         setOpenModal(true);
     };
     const handleClose = () => setOpenModal(false);
@@ -71,10 +83,9 @@ export const EditMedication = (props: EditMedicationProps) => {
             >
                 <Box sx={style}>
                     <ModalTitle>
-                        Add Medication for
-                        <DiagnosticSeverityText>{diagnostic}</DiagnosticSeverityText> 
-                        with severity grade{' '}
-                        <DiagnosticSeverityText>{severityText}</DiagnosticSeverityText>
+                        Medication for
+                        <DiagnosticSeverityText>{diagnostic}</DiagnosticSeverityText>
+                        with severity grade <DiagnosticSeverityText>{severityText}</DiagnosticSeverityText>
                     </ModalTitle>
                     <Table>
                         <TableHeader>
@@ -82,23 +93,26 @@ export const EditMedication = (props: EditMedicationProps) => {
                                 <TableCell> Name </TableCell>
                                 <TableCell> Quantity </TableCell>
                                 <TableCell> Hours </TableCell>
-                                <TableCell>  </TableCell>
+                                <TableCell> </TableCell>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {(content).map((row) => (
+                            {content.map((row) => (
                                 <TableRow>
                                     <TableCell> {row.Name} </TableCell>
                                     <TableCell> {row.quantity} per take </TableCell>
                                     <TableCell> {row.hours} </TableCell>
-                                    <TableCell><Delete row={row}>Delete</Delete></TableCell>
+                                    <TableCell>
+                                        <Delete row={row} onClick={() => save(row.$id)}>
+                                            Delete
+                                        </Delete>
+                                    </TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>
                     </Table>
                     <FooterContainer>
-                        <SubmitButton onClick={save}>Save</SubmitButton>
-                        <SubmitButton onClick={handleClose}>Cancel</SubmitButton>
+                        <SubmitButton onClick={handleClose}>Close</SubmitButton>
                     </FooterContainer>
                 </Box>
             </Modal>
@@ -146,9 +160,9 @@ export const Delete = (props: any) => {
     const [openModal, setOpenModal] = useState(false);
     const handleOpen = () => setOpenModal(true);
     const handleClose = () => setOpenModal(false);
-    const Delete = async () => {
-        console.log(row.id);
-    };
+
+    const { getMedicationForUser, deleteMedication } = AppwriteMedication();
+
     return (
         <div>
             <MenuItem onClick={handleOpen}>Delete</MenuItem>
@@ -162,7 +176,13 @@ export const Delete = (props: any) => {
                     <ModalTitle>Are you sure?</ModalTitle>
 
                     <FooterContainer>
-                        <SubmitButton sx={{ 'margin-right': '10vh !important' }} onClick={Delete}>
+                        <SubmitButton
+                            sx={{ 'margin-right': '10vh !important' }}
+                            onClick={() => {
+                                handleClose();
+                                props.onClick();
+                            }}
+                        >
                             Delte
                         </SubmitButton>
                         <SubmitButton sx={{ 'margin-left': '10vh !important' }} onClick={handleClose}>
@@ -174,4 +194,3 @@ export const Delete = (props: any) => {
         </div>
     );
 };
-
