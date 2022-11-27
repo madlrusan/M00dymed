@@ -88,7 +88,10 @@ export const Appwrite = () => {
         });
     };
     const logout = async () => {
-        await account.deleteSession('current');
+        try {
+            await account.deleteSession('current');
+            window.localStorage.clear();
+        } catch (e) {}
     };
 
     const checkSession = () => {

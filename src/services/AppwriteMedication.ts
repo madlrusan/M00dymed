@@ -8,14 +8,26 @@ export const AppwriteMedication = () => {
     const db = new Databases(client);
     const MEDICATIONCONTENTID = '6382b219ef1f153a2e54';
     const DATABASEID = '63812c9edc4254a2b672';
-    const addMedication = async (name: string, everyday: boolean, quantity: number, hours: string) => {
+    const addMedication = async (
+        name: string,
+        everyday: boolean,
+        quantity: number,
+        hours: string,
+        patientEmail: string,
+    ) => {
         const Id = ID.unique();
         await db.createDocument(DATABASEID, MEDICATIONCONTENTID, Id, {
             Name: name,
             everyday: everyday,
             quantity: quantity,
             hours: hours,
+            PatientEmail: patientEmail,
         });
     };
-    return { addMedication };
+    const getMedicationForUser = async (email: string) => {
+        const medications = await db.listDocuments(DATABASEID, MEDICATIONCONTENTID);
+
+        return medications.documents.filter((medication) => medication?.PatientEmail === email);
+    };
+    return { addMedication, getMedicationForUser };
 };

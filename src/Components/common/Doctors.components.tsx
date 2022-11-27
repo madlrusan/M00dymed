@@ -12,6 +12,7 @@ export const CardContainerFlex = styled(Card)`
     align-items: flex-end;
     margin: 20px;
     margin-right: 95vh;
+    width: '60vh';
 `;
 
 export const HeaderContainer = styled.div`

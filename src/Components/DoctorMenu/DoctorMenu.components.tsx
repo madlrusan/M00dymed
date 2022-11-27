@@ -21,7 +21,7 @@ export const SideMenu = styled.div`
     flex-wrap: wrap;
     align-content: flex-start;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 `;
 
 export const StyledItem = styled(MenuItem)`

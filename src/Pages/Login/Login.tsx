@@ -25,8 +25,10 @@ export const Login = () => {
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
     const funct = async () => {
-        const user = await getUser();
-        return { user };
+        try {
+            const user = await getUser();
+            return { user };
+        } catch (e) {}
     };
     useEffect(() => {
         funct().then((response) => {
@@ -42,8 +44,10 @@ export const Login = () => {
         try {
             await loginUser(values.emailInput, values.passwordInput);
 
+            window.localStorage.setItem('email', values.emailInput);
             funct().then((p) => {
                 getRole().then((r) => {
+                    window.localStorage.setItem('role', r);
                     if (r === 1) {
                         navigate('/patients');
                     } else {
@@ -51,14 +55,6 @@ export const Login = () => {
                     }
                 });
             });
-
-            // navigate('/patients');
-        } catch (e) {}
-    };
-
-    const TEST = async () => {
-        try {
-            await logout();
         } catch (e) {}
     };
 
@@ -110,12 +106,16 @@ export const Login = () => {
                 <SubmitButton variant="contained" onClick={Login}>
                     Login
                 </SubmitButton>
-                <SubmitButton variant="contained" onClick={TEST}>
-                    TEST
-                </SubmitButton>
             </StyledForm>
         );
-    } else {
+    } else if (window.localStorage.getItem('role') === 1) {
         return <Navigate to={'/patients'} />;
+    } else {
+        navigate('/seePatient/' + values.emailInput + '/' + window.localStorage.getItem('role'));
+        return (
+            <Navigate
+                to={'/seePatient/' + window.localStorage.getItem('email') + '/' + window.localStorage.getItem('role')}
+            />
+        );
     }
 };

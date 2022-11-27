@@ -1,9 +1,19 @@
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useEffect, useMemo, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { mediumPurple } from '../../modules/theme';
-import { Menu, SideMenu, RouteMenuItem } from '../DoctorMenu/DoctorMenu.components';
+import { Appwrite } from '../../services/Appwrite';
+import { Menu, SideMenu, RouteMenuItem, StyledItem } from '../DoctorMenu/DoctorMenu.components';
 
 export const PatientMenu = () => {
+    const [meUrl, setMeUrl] = useState('');
+    useMemo(() => {
+        const emailLcl = window.localStorage.getItem('email');
+        const roleLcl = window.localStorage.getItem('role');
+        setMeUrl('/seePatient/' + emailLcl + '/' + `${roleLcl}`);
+    }, []);
+    // const emailLcl = window.localStorage.getItem('email');
+    // const roleLcl = window.localStorage.getItem('role');
+    // setMeUrl('/' + emailLcl + '/' + `${roleLcl}`);
     return (
         <SideMenu>
             <div style={{ marginTop: '-20vh', marginBottom: '20vh', display: 'block' }}>
@@ -14,10 +24,19 @@ export const PatientMenu = () => {
                 ></img>
             </div>
             <Menu>
-                <RouteMenuItem display="Me" path="#" />
+                <RouteMenuItem display="Me" path={meUrl} />
                 <RouteMenuItem display="Medication" path="/medication" />
                 <RouteMenuItem display="Exercises" path="/exercises" />
-                <RouteMenuItem display="Log out" path="/" />
+                <StyledItem
+                    onClick={() => {
+                        logout();
+
+                        navigate('/');
+                    }}
+                    sx={{ 'font-size': '2vw' }}
+                >
+                    Logout
+                </StyledItem>
             </Menu>
         </SideMenu>
     );
