@@ -15,17 +15,20 @@ import { CardContainerFlex, FilterForm, FooterContainer } from '../../components
 import { AddMedication } from './AddMedication';
 import { Appwrite } from '../../services/Appwrite';
 import { useEffect, useState } from 'react';
-
-export const SeePatient = () => {
+type props = {
+    role: number;
+};
+export const SeePatient = (props: props) => {
+    const { role } = props;
     const [pacientInfo, setPacientInfo] = useState();
-    const { getDiagnosis, getRole } = Appwrite();
+    const { getDiagnosis } = Appwrite();
     const [diagnostics, setDiagnostics] = useState([]);
     useEffect(() => {
         getDiagnosis().then((d) => {
             setDiagnostics(d.documents);
         });
     }, []);
-    const { email, role } = useParams();
+    const { email } = useParams();
     const { getPacientByEmail } = Appwrite();
     const [user, setUser] = useState(null);
     useEffect(() => {
@@ -45,7 +48,7 @@ export const SeePatient = () => {
     return (
         <CardContainerFlex>
             <CardContent sx={style}>
-                {role === '0' ? <ModalTitle>My Info</ModalTitle> : <ModalTitle>Pacient Info</ModalTitle>}
+                {role === 0 ? <ModalTitle>My Info</ModalTitle> : <ModalTitle>Pacient Info</ModalTitle>}
                 <FormContainer2Columns>
                     <NameInput
                         id="outlined-required"

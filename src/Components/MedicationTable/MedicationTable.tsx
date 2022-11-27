@@ -6,7 +6,6 @@ import { transparentWhite } from '../../modules/theme';
 import { AppwriteMedication } from '../../services/AppwriteMedication';
 
 export const ContentGrid = styled.div`
-    background-color: ${transparentWhite};
     height: 100vh;
     width: 100%;
     display: grid;

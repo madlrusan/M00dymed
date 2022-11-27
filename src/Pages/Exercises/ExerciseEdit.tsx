@@ -22,11 +22,6 @@ const style = {
     p: 4,
 };
 
-const diagnostics = [
-    { id: 1, label: 'depression' },
-    { id: 2, label: 'anxiety' },
-];
-
 interface ExerciseValues {
     titleInput: string;
     descriptionInput: string;
@@ -122,12 +117,19 @@ export const AddExercise = ({ refresh }) => {
 };
 
 export const EditExercise = (props: any) => {
+    const { getDiagnosis } = Appwrite();
+    const [diagnostics, setDiagnostics] = useState([]);
+    useEffect(() => {
+        getDiagnosis().then((d) => {
+            setDiagnostics(d.documents);
+        });
+    }, []);
     const row = props.row;
     const [values, setValues] = useState<ExerciseValues>({
-        titleInput: row.title,
-        descriptionInput: row.description,
-        mediaInput: row.media,
-        diagnosticInput: row.diagnostic,
+        titleInput: row.Title,
+        descriptionInput: row.Description,
+        mediaInput: row.Media,
+        diagnosticInput: row.Content,
     });
     const handleChange = (prop: keyof ExerciseValues) => (event: React.ChangeEvent<HTMLInputElement>) => {
         setValues({ ...values, [prop]: event.target.value });
@@ -153,14 +155,14 @@ export const EditExercise = (props: any) => {
                         id="outlined-required"
                         label="Title"
                         variant="outlined"
-                        value={row.title}
+                        value={row.Title}
                         onChange={handleChange('titleInput')}
                     />
                     <NameInput
                         id="outlined-required"
                         label="Media URL"
                         variant="outlined"
-                        value={row.media}
+                        value={row.Media}
                         onChange={handleChange('mediaInput')}
                     />
                     <FilterForm>
@@ -168,13 +170,13 @@ export const EditExercise = (props: any) => {
                         <DiagnosticInput
                             labelId="diagnostics"
                             id="diagnostics"
-                            value={row.diagnostic}
+                            value={row.Diagnostic}
                             label="Diagnostics"
                             style={{ width: '100%' }}
                             onChange={handleChange('diagnosticInput')}
                         >
                             {diagnostics.map((diagnostic) => {
-                                return <MenuItem value={diagnostic.id}>{diagnostic.label}</MenuItem>;
+                                return <MenuItem value={diagnostic.Name}>{diagnostic.Name}</MenuItem>;
                             })}
                         </DiagnosticInput>
                     </FilterForm>
@@ -182,7 +184,7 @@ export const EditExercise = (props: any) => {
                         id="outlined-required"
                         label="Description"
                         variant="outlined"
-                        value={row.description}
+                        value={row.Content}
                         multiline
                         maxRows={10}
                         minRows={3}
