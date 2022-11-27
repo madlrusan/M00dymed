@@ -19,7 +19,7 @@ export const LoggedContainer = styled.div`
 `;
 export const RightContainer = styled.div`
     height: 120vh;
-    margin-top: 0vh;
+    margin-top: -20vh;
 `;
 export const RightContainerLogged = styled.div`
     background: linear-gradient(89.88deg, #81dae4 24.22%, #7a4e8f 99.42%);

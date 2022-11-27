@@ -212,7 +212,7 @@ const Menu = (email: string) => {
     const id = open ? 'simple-popper' : undefined;
     const handleActionClick = (action: string) => {
         setOpen(false);
-        navigate('/' + action + '/' + email.email);
+        navigate('/' + action + '/' + email.email + '/' + 1);
     };
     return (
         <>
@@ -238,13 +238,6 @@ const Menu = (email: string) => {
                         }}
                     >
                         See Profile
-                    </MenuItem>
-                    <MenuItem
-                        onClick={() => {
-                            handleActionClick('editPatient');
-                        }}
-                    >
-                        Edit Profile
                     </MenuItem>
                 </div>
             </Popper>

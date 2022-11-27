@@ -1,6 +1,5 @@
 import { Menu, RouteMenuItem, SideMenu, StyledItem } from './DoctorMenu.components';
 import { mediumPurple } from '../../modules/theme';
-import Logo from '.././../../asset/resource/logo.svg';
 import { Appwrite } from '../../services/Appwrite';
 import { useNavigate } from 'react-router';
 

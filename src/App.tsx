@@ -30,7 +30,7 @@ const App = () => {
                             <Route path="patients" element={<SeparateViewWithDoctorMenu view="patients" />} />
                             <Route path="addExercises" element={<SeparateViewWithDoctorMenu view="addExercises" />} />
                             <Route
-                                path="seePatient/:email"
+                                path="seePatient/:email/:role"
                                 element={<SeparateViewWithDoctorMenu view="seePatient" id={'email'} />}
                             />
                         </>
