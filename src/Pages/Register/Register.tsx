@@ -56,10 +56,9 @@ export const Register = () => {
             <div style={{ marginTop: '0vh' }}>
                 <img
                     src="https://svgshare.com/i/oQG.svg"
-                    style={{ color: mediumPurple, height: '100%', width: '60vh', alignContent: 'center' }}
+                    style={{ color: mediumPurple, height: '100%', width: '100%', alignContent: 'center', marginBottom: '5vh' }}
                     alt="Logo"
                 ></img>
-                {/* <img src={require('../../../asset/resource/logo.svg')} /> */}
             </div>
             <FormContainer2Columns style={{ marginTop: '10vh' }}>
                 <NameInput

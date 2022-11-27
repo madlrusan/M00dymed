@@ -80,7 +80,7 @@ export const Login = () => {
             <StyledForm>
                 <img
                     src="https://svgshare.com/i/oQG.svg"
-                    style={{ color: mediumPurple, height: '100%', width: '60vh', alignContent: 'center' }}
+                    style={{ color: mediumPurple, height: '100%', width: '100%', alignContent: 'center', marginBottom: '5vh' }}
                     alt="Logo"
                 ></img>
                 <EmailInput id="filled-required" label="Email" variant="filled" onChange={handleChange('emailInput')} />

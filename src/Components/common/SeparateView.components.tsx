@@ -7,7 +7,7 @@ export const Container = styled.div`
     align-items: center;
     justify-items: stretch;
     margin: 0;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 35vw auto;
 `;
 
 export const LoggedContainer = styled.div`
