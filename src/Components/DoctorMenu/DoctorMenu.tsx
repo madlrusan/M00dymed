@@ -20,8 +20,7 @@ export const DoctorMenu = () => {
                 <RouteMenuItem display="Exercises" path="/addExercises" />
                 <StyledItem
                     onClick={() => {
-                        logout();
-                        navigate('/');
+                        logout().then((r) => navigate('/'));
                     }}
                     sx={{ 'font-size': '2vw' }}
                 >

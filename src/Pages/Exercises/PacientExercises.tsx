@@ -93,7 +93,7 @@ export const Exercises = (props: any) => {
     const addExercise = () => {
         getExercises(filterValue).then((r) => setContent(r));
     };
-    const isPatient = props.isPatient;
+    const isPatient = window.localStorage.getItem('role');
 
     const [page, setPage] = React.useState(0);
     const cardsPerPage = 3;
@@ -121,7 +121,7 @@ export const Exercises = (props: any) => {
     }, [patientExercises]);
 
     console.log(randomExercises);
-    if (isPatient) {
+    if (isPatient === '0') {
         return (
             <>
                 <ContentGrid>

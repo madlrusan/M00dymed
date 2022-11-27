@@ -36,9 +36,7 @@ export const PatientMenu = () => {
                 <RouteMenuItem display="Exercises" path="/exercises" />
                 <StyledItem
                     onClick={() => {
-                        logout();
-
-                        navigate('/');
+                        logout().then((r) => navigate('/'));
                     }}
                     sx={{ 'font-size': '2vw' }}
                 >
