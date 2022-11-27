@@ -32,7 +32,7 @@ export const RouteMenuItem = (props: any) => {
     const path = props.path
     return (
         <StyledItem>
-            <Link href={path} underline="none">
+            <Link href={path} underline="none" sx={{width: '100%'}}>
                 {display} 
             </Link>
         </StyledItem>
