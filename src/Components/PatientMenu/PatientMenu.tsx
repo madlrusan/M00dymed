@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { mediumPurple } from '../../modules/theme';
 import { Appwrite } from '../../services/Appwrite';
@@ -6,18 +6,14 @@ import { Menu, SideMenu, RouteMenuItem, StyledItem } from '../DoctorMenu/DoctorM
 
 export const PatientMenu = () => {
     const [meUrl, setMeUrl] = useState('');
-    const { getUser, logout } = Appwrite();
-    const navigate = useNavigate();
-    const [user, setUser] = useState(null);
-    useEffect(() => {
-        const funct = async () => {
-            const user = await getUser();
-            return user?.email;
-        };
-        funct().then((r) => setUser(r));
-        setMeUrl('/' + user + '/0');
+    useMemo(() => {
+        const emailLcl = window.localStorage.getItem('email');
+        const roleLcl = window.localStorage.getItem('role');
+        setMeUrl('/seePatient/' + emailLcl + '/' + `${roleLcl}`);
     }, []);
-    // setMeUrl('/' + user?.email + '/0');
+    // const emailLcl = window.localStorage.getItem('email');
+    // const roleLcl = window.localStorage.getItem('role');
+    // setMeUrl('/' + emailLcl + '/' + `${roleLcl}`);
     return (
         <SideMenu>
             <div style={{ marginTop: '-20vh', marginBottom: '20vh', display: 'block' }}>
